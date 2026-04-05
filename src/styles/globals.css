@@ -1,0 +1,222 @@
+/* -------------------------------------------------------
+   GLOBAL RESET + BASE
+------------------------------------------------------- */
+
+* {
+  @apply border-border outline-ring/50;
+}
+
+html,
+body {
+  @apply bg-background text-foreground font-body antialiased;
+  scroll-behavior: smooth;
+}
+
+img,
+video,
+canvas {
+  @apply max-w-full;
+}
+
+button {
+  @apply cursor-pointer select-none;
+}
+
+/* -------------------------------------------------------
+   TYPOGRAPHY POLISH
+------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-heading tracking-tight text-white;
+}
+
+p {
+  @apply font-body leading-relaxed text-white/80;
+}
+
+/* -------------------------------------------------------
+   CHROME EFFECT UTILITIES
+------------------------------------------------------- */
+
+/* Soft chrome glow */
+.chrome-glow {
+  box-shadow:
+    0 0 20px rgba(155, 188, 255, 0.25),
+    0 0 40px rgba(192, 132, 252, 0.15);
+}
+
+/* Chrome gradient text */
+.chrome-text {
+  background: linear-gradient(135deg, #e5e7eb, #9bbcff, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Chrome border */
+.chrome-border {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+/* Chrome shimmer overlay */
+.chrome-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.chrome-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(155, 188, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  animation: chromeSweep 2.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------
+   ANIMATION PRIMITIVES
+------------------------------------------------------- */
+
+/* Fade in */
+.fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade out */
+.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+/* Chrome shimmer sweep */
+@keyframes chromeSweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Slot-machine bounce (used in SpinTheVault) */
+@keyframes vaultSpin {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-40px);
+  }
+  60% {
+    transform: translateY(40px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* -------------------------------------------------------
+   PAGE TRANSITION HELPERS
+------------------------------------------------------- */
+
+.page-transition {
+  @apply transition-opacity duration-300;
+}
+
+.page-hidden {
+  opacity: 0;
+}
+
+.page-visible {
+  opacity: 1;
+}
+
+/* -------------------------------------------------------
+   UTILITY: GLASS + BLUR
+------------------------------------------------------- */
+
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* -------------------------------------------------------
+   UTILITY: CHROME BUTTON
+------------------------------------------------------- */
+
+.chrome-button {
+  background: linear-gradient(135deg, #e5e7eb, #9bbcff, #c084fc);
+  @apply text-black font-heading rounded-lg shadow-sm;
+}
+
+.chrome-button:hover {
+  filter: brightness(1.1);
+}
+/* Chrome blur during spin */
+.spin-blur {
+  filter: blur(3px) brightness(1.4);
+  transform: translateY(4px);
+  opacity: 0.6;
+}
+
+/* Smooth reveal */
+.spin-reveal {
+  filter: blur(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Optional: chrome shimmer sweep */
+.spin-blur::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(155, 188, 255, 0.4) 50%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  animation: chromeSweep 0.8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes chromeSweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}

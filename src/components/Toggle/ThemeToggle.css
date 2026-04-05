@@ -1,0 +1,59 @@
+.wn-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 5em;
+  height: 2.5em;
+  cursor: pointer;
+  user-select: none;
+  font-family: inherit;
+}
+
+.wn-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 2em;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(180, 220, 255, 0.25);
+  transition: all 0.25s ease;
+}
+
+.wn-toggle input:checked + .slider {
+  background: linear-gradient(135deg, #7df, #4af, #8bf);
+  box-shadow: 0 0 30px rgba(120, 180, 255, 0.45);
+}
+
+.label-off,
+.label-on {
+  position: absolute;
+  font-size: 0.7em;
+  font-weight: 600;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.6);
+  transition: opacity 0.25s ease;
+}
+
+.label-off {
+  left: 0.8em;
+}
+
+.label-on {
+  right: 0.8em;
+  opacity: 0;
+}
+
+.wn-toggle input:checked ~ .label-off {
+  opacity: 0;
+}
+
+.wn-toggle input:checked ~ .label-on {
+  opacity: 1;
+}

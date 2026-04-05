@@ -1,0 +1,16 @@
+{
+  "skills": [
+    {
+      "source": "supabase/agent-skills",
+      "skills": [
+        "supabase-postgres-best-practices"
+      ]
+    },
+    {
+      "source": "vercel-labs/agent-skills",
+      "skills": [
+        "vercel-react-best-practices"
+      ]
+    }
+  ]
+}
