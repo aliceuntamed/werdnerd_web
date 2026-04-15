@@ -526,6 +526,13 @@
 }
 
 .thq-mask-image-vertical {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 1%,
+    black 99%,
+    transparent
+  );
   mask-image: linear-gradient(
     to bottom,
     transparent,
@@ -536,6 +543,13 @@
 }
 
 .thq-mask-image-horizontal {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 1%,
+    black 99%,
+    transparent
+  );
   mask-image: linear-gradient(
     to right,
     transparent,
@@ -635,7 +649,7 @@
   font-family: var(--font-family-body);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-body);
-  user-select: none;
+  -webkit-user-select: none;
   white-space: nowrap;
   border-radius: var(--border-radius-control);
   justify-content: center;
@@ -1350,6 +1364,7 @@
   align-items: center;
   border-radius: var(--border-radius-xl);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .vault-hero__search-icon {
@@ -2324,6 +2339,7 @@
 .remix-dialog::backdrop {
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .form-control:focus {
@@ -2563,6 +2579,7 @@
 .about-creator-dialog::backdrop {
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .about-creator-form-group label {

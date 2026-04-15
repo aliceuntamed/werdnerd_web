@@ -1,0 +1,6 @@
+{
+  "files.autoSave": "onFocusChange",
+  "editor.wordWrap": "on",
+  "storybook-opener.openInEditor.enable": true,
+  "vite.https": true
+}
