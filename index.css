@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS variable definitions (dark theme) ─── */
+:root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+    --border: 0 0% 18%;
+    --ring: 0 0% 50%;
+    --input: 0 0% 18%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 60%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 100%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.5rem;
+}
+
+@layer base {
+
+    html,
+    body {
+        background-color: #0a0a0a;
+        color: #ffffff;
+        font-family:
+            "Poppins",
+            system-ui,
+            -apple-system,
+            "Segoe UI",
+            Roboto,
+            "Helvetica Neue",
+            Arial,
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family:
+            "Quicksand",
+            system-ui,
+            -apple-system,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        color: white;
+        line-height: 1.25;
+    }
+
+    p {
+        font-family:
+            "Poppins",
+            system-ui,
+            -apple-system,
+            sans-serif;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    button {
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    img,
+    video,
+    canvas {
+        max-width: 100%;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+/* ─── Chrome gradient text utility ─── */
+.chrome-gradient-text {
+    background: linear-gradient(135deg, #e5e7eb 0%, #9bbcff 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ─── Chrome shimmer effects ─── */
+.chrome-glow {
+    box-shadow:
+        0 0 20px rgba(155, 188, 255, 0.25),
+        0 0 40px rgba(192, 132, 252, 0.15);
+}
+
+.chrome-border {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+}
+
+.glass {
+
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes chromeSweep {
+    0% {
+        transform: translateX(-120%);
+    }
+
+    100% {
+        transform: translateX(120%);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.chrome-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.chrome-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+            transparent 0%,
+            rgba(155, 188, 255, 0.4) 50%,
+            transparent 100%);
+    transform: translateX(-120%);
+    animation: chromeSweep 2.2s ease-in-out infinite;
+    pointer-events: none;
+}

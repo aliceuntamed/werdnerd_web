@@ -72,12 +72,10 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(155, 188, 255, 0.4) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(155, 188, 255, 0.4) 50%,
+      transparent 100%);
   transform: translateX(-120%);
   animation: chromeSweep 2.2s ease-in-out infinite;
   pointer-events: none;
@@ -97,6 +95,7 @@ p {
     opacity: 0;
     transform: translateY(4px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -113,6 +112,7 @@ p {
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(4px);
@@ -124,6 +124,7 @@ p {
   0% {
     transform: translateX(-120%);
   }
+
   100% {
     transform: translateX(120%);
   }
@@ -134,12 +135,15 @@ p {
   0% {
     transform: translateY(0);
   }
+
   30% {
     transform: translateY(-40px);
   }
+
   60% {
     transform: translateY(40px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -166,8 +170,8 @@ p {
 ------------------------------------------------------- */
 
 .glass {
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -184,6 +188,7 @@ p {
 .chrome-button:hover {
   filter: brightness(1.1);
 }
+
 /* Chrome blur during spin */
 .spin-blur {
   filter: blur(3px) brightness(1.4);
@@ -203,12 +208,10 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(155, 188, 255, 0.4) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(155, 188, 255, 0.4) 50%,
+      transparent 100%);
   transform: translateX(-120%);
   animation: chromeSweep 0.8s linear infinite;
   pointer-events: none;
@@ -218,6 +221,7 @@ p {
   0% {
     transform: translateX(-120%);
   }
+
   100% {
     transform: translateX(120%);
   }
