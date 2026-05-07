@@ -1,6 +1,6 @@
-import { ChromeCubeStack } from "@/components/ui/ChromeCubeStack";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { ChromeCubeStack } from "../../components/ui/ChromeCubeStack";
+import { Header } from "../../components/layout/Header";
+import { Footer } from "../../components/layout/Footer";
 
 export default function AboutPage() {
   return (

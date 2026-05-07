@@ -3,10 +3,13 @@ import { supabase } from "./client";
 import type { Werd } from "../../types";
 
 // Helper: normalise the nested tags structure from Supabase joins
-function normaliseTags(werd_tags: any[]): string[] {
+function normaliseTags(werd_tags: unknown[]): string[] {
   return (
     werd_tags
-      ?.map((t: any) => t.tags?.tag_name ?? t.tags?.name ?? t.tag_name ?? t.name ?? "")
+      ?.map(
+        (t: any) =>
+          t.tags?.tag_name ?? t.tags?.name ?? t.tag_name ?? t.name ?? "",
+      )
       .filter(Boolean) ?? []
   );
 }

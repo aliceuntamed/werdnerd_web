@@ -1,6 +1,11 @@
 import "./ThemeToggle.css";
 
-export default function ThemeToggle({ value, onChange }) {
+interface ThemeToggleProps {
+  value: boolean;
+  onChange: (value: boolean) => void;
+}
+
+export default function ThemeToggle({ value, onChange }: ThemeToggleProps) {
   return (
     <label className="wn-toggle">
       <input
