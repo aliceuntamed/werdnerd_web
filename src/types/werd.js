@@ -1,0 +1,2 @@
+// types/werd.ts
+export {};

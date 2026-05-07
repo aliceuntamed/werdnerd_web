@@ -1,0 +1,2 @@
+// types/tag.ts
+export {};
