@@ -16,7 +16,7 @@ function SectionDivider() {
 export default function HomePage() {
   return (
     <>
-      <VideoBackground src="/hero-video.mp4" opacity={0.5} />
+      <VideoBackground src="/homepage-vidbg.mp4" opacity={0.5} />
 
       <main
         className="relative w-full min-h-screen text-white"

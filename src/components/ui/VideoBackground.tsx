@@ -6,7 +6,7 @@ interface VideoBackgroundProps {
 }
 
 export default function VideoBackground({
-  src = "/hero-video.mp4",
+  src = "/homepage-vidbg.mp4",
   opacity = 0.55,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);

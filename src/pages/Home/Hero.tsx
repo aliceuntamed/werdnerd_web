@@ -12,34 +12,32 @@ export default function Hero() {
         </div>
 
         <h1
-          className="text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05]"
+          className="text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] font-bold"
           style={{
             fontFamily: "Quicksand, system-ui, sans-serif",
-            fontWeight: 700,
           }}
         >
           <span className="chrome-gradient-text">Discover</span>
           <br />
-          <span style={{ color: "rgba(255,255,255,0.95)" }}>
-            the world's most{" "}
-          </span>
-          <span
-            className="inline-flex items-baseline"
-            style={{ color: "#9bbcff" }}
-          >
+
+          <span className="text-white/95">the world's most </span>
+
+          <span className="inline-flex items-baseline text-[#9bbcff]">
             <Flipwords
               werds={["unusual", "curious", "obscure", "poetic", "intriguing"]}
               duration={3200}
-              className="text-[#9bbcff]"
+              className="text-[#9bbcff] text-[1.25em] md:text-[1.35em] lg:text-[1.45em] font-bold"
             />
           </span>
+
           <br />
-          <span style={{ color: "rgba(255,255,255,0.95)" }}>words.</span>
+
+          <span className="text-white/95">words.</span>
         </h1>
 
         <p
           style={{
-            color: "rgba(255,255,255,0.55)",
+            color: "rgba(255,255,255,0.65)",
             fontSize: "1.1rem",
             maxWidth: "30rem",
             lineHeight: 1.7,
@@ -49,7 +47,8 @@ export default function Hero() {
           language is the greatest art form.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
+        {/* BUTTONS — increased spacing */}
+        <div className="flex flex-col sm:flex-row items-center gap-6 mt-8">
           <Link
             to="/vault"
             style={{
@@ -69,6 +68,7 @@ export default function Hero() {
           >
             Explore the Vault
           </Link>
+
           <Link
             to="/submit-werd"
             style={{
@@ -91,50 +91,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 animate-bounce"
-        style={{ color: "rgba(255,255,255,0.25)" }}
-      >
-        <span
-          className="text-xs tracking-widest uppercase"
-          style={{ fontFamily: "Poppins, sans-serif" }}
-        >
-          Scroll
-        </span>
-        <svg
-          width="16"
-          height="24"
-          viewBox="0 0 16 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="1"
-            y="1"
-            width="14"
-            height="22"
-            rx="7"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <circle cx="8" cy="8" r="2" fill="currentColor">
-            <animate
-              attributeName="cy"
-              from="8"
-              to="14"
-              dur="1.5s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="opacity"
-              from="1"
-              to="0"
-              dur="1.5s"
-              repeatCount="indefinite"
-            />
-          </circle>
-        </svg>
-      </div>
+      {/* Scroll indicator removed */}
     </div>
   );
 }
