@@ -1,10 +1,9 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
-import LoadingScreen from "./src/components/ui/LoadingScreen";
-import Navigation from "./src/components/Navigation/Navigation";
+import LoadingScreen from "./components/ui/LoadingScreen";
+import Navigation from "./components/Navigation/Navigation";
 
-import { ROUTE_COMPONENTS } from "./src/routes";
+import { ROUTE_COMPONENTS } from "./routes";
 
 export default function App() {
   return (
