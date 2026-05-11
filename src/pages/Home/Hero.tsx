@@ -49,7 +49,7 @@ export default function Hero() {
           language is the greatest art form.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
+        <div className="flex flex-col sm:flex-row items-center gap-4 mt-2 px-10">
           <Link
             to="/vault"
             style={{
