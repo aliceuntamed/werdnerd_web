@@ -81,7 +81,7 @@ export const Flipwords = ({
               stiffness: 120,
               damping: 12,
             }}
-            className="inline-block whitespace-nowrap"
+            className="block whitespace-nowrap my-1"
           >
             {werd.split("").map((letter, letterIndex) => (
               <motion.span
