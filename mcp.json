@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "builder-dsi": {
+      "command": "npx",
+      "args": [
+        "@builder.io/dev-tools@latest",
+        "dsi-mcp"
+      ]
+    }
+  }
+}

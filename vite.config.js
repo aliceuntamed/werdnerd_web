@@ -6,23 +6,27 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { playwright } from "@vitest/browser-playwright";
-const dirname = typeof __dirname !== "undefined"
+const dirname =
+  typeof __dirname !== "undefined"
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
-    plugins: [react(), tailwindcss()],
-    resolve: {
-        alias: {
-            "@": path.resolve(dirname, "./src/*"),
-        },
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(dirname, "./src/*"),
     },
-    test: {
-        globals: true,
-        environment: "jsdom",
-        setupFiles: "./src/setupTests.ts",
-        browser: {
-            enabled: true,
-            provider: playwright(),
-        },
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/setupTests.ts",
+    browser: {
+      enabled: true,
+      provider: playwright(),
     },
+  },
+  server: {
+    allowedHosts: ["design-refresh-340.cluster-7.preview.emergentcf.cloud"],
+  },
 });

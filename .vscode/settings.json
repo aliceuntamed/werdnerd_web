@@ -2,5 +2,10 @@
   "files.autoSave": "onFocusChange",
   "editor.wordWrap": "on",
   "vite.https": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "builder.serverUrl": "",
+  "builder.command": "npm run dev",
+  "builder.runDevServer": true,
+  "builder.autoDetectDevServer": true,
+  "builder.launchType": "editor"
 }
