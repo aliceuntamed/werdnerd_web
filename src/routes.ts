@@ -28,7 +28,9 @@ export const ROUTES = {
   ABOUT: "/about",
   CREATORS: "/playground",
   SUBMIT: "/submit",
+  SUBMIT_LEGACY: "/submit-werd",
   GAMES: "/games",
+  CREATORS_LEGACY: "/creators-playground",
 
   // Individual games
   BOGGLE: "/games/boggle",
@@ -52,6 +54,8 @@ export const ROUTE_COMPONENTS = {
   [ROUTES.ABOUT]: AboutPage,
   [ROUTES.CREATORS]: CreatorsPlaygroundPage,
   [ROUTES.SUBMIT]: SubmitWerdPage,
+  [ROUTES.SUBMIT_LEGACY]: SubmitWerdPage,
+  [ROUTES.CREATORS_LEGACY]: CreatorsPlaygroundPage,
 
   // Games
   [ROUTES.GAMES]: GamesPage,

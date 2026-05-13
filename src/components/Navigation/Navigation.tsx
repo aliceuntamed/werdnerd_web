@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import "./Navigation.css";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,23 +13,17 @@ export default function Navigation() {
 
   return (
     <header
-      className="
-      fixed top-0 left-0 w-full h-16 z-50
-      bg-black/70 backdrop-blur-md
-      border-b border-white/10
-      shadow-[0_4px_20px_rgba(0,0,0,0.4)]
-      flex items-center
-    "
+      className="site-nav"
     >
-      <div className="w-full max-w-6xl mx-auto px-6 flex items-center justify-between">
+      <div className="site-nav-inner">
         {/* Brand */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="site-nav-brand">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26"
             height="26"
             viewBox="0 0 24 24"
-            className="text-white"
+            className="site-nav-brand-icon"
           >
             <path
               fill="none"
@@ -39,23 +34,23 @@ export default function Navigation() {
               d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
             />
           </svg>
-          <span className="font-heading text-xl text-white">WerdNerd</span>
+          <span>WerdNerd</span>
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="site-nav-links">
           <NavItem to="/" label="Home" />
           <NavItem to="/vault" label="Vault" />
           <NavItem to="/about" label="About" />
-          <NavItem to="/submit-werd" label="Submit Word" />
+          <NavItem to="/submit" label="Submit Word" />
           <NavItem to="/games" label="Games" />
-          <NavItem to="/creators-playground" label="Palette Playground" />
+          <NavItem to="/playground" label="Palette Playground" />
         </div>
 
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white"
+          className="site-nav-toggle"
           aria-label="Toggle navigation"
         >
           {isOpen ? (
@@ -85,19 +80,14 @@ export default function Navigation() {
       {/* Mobile Menu */}
       {isOpen && (
         <div
-          className="
-          absolute top-16 left-0 w-full
-          bg-black/80 backdrop-blur-xl
-          border-b border-white/10
-          flex flex-col gap-6 px-6 py-6 md:hidden
-        "
+          className="site-nav-mobile"
         >
           <MobileItem to="/" label="Home" />
           <MobileItem to="/vault" label="Vault" />
           <MobileItem to="/about" label="About" />
-          <MobileItem to="/submit-werd" label="Submit Word" />
+          <MobileItem to="/submit" label="Submit Word" />
           <MobileItem to="/games" label="Games" />
-          <MobileItem to="/creators-playground" label="Palette Playground" />
+          <MobileItem to="/playground" label="Palette Playground" />
         </div>
       )}
     </header>
@@ -110,10 +100,7 @@ function NavItem({ to, label }: { to: string; label: string }) {
   return (
     <Link
       to={to}
-      className="
-        text-white hover:text-white/80 transition
-        font-body tracking-wide
-      "
+      className="site-nav-link"
     >
       {label}
     </Link>
@@ -124,11 +111,7 @@ function MobileItem({ to, label }: { to: string; label: string }) {
   return (
     <Link
       to={to}
-      className="
-        text-white text-lg
-        hover:text-white/80 transition
-        font-body tracking-wide
-      "
+      className="site-nav-mobile-link"
     >
       {label}
     </Link>

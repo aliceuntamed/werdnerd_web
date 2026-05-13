@@ -1,97 +1,95 @@
 import { Link } from "react-router-dom";
+import { BookOpen, Feather, Sparkles } from "lucide-react";
 import { Flipwords } from "../../components/ui/Flipwords";
+
+const proofPoints = ["Rare", "Poetic", "Playable", "Peculiar"];
+
+const sampleEntries = [
+  ["sonder", "the sudden awareness of other lives"],
+  ["apricity", "the warmth of winter sunlight"],
+  ["limerence", "a bright, unruly infatuation"],
+];
 
 export default function Hero() {
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-center text-center px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/70 pointer-events-none" />
+    <section className="home-hero">
+      <div className="home-hero-scrim" />
+      <div className="home-hero-glow" />
 
-      <div className="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-8">
-        <div className="inline-block px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-white/50 text-xs tracking-[0.25em] uppercase font-body">
-          A Logophile's Lexicon
+      <div className="home-hero-grid">
+        <div className="home-hero-copy">
+          <h1 className="home-hero-title">
+            <span className="chrome-gradient-text">Words</span>
+            <span>worth</span>
+            <span className="home-flip-line">
+              <Flipwords
+                werds={[
+                  "hoarding",
+                  "whispering",
+                  "chasing",
+                  "debating",
+                  "savoring",
+                ]}
+                duration={3000}
+                className="home-flip-word"
+              />
+            </span>
+          </h1>
+
+          <p className="home-hero-subtitle">
+            A living vault of rare, poetic, and peculiar vocabulary for people
+            who know a good word can ruin a perfectly productive afternoon.
+          </p>
+
+          <div className="home-hero-actions">
+            <Link to="/vault" className="home-primary-button">
+              <BookOpen className="home-icon" />
+              Explore the Vault
+            </Link>
+
+            <Link to="/submit" className="home-secondary-button">
+              <Feather className="home-icon" />
+              Submit a Word
+            </Link>
+          </div>
+
+          <div className="home-proof-row">
+            {proofPoints.map((point) => (
+              <span key={point}>{point}</span>
+            ))}
+          </div>
         </div>
 
-        <h1
-          className="text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] font-bold"
-          style={{
-            fontFamily: "Quicksand, system-ui, sans-serif",
-          }}
-        >
-          <span className="chrome-gradient-text">Discover</span>
-          <br />
+        <aside className="home-field-notes">
+          <div className="home-field-glow" />
+          <div className="home-field-panel">
+            <div className="home-field-header">
+              <div>
+                <p className="home-field-title">Field Notes</p>
+                <p className="home-field-subtitle">fresh from the vault</p>
+              </div>
+              <div className="home-field-icon">
+                <Sparkles className="home-icon" />
+              </div>
+            </div>
 
-          <span className="text-white/95">the world's most </span>
+            <div className="home-field-list">
+              {sampleEntries.map(([word, note]) => (
+                <div key={word} className="home-field-entry">
+                  <div>
+                    <p>{word}</p>
+                    <small>{note}</small>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-          <span className="inline-flex items-baseline text-[#9bbcff]">
-            <Flipwords
-              werds={["unusual", "curious", "obscure", "poetic", "intriguing"]}
-              duration={3200}
-              className="text-[#9bbcff] text-[1.25em] md:text-[1.35em] lg:text-[1.45em] font-bold"
-            />
-          </span>
-
-          <br />
-
-          <span className="text-white/95">words.</span>
-        </h1>
-
-        <p
-          style={{
-            color: "rgba(255,255,255,0.65)",
-            fontSize: "1.1rem",
-            maxWidth: "30rem",
-            lineHeight: 1.7,
-          }}
-        >
-          Rare, poetic, and peculiar vocabulary curated for those who believe
-          language is the greatest art form.
-        </p>
-
-        {/* BUTTONS — increased spacing */}
-        <div className="flex flex-col sm:flex-row items-center gap-6 mt-8">
-          <Link
-            to="/vault"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "linear-gradient(135deg, #e5e7eb, #9bbcff, #c084fc)",
-              color: "#0a0a0a",
-              fontFamily: "Quicksand, system-ui, sans-serif",
-              fontWeight: 700,
-              padding: "0.875rem 2rem",
-              borderRadius: "0.5rem",
-              fontSize: "1rem",
-              boxShadow: "0 4px 20px rgba(155,188,255,0.25)",
-              transition: "opacity 0.2s",
-            }}
-          >
-            Explore the Vault
-          </Link>
-
-          <Link
-            to="/submit-werd"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              background: "rgba(255,255,255,0.05)",
-              backdropFilter: "blur(8px)",
-              padding: "0.875rem 2rem",
-              borderRadius: "0.5rem",
-              fontSize: "1rem",
-              fontFamily: "Quicksand, system-ui, sans-serif",
-              fontWeight: 600,
-            }}
-          >
-            Submit a Word
-          </Link>
-        </div>
+            <Link to="/vault" className="home-field-button">
+              Browse all entries
+            </Link>
+          </div>
+        </aside>
       </div>
-
-      {/* Scroll indicator removed */}
-    </div>
+    </section>
   );
 }

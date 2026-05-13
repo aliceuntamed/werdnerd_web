@@ -1,15 +1,58 @@
+import type React from "react";
 import VideoBackground from "../../components/ui/VideoBackground";
 import Hero from "./Hero";
 import WOTD from "./WOTD";
 import CuratedPicks from "./CuratedPicks";
 import SpinTheVault from "./SpinTheVault";
 import ContributeCTA from "./ContributeCTA";
+import "./home.css";
 
-function SectionDivider() {
+function AmbientDivider() {
   return (
-    <div className="w-full flex items-center gap-6 px-6 max-w-6xl mx-auto">
-      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    <div className="home-divider-wrap">
+      <div className="home-divider" />
     </div>
+  );
+}
+
+function HomeBand({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={`home-band ${className}`}>
+      <div className="home-band-line" />
+      <div className="home-container">{children}</div>
+    </section>
+  );
+}
+
+function IntroRail() {
+  const items = [
+    ["Curated", "Uncommon words with human taste, not dictionary dust."],
+    ["Playable", "Spin, browse, and test your vocabulary by instinct."],
+    ["Community", "Submit the linguistic oddities that haunt your notes app."],
+  ];
+
+  return (
+    <section className="home-intro-rail">
+      <div className="home-intro-grid">
+        {items.map(([title, body]) => (
+          <div
+            key={title}
+            className="home-intro-item"
+          >
+            <p className="home-intro-title">{title}</p>
+            <p className="home-intro-copy">
+              {body}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -19,46 +62,35 @@ export default function HomePage() {
       <VideoBackground src="/homepage-vidbg.mp4" opacity={0.5} />
 
       <main
-        className="relative w-full min-h-screen text-white"
+        className="home-main"
         style={{ zIndex: 10 }}
       >
         <Hero />
+        <IntroRail />
 
-        <SectionDivider />
+        <AmbientDivider />
 
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="relative z-10 px-6">
-            <WOTD />
-          </div>
-        </section>
+        <HomeBand className="home-band-soft">
+          <WOTD />
+        </HomeBand>
 
-        <SectionDivider />
+        <AmbientDivider />
 
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="relative z-10 px-6">
-            <CuratedPicks />
-          </div>
-        </section>
+        <HomeBand className="home-band-mid">
+          <CuratedPicks />
+        </HomeBand>
 
-        <SectionDivider />
+        <AmbientDivider />
 
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="relative z-10 px-6">
-            <SpinTheVault />
-          </div>
-        </section>
+        <HomeBand className="home-band-deep">
+          <SpinTheVault />
+        </HomeBand>
 
-        <SectionDivider />
+        <AmbientDivider />
 
-        <section className="py-24 relative">
-          <div className="absolute inset-0 bg-black/55" />
-          <div className="relative z-10 px-6">
-            <ContributeCTA />
-          </div>
-        </section>
+        <HomeBand className="home-band-cta">
+          <ContributeCTA />
+        </HomeBand>
       </main>
     </>
   );

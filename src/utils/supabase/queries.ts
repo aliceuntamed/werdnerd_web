@@ -69,8 +69,7 @@ export async function fetchTags() {
 export async function getRandomWerd(): Promise<Werd | null> {
   const { data, error } = await supabase
     .from("werds")
-    .select(WERD_SELECT)
-    .limit(1);
+    .select(WERD_SELECT);
 
   if (error) {
     console.error("Error fetching random werd:", error);
@@ -78,35 +77,24 @@ export async function getRandomWerd(): Promise<Werd | null> {
   }
 
   if (!data || data.length === 0) return null;
-  return mapWerd(data[0]);
+
+  const randomIndex = Math.floor(Math.random() * data.length);
+  return mapWerd(data[randomIndex]);
 }
 
 // Fetch Word of the Day
 export async function getWOTD(): Promise<Werd | null> {
-  const today = new Date().toISOString().split("T")[0];
-
   const { data, error } = await supabase
-    .from("wotd")
-    .select(`werd_id, werds(${WERD_SELECT})`)
-    .eq("date", today)
-    .single();
+    .from("werds")
+    .select(WERD_SELECT);
 
   if (error) {
-    // If no WOTD exists yet, fall back to a random werd
-    const random = await getRandomWerd();
-    if (!random) return null;
-
-    await supabase.from("wotd").insert({
-      date: today,
-      werd_id: random.werd_id,
-    });
-
-    return random;
+    console.error("Error fetching word of the day:", error);
+    return null;
   }
 
-  const werds = data?.werds;
-  const w = Array.isArray(werds) ? werds[0] : werds;
-  if (!w) return null;
+  if (!data || data.length === 0) return null;
 
-  return mapWerd(w);
+  const daySeed = Math.floor(Date.now() / 86_400_000);
+  return mapWerd(data[daySeed % data.length]);
 }

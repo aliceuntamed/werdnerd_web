@@ -2,10 +2,13 @@
   "mcpServers": {
     "builder-dsi": {
       "command": "npx",
-      "args": [
-        "@builder.io/dev-tools@latest",
-        "dsi-mcp"
-      ]
+      "args": ["@builder.io/dev-tools@latest", "dsi-mcp"]
+    },
+    "pencil": {
+      "transport": "stdio",
+      "command": "C:\\Users\\skaly\\AppData\\Local\\Programs\\Pencil\\resources\\app.asar.unpacked\\out\\mcp-server-windows-x64.exe",
+      "args": ["--app", "desktop"],
+      "env": {}
     }
   }
 }

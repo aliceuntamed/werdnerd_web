@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Shuffle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowUpRight, Shuffle } from "lucide-react";
 import { getRandomWerd } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
-import { Link } from "react-router-dom";
 
 export default function SpinTheVault() {
   const [werd, setWerd] = useState<Werd | null>(null);
@@ -18,72 +18,65 @@ export default function SpinTheVault() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="mb-12 text-center">
-        <h2 className="font-heading text-4xl md:text-5xl chrome-gradient-text mb-3">
-          Spin the Vault
+    <div className="spin-layout">
+      <div>
+        <p className="home-eyebrow">Spin the Vault</p>
+        <h2 className="home-section-title">
+          Let chance pick the word your brain pretends it always knew.
         </h2>
-        <p className="font-body text-white/45 text-base md:text-lg">
-          Let fate choose your next obsession.
+        <p className="home-section-copy spin-copy">
+          One click, one surprise entry. Excellent for procrastination, writing
+          prompts, and mildly insufferable dinner conversation.
         </p>
       </div>
 
-      <div className="relative rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-8 md:p-12 text-center overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[1.5px] w-1/3 bg-chrome-horizontal rounded-full opacity-40" />
+      <div className="spin-card">
+        <div className="spin-card-line" />
+        <div className="spin-card-glow" />
 
-        <div className="min-h-[12rem] flex flex-col items-center justify-center mb-8">
+        <div className="spin-stage">
           {!spun && !loading && (
-            <p className="font-body text-white/30 italic text-lg">
-              Press spin to reveal a random word from the vault.
-            </p>
+            <div className="spin-empty">
+              <p>Ready when your curiosity is.</p>
+              <small>Press spin to pull a random word from the vault.</small>
+            </div>
           )}
 
           {loading && (
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white/70 animate-spin" />
-              <p className="font-body text-white/40 italic animate-pulse">Spinning…</p>
+            <div className="home-loading">
+              <div className="home-spinner" />
+              <p>Spinning...</p>
             </div>
           )}
 
           {!loading && werd && (
-            <div className="flex flex-col items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <h3 className="font-heading text-5xl md:text-6xl chrome-gradient-text leading-none">
-                {werd.werd}
-              </h3>
+            <div className="spin-result fade-in">
+              <h3 className="chrome-gradient-text">{werd.werd}</h3>
 
               {werd.pronunciation && (
-                <p className="font-body text-white/40 italic text-lg">
-                  /{werd.pronunciation}/
-                </p>
+                <p className="home-pronunciation">/{werd.pronunciation}/</p>
               )}
 
               {werd.part_of_speech && (
-                <span className="text-xs tracking-widest uppercase text-white/30 font-body border border-white/10 px-3 py-1 rounded-full">
-                  {werd.part_of_speech}
-                </span>
+                <span className="home-chip">{werd.part_of_speech}</span>
               )}
 
-              <p className="font-body text-white/75 text-lg max-w-lg leading-relaxed mt-2">
-                {werd.definition}
-              </p>
+              <p className="spin-definition">{werd.definition}</p>
 
               <Link
                 to={`/vault?search=${encodeURIComponent(werd.werd)}`}
-                className="mt-2 text-sm font-body text-white/40 hover:text-white transition-colors underline underline-offset-4 decoration-white/15 hover:decoration-white"
+                className="home-link"
               >
-                See full entry →
+                See full entry
+                <ArrowUpRight className="home-icon" />
               </Link>
             </div>
           )}
         </div>
 
-        <button
-          onClick={spin}
-          disabled={loading}
-          className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-heading text-base text-black bg-chrome-horizontal shadow-lg hover:opacity-90 active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <Shuffle className={`w-5 h-5 ${loading ? "animate-spin" : ""}`} />
-          {loading ? "Spinning…" : spun ? "Spin Again" : "Spin the Vault"}
+        <button onClick={spin} disabled={loading} className="home-primary-button spin-button">
+          <Shuffle className={`home-icon ${loading ? "spin-icon-active" : ""}`} />
+          {loading ? "Spinning..." : spun ? "Spin Again" : "Spin the Vault"}
         </button>
       </div>
     </div>

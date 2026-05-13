@@ -27,9 +27,15 @@
 }
 
 @layer base {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
 
     html,
     body {
+        margin: 0;
         background-color: #0a0a0a;
         color: #ffffff;
         font-family:
