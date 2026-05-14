@@ -20,7 +20,7 @@ export default function VideoBackground({
   return (
     <div
       className="fixed inset-0 w-full h-full overflow-hidden"
-      style={{ zIndex: 0 }}
+      style={{ zIndex: 0, pointerEvents: "none" }}
       aria-hidden
     >
       <video

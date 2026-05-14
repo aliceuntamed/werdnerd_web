@@ -9,4 +9,5 @@ declare module "lucide-react" {
   export const Heart: React.FC<LucideIconProps>;
   export const Feather: React.FC<LucideIconProps>;
   export const Shuffle: React.FC<LucideIconProps>;
+  export const Mail: React.FC<LucideIconProps>;
 }
