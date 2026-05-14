@@ -1,6 +1,7 @@
 // supabase/queries.ts
 import { supabase } from "./client";
 import type { Werd } from "../../types";
+import { WERDS as LOCAL_WERDS } from "../../data/werd_data";
 
 // Helper: normalise the nested tags structure from Supabase joins
 function normaliseTags(werd_tags: unknown[]): string[] {
@@ -13,6 +14,32 @@ function normaliseTags(werd_tags: unknown[]): string[] {
       .filter(Boolean) ?? []
   );
 }
+
+function normaliseLocalTags(tags: unknown): string[] {
+  if (Array.isArray(tags)) {
+    return tags.map((tag) => String(tag).trim()).filter(Boolean);
+  }
+
+  if (typeof tags === "string") {
+    return tags
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+const LOCAL_TAGS_BY_ID = new Map(
+  LOCAL_WERDS.map((werd) => [werd.werd_id, normaliseLocalTags(werd.tags)]),
+);
+
+const LOCAL_TAGS_BY_WORD = new Map(
+  LOCAL_WERDS.map((werd) => [
+    werd.werd.toLowerCase(),
+    normaliseLocalTags(werd.tags),
+  ]),
+);
 
 const WERD_TAGS_SELECT = `werd_tags(tags:tag_id(tag_name))`;
 
@@ -28,6 +55,12 @@ const WERD_SELECT = `
 `;
 
 function mapWerd(w: any): Werd {
+  const relationalTags = normaliseTags(w.werd_tags ?? []);
+  const fallbackTags =
+    LOCAL_TAGS_BY_ID.get(w.werd_id) ??
+    LOCAL_TAGS_BY_WORD.get(String(w.werd ?? "").toLowerCase()) ??
+    [];
+
   return {
     werd_id: w.werd_id,
     werd: w.werd ?? "",
@@ -36,7 +69,7 @@ function mapWerd(w: any): Werd {
     definition: w.definition ?? undefined,
     language: w.language ?? undefined,
     source: w.source ?? undefined,
-    tags: normaliseTags(w.werd_tags ?? []),
+    tags: relationalTags.length > 0 ? relationalTags : fallbackTags,
   };
 }
 
