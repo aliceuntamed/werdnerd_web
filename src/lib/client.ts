@@ -6,6 +6,3 @@ export function createClient() {
     import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY!
   )
 }
-
-// For backward compatibility, export a default client
-export const supabase = createClient();
