@@ -27,21 +27,41 @@
 .site-nav-brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   color: #fff;
   font-family: "Quicksand", system-ui, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
-  transition: opacity 180ms ease;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
 
 .site-nav-brand:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .site-nav-brand-icon {
-  width: 1.65rem;
-  height: 1.65rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 0 12px rgba(110, 207, 255, 0.22));
+}
+
+.site-nav-brand-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  letter-spacing: 0;
+}
+
+.site-nav-brand-wordmark span:first-child {
+  color: #fff;
+}
+
+.site-nav-brand-wordmark span:last-child {
+  background: linear-gradient(135deg, #9bbcff 0%, #6ecfff 48%, #ff9bd8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .site-nav-links {

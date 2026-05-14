@@ -1,0 +1,34 @@
+.werdnerd-mark__lens {
+  fill: rgba(7, 8, 16, 0.88);
+}
+
+.werdnerd-mark__frame {
+  fill: none;
+  stroke: #6ecfff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4.6;
+}
+
+.werdnerd-mark__brim-shadow {
+  fill: rgba(0, 0, 0, 0.42);
+  transform: translateY(2px);
+}
+
+.werdnerd-mark__crown {
+  fill: #7b4cc2;
+}
+
+.werdnerd-mark__band {
+  fill: #f2e9ff;
+}
+
+.werdnerd-mark__brim {
+  fill: #9b6cf0;
+  stroke: rgba(246, 238, 255, 0.42);
+  stroke-width: 1.4;
+}
+
+.werdnerd-mark__spark {
+  fill: #ceff1a;
+}

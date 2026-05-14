@@ -1,15 +1,12 @@
-import { useState, useEffect } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { WerdNerdMark } from "../brand/WerdNerdMark";
 import "./Navigation.css";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
+  const closeMobileMenu = () => setIsOpen(false);
 
   return (
     <header
@@ -18,23 +15,11 @@ export default function Navigation() {
       <div className="site-nav-inner">
         {/* Brand */}
         <Link to="/" className="site-nav-brand">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            className="site-nav-brand-icon"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"
-            />
-          </svg>
-          <span>WerdNerd</span>
+          <WerdNerdMark className="site-nav-brand-icon" />
+          <span className="site-nav-brand-wordmark">
+            <span>Werd</span>
+            <span>Nerd</span>
+          </span>
         </Link>
 
         {/* Desktop Links */}
@@ -51,6 +36,7 @@ export default function Navigation() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="site-nav-toggle"
+          aria-expanded={isOpen}
           aria-label="Toggle navigation"
         >
           {isOpen ? (
@@ -82,12 +68,16 @@ export default function Navigation() {
         <div
           className="site-nav-mobile"
         >
-          <MobileItem to="/" label="Home" />
-          <MobileItem to="/vault" label="Vault" />
-          <MobileItem to="/about" label="About" />
-          <MobileItem to="/submit" label="Submit Word" />
-          <MobileItem to="/games" label="Games" />
-          <MobileItem to="/playground" label="Palette Playground" />
+          <MobileItem to="/" label="Home" onClick={closeMobileMenu} />
+          <MobileItem to="/vault" label="Vault" onClick={closeMobileMenu} />
+          <MobileItem to="/about" label="About" onClick={closeMobileMenu} />
+          <MobileItem to="/submit" label="Submit Word" onClick={closeMobileMenu} />
+          <MobileItem to="/games" label="Games" onClick={closeMobileMenu} />
+          <MobileItem
+            to="/playground"
+            label="Palette Playground"
+            onClick={closeMobileMenu}
+          />
         </div>
       )}
     </header>
@@ -110,10 +100,19 @@ function NavItem({ to, label }: { to: string; label: string }) {
   );
 }
 
-function MobileItem({ to, label }: { to: string; label: string }) {
+function MobileItem({
+  to,
+  label,
+  onClick,
+}: {
+  to: string;
+  label: string;
+  onClick: () => void;
+}) {
   return (
     <NavLink
       to={to}
+      onClick={onClick}
       className={({ isActive }) =>
         `site-nav-mobile-link ${isActive ? "site-nav-mobile-link-active" : ""}`
       }
