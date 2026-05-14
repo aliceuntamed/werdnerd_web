@@ -11,7 +11,7 @@ export default function CuratedPicks() {
   useEffect(() => {
     fetchCuratedWerds()
       .then(setWerds)
-      .catch(console.error)
+      .catch(() => setWerds([]))
       .finally(() => setLoading(false));
   }, []);
 

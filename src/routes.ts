@@ -1,23 +1,5 @@
 // src/routes.ts
-
-import HomePage from "./pages/Home/HomePage";
-import WerdVaultPage from "./pages/WerdVault/WerdVaultPage";
-import AboutPage from "./pages/About/AboutPage";
-import CreatorsPlaygroundPage from "./pages/CreatorsPlayground/CreatorsPlaygroundPage";
-import SubmitWerdPage from "./pages/SubmitWerd/SubmitWerdPage";
-
-// Games
-import GamesPage from "./pages/Games/GamesPage";
-import BogglePage from "./pages/Games/BogglePage";
-import WordlePage from "./pages/Games/WordlePage";
-import WordSearchPage from "./pages/Games/WordSearchPage";
-import TriviaPage from "./pages/Games/TriviaPage";
-import HangmanPage from "./pages/Games/HangmanPage";
-import BrainTeasersPage from "./pages/Games/BrainTeasersPage";
-import CodenamesPage from "./pages/Games/CodenamesPage";
-
-// Optional: Builder.io pages
-import SettingsPage from "./pages/Settings/SettingsPage"; // if applicable
+import { lazy, type ComponentType } from "react";
 
 // ---------------------------------------------
 // 1. Route path constants
@@ -41,14 +23,34 @@ export const ROUTES = {
   BRAINTEASERS: "/games/brainteasers",
   CODENAMES: "/games/codenames",
 
-  // Builder.io or future pages
+  // Utility/future pages
   SETTINGS: "/settings",
 } as const;
 
+type RouteComponent = ComponentType<Record<string, never>>;
+
+// Lazy-loaded route components
+const HomePage = lazy(() => import("./pages/Home/HomePage"));
+const WerdVaultPage = lazy(() => import("./pages/WerdVault/WerdVaultPage"));
+const AboutPage = lazy(() => import("./pages/About/AboutPage"));
+const CreatorsPlaygroundPage = lazy(
+  () => import("./pages/CreatorsPlayground/CreatorsPlaygroundPage"),
+);
+const SubmitWerdPage = lazy(() => import("./pages/SubmitWerd/SubmitWerdPage"));
+const GamesPage = lazy(() => import("./pages/Games/GamesPage"));
+const BogglePage = lazy(() => import("./pages/Games/BogglePage"));
+const WordlePage = lazy(() => import("./pages/Games/WordlePage"));
+const WordSearchPage = lazy(() => import("./pages/Games/WordSearchPage"));
+const TriviaPage = lazy(() => import("./pages/Games/TriviaPage"));
+const HangmanPage = lazy(() => import("./pages/Games/HangmanPage"));
+const BrainTeasersPage = lazy(() => import("./pages/Games/BrainTeasersPage"));
+const CodenamesPage = lazy(() => import("./pages/Games/CodenamesPage"));
+const SettingsPage = lazy(() => import("./pages/Settings/SettingsPage"));
+
 // ---------------------------------------------
-// 2. Route → Component registry
+// 2. Route -> Component registry
 // ---------------------------------------------
-export const ROUTE_COMPONENTS = {
+export const ROUTE_COMPONENTS: Record<string, RouteComponent> = {
   [ROUTES.HOME]: HomePage,
   [ROUTES.VAULT]: WerdVaultPage,
   [ROUTES.ABOUT]: AboutPage,
@@ -67,6 +69,5 @@ export const ROUTE_COMPONENTS = {
   [ROUTES.BRAINTEASERS]: BrainTeasersPage,
   [ROUTES.CODENAMES]: CodenamesPage,
 
-  // Builder.io
   [ROUTES.SETTINGS]: SettingsPage,
 };

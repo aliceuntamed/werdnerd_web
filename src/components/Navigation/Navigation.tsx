@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Navigation.css";
 
 export default function Navigation() {
@@ -98,22 +98,28 @@ export default function Navigation() {
 
 function NavItem({ to, label }: { to: string; label: string }) {
   return (
-    <Link
+    <NavLink
       to={to}
-      className="site-nav-link"
+      className={({ isActive }) =>
+        `site-nav-link ${isActive ? "site-nav-link-active" : ""}`
+      }
+      end={to === "/"}
     >
       {label}
-    </Link>
+    </NavLink>
   );
 }
 
 function MobileItem({ to, label }: { to: string; label: string }) {
   return (
-    <Link
+    <NavLink
       to={to}
-      className="site-nav-mobile-link"
+      className={({ isActive }) =>
+        `site-nav-mobile-link ${isActive ? "site-nav-mobile-link-active" : ""}`
+      }
+      end={to === "/"}
     >
       {label}
-    </Link>
+    </NavLink>
   );
 }

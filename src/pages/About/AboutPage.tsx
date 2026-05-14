@@ -1,6 +1,5 @@
 import { ChromeCubeStack } from "../../components/ui/ChromeCubeStack";
 import { Header } from "../../components/layout/Header";
-import { Footer } from "../../components/layout/Footer";
 
 export default function AboutPage() {
   return (
@@ -95,7 +94,6 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-      <Footer data-uniq-id="f8a533f3-efe6-4a21-964b-0c759c8d207c" />
     </div>
   );
 }

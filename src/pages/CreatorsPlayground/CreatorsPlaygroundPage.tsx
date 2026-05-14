@@ -1,6 +1,5 @@
 import { PageWrapper } from "../../components/layout/PageWrapper";
 import { Header } from "../../components/layout/Header";
-import { Footer } from "../../components/layout/Footer";
 
 import { Hero } from "./Hero";
 import { PaletteGrid } from "./PaletteGrid";
@@ -28,8 +27,6 @@ export default function PalettePlaygroundPage() {
         <QuickBrowse />
         <RemixModal />
       </main>
-
-      <Footer />
     </PageWrapper>
   );
 }

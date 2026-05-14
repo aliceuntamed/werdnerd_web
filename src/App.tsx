@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import LoadingScreen from "./components/ui/LoadingScreen";
 import Navigation from "./components/Navigation/Navigation";
+import { Footer } from "./components/layout/Footer";
 
 import { ROUTE_COMPONENTS } from "./routes";
 
@@ -16,6 +17,7 @@ export default function App() {
           ))}
         </Routes>
       </Suspense>
+      <Footer />
     </Router>
   );
 }

@@ -11,6 +11,7 @@ export default function WOTD() {
   useEffect(() => {
     getWOTD()
       .then(setWerd)
+      .catch(() => setWerd(null))
       .finally(() => setLoading(false));
   }, []);
 

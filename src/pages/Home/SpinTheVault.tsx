@@ -12,9 +12,14 @@ export default function SpinTheVault() {
   async function spin() {
     setLoading(true);
     setSpun(true);
-    const random = await getRandomWerd();
-    setWerd(random);
-    setLoading(false);
+    try {
+      const random = await getRandomWerd();
+      setWerd(random);
+    } catch {
+      setWerd(null);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (

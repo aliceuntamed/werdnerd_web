@@ -31,7 +31,7 @@ function HomeBand({
 }
 
 function IntroRail() {
-  const items = [
+  const items: Array<[string, string]> = [
     ["Curated", "Uncommon words with human taste, not dictionary dust."],
     ["Playable", "Spin, browse, and test your vocabulary by instinct."],
     ["Community", "Submit the linguistic oddities that haunt your notes app."],
@@ -63,7 +63,6 @@ export default function HomePage() {
 
       <main
         className="home-main"
-        style={{ zIndex: 10 }}
       >
         <Hero />
         <IntroRail />
