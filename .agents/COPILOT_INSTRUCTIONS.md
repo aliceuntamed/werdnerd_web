@@ -1,49 +1,69 @@
-# Copilot instructions for werd nerd
+# Copilot Instructions for WerdNerd (Solo Builder)
 
-Short, actionable guidance to help AI coding agents be productive in this repo.
+Use this file for day-to-day coding decisions in this repo.
 
-- Project type: React + TypeScript app built with Vite (local dev: `npm run dev`, build: `npm run build`, preview: `npm run preview`).
-- Key config: `tsconfig.json` sets `baseUrl: ./src` and `strict: true`. Keep imports consistent with the existing file layout.
+## Project Snapshot
 
-Big picture
+- Stack: React + TypeScript + Vite + Tailwind + shadcn/ui + Supabase.
+- Goal: a playful, visually distinct word-play app (WerdVault, games, creator tools).
+- Default mode: practical shipping. Keep scope tight unless asked otherwise.
 
-- Multi-page React app (no router wired up yet). UI is organized into small presentational components under `src/components/` and domain modules under `src/modules/`.
-- Domain modules follow the pattern: `src/modules/<domain>/` containing UI components and a `use<Domain>.ts` hook that encapsulates data fetching/state (e.g. `src/modules/assets/useAssets.ts`). When adding features, prefer placing domain logic in a `use*` hook and UI in the module folder.
-- Shared utilities live in `src/lib/` (e.g. `api.ts`, `imageUtils.ts`, `fileUtils.ts`). `api.ts` is currently a stub — the app uses mock data from `src/data/mockAssets.ts` and `src/data/mockTags.ts`.
+## Working Rules
 
-Conventions and patterns (concrete)
+- Match existing patterns in nearby files before introducing new ones.
+- Keep new logic small and composable.
+- Prefer strict typing over `any`.
+- Keep styling consistent with `.agents/style.md`.
+- Build for responsive behavior by default.
 
-- File naming: React components use PascalCase (`Button.tsx`, `MainLayout.tsx`). Hooks use camelCase starting with "use" (`useModal.ts`, `useLocalStorage.ts`). Types are under `src/types/`.
-- Module structure example: `src/modules/assets/` contains `AssetCard.tsx`, `AssetList.tsx`, `AssetDetail.tsx`, and `useAssets.ts`. Follow this when adding new domains: UI pieces + a `use*` hook.
-- Styling: global CSS lives in `src/styles/` (`globals.css`, `theme.css`, `variables.css`). Prefer adding small module- or component-level styles in these files rather than creating a new global file unless necessary.
-- Imports: project often uses relative imports (see `src/main.tsx`, `src/App.tsx`) but `baseUrl` allows absolute imports from `src/` (e.g. `import X from "layouts/MainLayout"`). Match surrounding file style when editing.
+## Architecture Guardrails
 
-Build / dev / debug
+- If routing/data structure in docs does not match code, trust code and call out the mismatch.
+- Prefer feature-local state first; introduce global state only when multiple distant areas truly need shared state.
+- Keep domain logic close to the feature (hooks/services) and keep presentational components lean.
 
-- Start dev server: `npm run dev` (uses Vite). Build: `npm run build`. Preview production build: `npm run preview`.
-- TypeScript is strict; ensure new code type-checks. Run `tsc --noEmit` or rely on the IDE/CI.
+## Common Task Patterns
 
-What to change where (common tasks)
+### Add a new feature/page
 
-- Add a new domain: create `src/modules/<domain>/` with UI components and `use<Domain>.ts`. Add types in `src/types/` if needed.
-- Add mocked data: put it in `src/data/` (follow `mockAssets.ts` structure). If you add a real API client, put endpoints in `src/lib/api.ts` and keep `use*` hooks responsible for platform-specific wiring.
-- Wiring pages: `src/App.tsx` currently renders `MainLayout`. There is no client-side router configured — if you add routing, update `App.tsx` and `MainLayout.tsx` together.
+1. Build minimal UI and route wiring.
+2. Add typed data model and Supabase interaction.
+3. Add loading/empty/error states.
+4. Add a quick manual verification checklist.
 
-Integration points / TODOs discovered
+### Add or update Supabase data flow
 
-- `src/lib/api.ts` is empty — expected integration point for server communication.
-- Several `use*.ts` hooks exist as stubs (e.g. `useAssets.ts`) — these are the intended places for data logic.
+1. Define/confirm TypeScript types.
+2. Implement query/mutation with clear error handling.
+3. Handle optimistic or pending UI states where helpful.
+4. Document assumptions in code comments only when non-obvious.
 
-Examples
+### UI iteration
 
-- Import using the repo style:
-  - Relative: `import MainLayout from "./layouts/MainLayout"`
-  - Absolute (allowed by tsconfig): `import MainLayout from "layouts/MainLayout"`
-- Add a hook shape (example in `src/hooks/`):
-  - `function useSomething() { const [state, setState] = useState(...); return { state, actions }; }`
+1. Start from existing components/tokens.
+2. Improve hierarchy/spacing first.
+3. Add motion only if it improves clarity or delight.
 
-Notes for AI contributors
+## Definition of Done (practical)
 
-- Do not introduce a new global state manager unless the change clearly needs it — follow existing localized `use*` hook pattern.
-- Keep component responsibilities small: UI in `components/`, domain composition in `modules/`.
-- Preserve TypeScript strictness and preferred file naming.
+- Feature works in local dev.
+- No obvious TypeScript regressions.
+- Empty/loading/error states exist where needed.
+- Mobile and desktop behavior are both reasonable.
+- Styling stays on-brand.
+
+## Escalate to User When
+
+- A choice changes schema or long-term architecture.
+- A tradeoff impacts cost, security, or maintainability.
+- Multiple valid paths have materially different outcomes.
+
+## Avoid
+
+- Large speculative rewrites.
+- New dependencies for minor problems.
+- Hidden behavior changes without note.
+
+---
+
+Bias: ship value now, keep options open, preserve quality.

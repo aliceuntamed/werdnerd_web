@@ -1,189 +1,110 @@
 # WerdNerd Roadmap
 
-A chrome‑cinematic journey toward a unified, expressive, modular word‑play universe.
+Last updated: May 13, 2026
 
-This roadmap outlines the planned evolution of WerdNerd across UI, architecture, games, data pipelines, and creator tools.  
-It is intentionally modular so each milestone can be completed independently or in parallel.
+This roadmap is staged for solo-builder execution: ship useful slices quickly, then polish.
 
----
+## Guiding Principles
 
-# 🌟 Phase 1 — Foundation & Stability (Now → Near Future)
+- Small, shippable increments
+- Clear visual identity
+- Strong UX basics before advanced features
+- Architecture that future-you can maintain
 
-## ✅ 1. Navigation System (Complete)
+## Phase 1: Foundation and Stability
 
-- Responsive, chrome‑cinematic navigation
-- Mobile menu with blur + border
-- Clean structure (no nested <nav>)
-- All pages included
+Status: In progress
 
-## 🔧 2. CI/CD Stabilization
+1. Navigation and route consistency
+- Keep navigation aligned with `src/routes.ts`
+- Preserve legacy redirects/paths only where needed
 
-- Cleaned GitHub Actions workflow
-- Build-only CI with Supabase secrets
-- Remove failing lint/analyze jobs
-- Disable bot-triggered preview deploys
+2. CI and build reliability
+- Keep build and lint checks healthy
+- Reduce noisy automation that does not add signal
 
-## 🧹 3. Repository Cleanup
+3. Repo hygiene
+- Keep docs current with code reality
+- Remove stale branches/files when safe
 
-- Remove unused branches
-- Close stale PRs
-- Disable noisy Dependabot updates
-- Add README, CONTRIBUTING, SECURITY, PR templates, Issue templates
+## Phase 2: WerdVault Depth
 
----
+Status: In progress
 
-# 🌈 Phase 2 — WerdVault Expansion
+4. Vault browsing upgrades
+- Better filtering and sorting
+- Improved search quality (fuzzy matching as needed)
+- Strong empty/loading/error states
 
-## 🧩 4. WerdVault Core Enhancements
+5. Submission pipeline improvements
+- Better validation and duplicate detection
+- Improve moderation-ready metadata
 
-- WerdCard polish (chrome accents, micro‑interactions)
-- Tag cloud animations
-- Sorting options (A–Z, newest, random)
-- Search bar with fuzzy matching
+6. Word of the Day maturity
+- Reliable daily selection logic
+- Optional history tracking
+- Better homepage integration
 
-## 🗃️ 5. Supabase Data Model Upgrades
+## Phase 3: Games Expansion
 
-- Add `created_at` and `updated_at`
-- Add `submitted_by` (optional)
-- Add `favorite_count`
-- Add moderation flags (optional)
+Status: In progress
 
-## 🧠 6. Word of the Day (WOTD)
+7. Solidify shipped game foundations
+- Boggle
+- Wordle
+- Word Search
+- Trivia
+- Hangman
+- Brain Teasers
+- Codenames
 
-- Daily random selection
-- Supabase table for history
-- UI component on Home page
-- “Surprise Me” button
+8. Improve replayability and quality
+- Scoring, balancing, polish passes
+- Better feedback states and UX clarity
+- Optional leaderboards where meaningful
 
----
+## Phase 4: Design System and UX Polish
 
-# 🎮 Phase 3 — Games Universe
+Status: Planned
 
-## 🎲 7. Boggle (Complete foundation)
+9. Design system consolidation
+- Harden token usage across pages/components
+- Standardize spacing, typography, and motion rules
 
-- 4×4 chrome tiles
-- Word validation
-- Scoring
-- Timer mode (optional)
+10. Interaction polish
+- Keep animations intentional and lightweight
+- Improve perceived performance and visual hierarchy
 
-## 🟩 8. Wordle
+## Phase 5: Creator and Admin Tools
 
-- Chrome tile animations
-- Keyboard component
-- Daily + unlimited modes
+Status: Planned
 
-## 🔍 9. Word Search
+11. Creator tooling
+- Richer submit/edit workflows
+- Better author feedback and previews
 
-- Grid generator
-- Word placement algorithm
-- Highlight interactions
+12. Moderation workflows
+- Approve/reject paths
+- Flagging and edit tools
 
-## ❓ 10. Trivia
+13. Insights dashboard
+- Popularity and usage metrics
+- Feature-level behavior insights
 
-- Supabase-backed question bank
-- Categories + difficulty
-- Timer + scoring
+## Phase 6: Future Bets
 
-## 🪢 11. Hangman
+Status: Optional / exploratory
 
-- Chrome gallows animation
-- Word categories
-- Hint system
+14. Public API surface
+- Read-focused endpoints for words/tags/random
 
-## 🧠 12. Brain Teasers
+15. Mobile experiences
+- Evaluate React Native path after web core is stable
 
-- Riddles
-- Lateral thinking puzzles
-- Logic mini-games
+16. AI-assisted features
+- Suggest tags/related words
+- Assist content curation workflows
 
-## 🕵️ 13. Codenames
+## Operating Rule for This Roadmap
 
-- Grid generator
-- Team assignment
-- Clue-giving UI
-
----
-
-# 🎨 Phase 4 — Aesthetic & UX Enhancements
-
-## ✨ 14. Chrome‑Cinematic UI System
-
-- Global gradients + reflections
-- Unified shadows + depth
-- Component-level chrome tokens
-- Motion guidelines
-
-## 🎛️ 15. Palette Playground
-
-- Interactive color editor
-- Save/export palettes
-- Apply palette to UI theme
-
-## 🧩 16. Component Library
-
-- Buttons
-- Cards
-- Panels
-- Inputs
-- Chrome dividers
-- Tag components
-
----
-
-# 🧰 Phase 5 — Creator Tools & Admin
-
-## 📝 17. Submit Word Enhancements
-
-- Validation
-- Preview card
-- Auto-tag suggestions
-- Duplicate detection
-
-## 🛡️ 18. Moderation Tools
-
-- Approve/reject submissions
-- Flag inappropriate content
-- Edit existing words
-
-## 📊 19. Analytics Dashboard
-
-- Word popularity
-- Tag frequency
-- Game usage stats
-- WOTD performance
-
----
-
-# 🚀 Phase 6 — Future Vision
-
-## 🌐 20. Public API
-
-- `/api/words`
-- `/api/random`
-- `/api/tags`
-
-## 📱 21. Mobile App (React Native)
-
-- WerdVault
-- Games
-- WOTD widget
-
-## 🧬 22. AI‑Assisted Features (Optional)
-
-- Word suggestions
-- Tag generation
-- Fun fact generation
-
----
-
-# 🗺️ Roadmap Philosophy
-
-WerdNerd grows through:
-
-- Modular systems
-- Typed pipelines
-- Chrome‑cinematic UI
-- Playful interactions
-- Clear, expressive architecture
-
-This roadmap is a living document — updated as the project evolves.
+When roadmap text conflicts with current code, ship based on code reality and update the roadmap in the same session.
