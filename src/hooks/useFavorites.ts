@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../utils/supabase/client";
+import { useAuth } from "../contexts/AuthContext";
 import { toggleFavorite } from "../utils/supabase/favorites";
 
-export function useFavorites(userId?: string) {
+export function useFavorites() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
-  // Load favorites on mount
+  // Load favorites on mount or when user changes
   useEffect(() => {
-    if (!userId) return;
+    if (!user) {
+      setFavorites([]);
+      setLoading(false);
+      return;
+    }
 
     async function load() {
       setLoading(true);
@@ -16,7 +22,7 @@ export function useFavorites(userId?: string) {
       const { data, error } = await supabase
         .from("favorites")
         .select("werd_id")
-        .eq("user_id", userId);
+        .eq("user_id", user!.id);
 
       if (!error && data) {
         setFavorites(data.map((f) => f.werd_id));
@@ -26,13 +32,13 @@ export function useFavorites(userId?: string) {
     }
 
     load();
-  }, [userId]);
+  }, [user]);
 
   // Toggle handler
   async function toggle(werdId: string) {
-    if (!userId) return;
+    if (!user) return;
 
-    const newValue = await toggleFavorite(userId, werdId);
+    const newValue = await toggleFavorite(user.id, werdId);
 
     if (newValue === true) {
       setFavorites((prev) => [...prev, werdId]);

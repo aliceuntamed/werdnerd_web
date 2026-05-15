@@ -23,6 +23,11 @@ export const ROUTES = {
   BRAINTEASERS: "/games/brainteasers",
   CODENAMES: "/games/codenames",
 
+  // Auth routes
+  LOGIN: "/auth/login",
+  SIGNUP: "/auth/signup",
+  RESET_PASSWORD: "/auth/reset-password",
+
   // Utility/future pages
   SETTINGS: "/settings",
 } as const;
@@ -47,6 +52,11 @@ const BrainTeasersPage = lazy(() => import("./pages/Games/BrainTeasersPage"));
 const CodenamesPage = lazy(() => import("./pages/Games/CodenamesPage"));
 const SettingsPage = lazy(() => import("./pages/Settings/SettingsPage"));
 
+// Auth pages
+const LoginPage = lazy(() => import("./pages/Auth/LoginPage"));
+const SignupPage = lazy(() => import("./pages/Auth/SignupPage"));
+const ResetPasswordPage = lazy(() => import("./pages/Auth/ResetPasswordPage"));
+
 // ---------------------------------------------
 // 2. Route -> Component registry
 // ---------------------------------------------
@@ -68,6 +78,11 @@ export const ROUTE_COMPONENTS: Record<string, RouteComponent> = {
   [ROUTES.HANGMAN]: HangmanPage,
   [ROUTES.BRAINTEASERS]: BrainTeasersPage,
   [ROUTES.CODENAMES]: CodenamesPage,
+
+  // Auth
+  [ROUTES.LOGIN]: LoginPage,
+  [ROUTES.SIGNUP]: SignupPage,
+  [ROUTES.RESET_PASSWORD]: ResetPasswordPage,
 
   [ROUTES.SETTINGS]: SettingsPage,
 };

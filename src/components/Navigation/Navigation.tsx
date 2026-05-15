@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { WerdNerdMark } from "../brand/WerdNerdMark";
+import { useAuth } from "../../contexts/AuthContext";
+import { ROUTES } from "../../routes";
 import "./Navigation.css";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, signOut } = useAuth();
 
   const closeMobileMenu = () => setIsOpen(false);
+
+  const handleSignOut = async () => {
+    await signOut();
+    closeMobileMenu();
+  };
 
   return (
     <header
@@ -30,6 +38,23 @@ export default function Navigation() {
           <NavItem to="/submit" label="Submit Word" />
           <NavItem to="/games" label="Games" />
           <NavItem to="/playground" label="Palette Playground" />
+
+          {/* Auth Buttons */}
+          <div className="site-nav-auth">
+            {user ? (
+              <button
+                onClick={handleSignOut}
+                className="site-nav-link site-nav-auth-button"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <>
+                <NavItem to={ROUTES.LOGIN} label="Sign In" />
+                <NavItem to={ROUTES.SIGNUP} label="Sign Up" />
+              </>
+            )}
+          </div>
         </div>
 
         {/* Mobile Toggle */}
@@ -78,6 +103,23 @@ export default function Navigation() {
             label="Palette Playground"
             onClick={closeMobileMenu}
           />
+
+          {/* Mobile Auth Buttons */}
+          <div className="site-nav-mobile-auth">
+            {user ? (
+              <button
+                onClick={handleSignOut}
+                className="site-nav-mobile-link site-nav-mobile-auth-button"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <>
+                <MobileItem to={ROUTES.LOGIN} label="Sign In" onClick={closeMobileMenu} />
+                <MobileItem to={ROUTES.SIGNUP} label="Sign Up" onClick={closeMobileMenu} />
+              </>
+            )}
+          </div>
         </div>
       )}
     </header>
