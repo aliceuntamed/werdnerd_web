@@ -26,10 +26,10 @@ export function AboutCreator() {
           {/* Quote Card */}
           <div className="bg-bg-elevated border border-border-subtle rounded-card p-6 shadow-soft-elevated">
             <p className="font-heading text-xl bg-chrome-horizontal bg-clip-text text-transparent">
-              “werds are the only jewels I can afford to wear.”
+              “I have no special talents. I am only passionately curious.”
             </p>
             <span className="text-text-muted text-sm block mt-2">
-              — The Nerd Behind the Werd
+              — Albert Einstein
             </span>
           </div>
         </div>
@@ -38,7 +38,7 @@ export function AboutCreator() {
         <div className="flex flex-col gap-8">
           <header>
             <span className="text-accent-purple font-heading text-sm tracking-wide uppercase">
-              The Mind Behind WerdNerd
+              The Nerd Behind the Werds
             </span>
             <h2 className="font-heading text-4xl mt-2 bg-chrome-horizontal bg-clip-text text-transparent tracking-tight">
               Confessions of a Logophile
