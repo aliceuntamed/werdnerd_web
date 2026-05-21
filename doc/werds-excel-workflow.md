@@ -26,6 +26,18 @@ Current Supabase `werds` columns do not include `origin` or `source_2`, so those
 
 ## Commands
 
+Preview source-backed enrichment for up to 10 draft rows:
+
+```bash
+npm run werds:enrich
+```
+
+Fill up to 10 draft rows, then move touched rows to `needs_fact_checked`:
+
+```bash
+npm run werds:enrich:write
+```
+
 Preview what would happen:
 
 ```bash
@@ -39,3 +51,5 @@ npm run werds:import
 ```
 
 Close `doc/werds.xlsx` before running `werds:import`, because the script writes status updates back to the workbook.
+
+Close the workbook before running `werds:enrich:write` too. The enrichment command only fills blank cells by default. It does not overwrite your existing entries unless run directly with `--overwrite`.

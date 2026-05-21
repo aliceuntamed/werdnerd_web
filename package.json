@@ -47,6 +47,8 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "werds:enrich": "node scripts/enrich-werds-from-sources.mjs",
+    "werds:enrich:write": "node scripts/enrich-werds-from-sources.mjs --write-workbook",
     "werds:dry-run": "node scripts/import-werds-from-excel.mjs",
     "werds:import": "node scripts/import-werds-from-excel.mjs --import --write-workbook"
   },
