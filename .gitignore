@@ -79,6 +79,9 @@ web_modules/
 .env.production.local
 .env.local
 
+# Generated WerdNerd content import reports
+doc/import-reports/*.json
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache

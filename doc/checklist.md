@@ -1,61 +1,47 @@
 # todo checklist
 
+## new (2026-05-18)
+
+- [ ] fix Loader.tsx and LoadingScreen.tsx
+
+## older
+
 ## Build
 
 - [ ] a settings page
-- [ ] adding a 404 page
-- [ ] login module
-- [ ] user profile page
-- [ ]
+  - [ ] dark mode component switch
+- [ ] a 404 page
+- [ ] login / signup module
+  - [ ] user profile page
+  - [ ] A user preferences schema stored in Supabase
+  - [ ] Add an is_admin Flag
+- [ ] A “Back to Top” floating button
 
-### Games
+- [ ] Wordle
+- [ ] Word Search
+- [ ] Hangman
+- [ ] codenames
+- [ ] trivia
 
-- [ ] build Wordle
-- [ ] build Word Search
-- [ ] build Hangman
-- [ ] build codenames
-- [ ] build trivia
+- [ ] A Werd detail page or module
+- [ ] a WerdVault sidebar\*
+- [ ] a tag explorer page
+  - [ ] A TagSelector type - For your chrome‑cinematic tag picker.
+  - [ ] Tag.tsx component
+  - [ ] WerdTagList and WerdTagCloud
+  - [ ] a WerdVault tag cloud
 
-### Tags
-
-- [ ] build a tag explorer page
-- [ ] A TagSelector type - For your chrome‑cinematic tag picker.
-- [ ] your Tag.tsx component
-- [ ] WerdTagList and WerdTagCloud
-
-### Page Specific
-
-#### WerdVault
-
-- [ ] a WerdVault fuzzy search + filter system
-- [ ] a WerdVault tag cloud
-- [ ] A Werd detail page
-- [ ] A WerdVault sorting system
-- [ ] infinite scroll for browsing all words
-- [ ] a “Browse by Category” chrome‑accented grid
-- [ ] help you update WerdVaultTagCloud
-- [ ] build a WerdVault sidebar
-
-#### SubmitWerd
-
-- [ ] Add Word Submission page
-- [ ] add category selection to Submit a Word
-
-### Components
+- [ ] Add Werd Submission page
+- [ ] add category selection to Submit a Werd
+- [ ] recent community gems
 
 - [ ] A search bar
-- [ ] Word of the Day logic
-- [ ] type your QuickBrowse section
-- [ ] A “Back to Top” floating button
-- [ ] dark mode component switch
-
-### Database
+  - [ ] a WerdVault fuzzy search + filter system
+- [ ] WOTD logic
 
 - [ ] A fully typed Supabase client - So your queries get full TS inference.
 - [ ] build favorites sytem
   - [ ] a favorites table schema
-- [ ] A user preferences schema stored in Supabase
-- [ ] Add an is_admin Flag
 - [ ] Randomizer powered by database
 - [ ] wire
   - [ ] WOTD to Supabase

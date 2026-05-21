@@ -21,12 +21,12 @@ export default function WOTD() {
         <div>
           <p className="home-eyebrow">Word of the Day</p>
           <h2 className="home-section-title">
-            One word. Enough texture to make a sentence stop and stare.
+            Handpicked gems for the discerning werdnerd.
           </h2>
         </div>
         <p className="home-section-copy wotd-note">
           Daily vocabulary should feel like finding a strange key in your coat
-          pocket. Practical? Maybe. Memorable? Absolutely.
+          pocket. Useful? Possibly. Memorable? Absolutely.
         </p>
       </div>
 

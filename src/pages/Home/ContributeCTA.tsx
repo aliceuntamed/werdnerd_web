@@ -15,16 +15,15 @@ export default function ContributeCTA() {
         <div>
           <p className="home-eyebrow">Contribute</p>
           <h2 className="home-section-title">
-            Found a word with excellent troublemaker energy?
+            Found a word that makes your brain tingle?
           </h2>
           <p className="home-section-copy contribute-copy">
-            Send it in. The vault gets better when other word obsessives bring
-            their best oddities to the table.
+            Share it with the WerdNerd community!
           </p>
 
           <Link to="/submit" className="home-primary-button contribute-button">
             <Send className="home-icon" />
-            Submit a Word
+            Submit a Werd
           </Link>
         </div>
       </div>

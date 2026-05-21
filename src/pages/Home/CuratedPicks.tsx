@@ -25,8 +25,7 @@ export default function CuratedPicks() {
           </h2>
         </div>
         <p className="home-section-copy curated-copy">
-          A hand-selected mix of elegant, weird, and suspiciously useful words.
-          Dictionary browsing, but with taste.
+          Hand-picked by the werdnerd herself.
         </p>
       </div>
 

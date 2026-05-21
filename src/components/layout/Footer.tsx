@@ -162,7 +162,7 @@ export function Footer() {
                 htmlFor="footer-email"
                 className="site-footer__newsletter-label"
               >
-                Join the Vocabulary Vanguard
+                Stay Curious
               </label>
 
               <div className="site-footer__form-row">
@@ -180,10 +180,7 @@ export function Footer() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="site-footer__subscribe"
-                >
+                <button type="submit" className="site-footer__subscribe">
                   Subscribe
                 </button>
               </div>

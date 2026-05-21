@@ -37,19 +37,18 @@ export default function Hero() {
           </h1>
 
           <p className="home-hero-subtitle">
-            A living vault of rare, poetic, and peculiar vocabulary for people
-            who know a good word can ruin a perfectly productive afternoon.
+            Rare words. Weird etymologies. Productive procrastination.
           </p>
 
           <div className="home-hero-actions">
             <Link to="/vault" className="home-primary-button">
               <BookOpen className="home-icon" />
-              Explore the Vault
+              Explore The Vault
             </Link>
 
             <Link to="/submit" className="home-secondary-button">
               <Feather className="home-icon" />
-              Submit a Word
+              Submit a Werd
             </Link>
           </div>
 
@@ -65,8 +64,10 @@ export default function Hero() {
           <div className="home-field-panel">
             <div className="home-field-header">
               <div>
-                <p className="home-field-title">Field Notes</p>
-                <p className="home-field-subtitle">fresh from the vault</p>
+                <p className="home-field-title">The Archive</p>
+                <p className="home-field-subtitle">
+                  Revisit past favorites from The Vault.
+                </p>
               </div>
               <div className="home-field-icon">
                 <Sparkles className="home-icon" />
