@@ -83,3 +83,10 @@ export default function WOTD() {
     </div>
   );
 }
+
+
+// Sample component for preview
+export const SampleDefault = () => (
+  <WOTD
+  />
+);
