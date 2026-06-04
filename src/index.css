@@ -1,6 +1,12 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "@fontsource/poppins/latin-300.css";
+@import "@fontsource/poppins/latin-400.css";
+@import "@fontsource/poppins/latin-500.css";
+@import "@fontsource/poppins/latin-600.css";
+@import "@fontsource/poppins/latin-700.css";
+@import "@fontsource/poppins/latin-800.css";
 
 @tailwind base;
 
@@ -76,7 +82,7 @@
     h3,
     h4 {
         font-family:
-            "Quicksand",
+            "Poppins",
             system-ui,
             -apple-system,
             "Segoe UI",
@@ -239,7 +245,15 @@
 .site-footer__logo {
     margin: 0;
     color: #ffffff;
+    font-family:
+        "Poppins",
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
     font-size: 1.85rem;
+    font-weight: 800;
     line-height: 1;
     letter-spacing: 0;
 }
@@ -269,7 +283,7 @@
 .site-footer__newsletter-label {
     color: #ffffff;
     font-family:
-        "Quicksand",
+        "Poppins",
         system-ui,
         sans-serif;
     font-size: 1rem;

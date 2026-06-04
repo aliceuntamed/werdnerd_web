@@ -25,13 +25,11 @@ export default function SpinTheVault() {
   return (
     <div className="spin-layout">
       <div>
-        <p className="home-eyebrow">Spin the Vault</p>
         <h2 className="home-section-title">
-          Let chance pick the word your brain pretends it always knew.
+          <span>Spin</span> the Vault
         </h2>
         <p className="home-section-copy spin-copy">
-          One click, one surprise entry. Excellent for procrastination, writing
-          prompts, and mildly insufferable dinner conversation.
+          Let the fates decide your next literary obsession.
         </p>
       </div>
 
@@ -42,7 +40,7 @@ export default function SpinTheVault() {
         <div className="spin-stage">
           {!spun && !loading && (
             <div className="spin-empty">
-              <p>Ready when your curiosity is.</p>
+              <p>SPIN NOW</p>
               <small>Press spin to pull a random word from the vault.</small>
             </div>
           )}
@@ -72,7 +70,7 @@ export default function SpinTheVault() {
                 to={`/vault?search=${encodeURIComponent(werd.werd)}`}
                 className="home-link"
               >
-                See full entry
+                See Full Werd
                 <ArrowUpRight className="home-icon" />
               </Link>
             </div>

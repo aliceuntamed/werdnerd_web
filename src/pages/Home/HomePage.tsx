@@ -4,7 +4,6 @@ import Hero from "./Hero";
 import WOTD from "./WOTD";
 import CuratedPicks from "./CuratedPicks";
 import SpinTheVault from "./SpinTheVault";
-import ContributeCTA from "./ContributeCTA";
 import "./home.css";
 
 function AmbientDivider() {
@@ -30,44 +29,13 @@ function HomeBand({
   );
 }
 
-function IntroRail() {
-  const items: Array<[string, string]> = [
-    ["Curated", "Uncommon words with human taste, not dictionary dust."],
-    ["Playable", "Spin, browse, and test your vocabulary by instinct."],
-    ["Community", "Submit the linguistic oddities that haunt your notes app."],
-  ];
-
-  return (
-    <section className="home-intro-rail">
-      <div className="home-intro-grid">
-        {items.map(([title, body]) => (
-          <div
-            key={title}
-            className="home-intro-item"
-          >
-            <p className="home-intro-title">{title}</p>
-            <p className="home-intro-copy">
-              {body}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 export default function HomePage() {
   return (
     <>
-      <VideoBackground src="/homepage-vidbg.mp4" opacity={0.5} />
+      <VideoBackground src="/hero-video.mp4" opacity={0.68} />
 
-      <main
-        className="home-main"
-      >
+      <main className="home-main">
         <Hero />
-        <IntroRail />
-
-        <AmbientDivider />
 
         <HomeBand className="home-band-soft">
           <WOTD />
@@ -83,12 +51,6 @@ export default function HomePage() {
 
         <HomeBand className="home-band-deep">
           <SpinTheVault />
-        </HomeBand>
-
-        <AmbientDivider />
-
-        <HomeBand className="home-band-cta">
-          <ContributeCTA />
         </HomeBand>
       </main>
     </>

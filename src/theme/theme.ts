@@ -25,7 +25,7 @@ export const theme = {
     },
   },
   typography: {
-    heading: '"Space Grotesk", system-ui, sans-serif',
+    heading: '"Poppins", system-ui, sans-serif',
     body: '"Poppins", system-ui, sans-serif',
   },
   radius: {

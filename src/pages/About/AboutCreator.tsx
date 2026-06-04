@@ -28,8 +28,8 @@ export function AboutCreator() {
         <div className="about-hero__stage">
           <div className="about-hero__photo-wrap">
             <img
-              src="/creator.png"
-              alt="Stephanie, the creator of WerdNerd, smiling in a wooded setting"
+              src="/about-img.png"
+              alt="Stephanie, the creator of WerdNerd, smiling in an elegant setting"
               className="about-hero__photo"
             />
 
@@ -48,19 +48,20 @@ export function AboutCreator() {
 
             <div className="about-hero__copy">
               <p>
-                Welcome to my digital sanctuary of oddities. I&rsquo;m the
-                creator of WerdNerd, a project born from a lifelong obsession
-                with the &ldquo;mumpsimus&rdquo; and
-                &ldquo;floccinaucinihilipilification&rdquo; of the English
-                language.
+                Hi, I&rsquo;m Stephanie, the human behind WerdNerd. 👽 I&rsquo;m
+                a designer with a soft spot for life&rsquo;s peculiarities,
+                especially the strange little wonders hiding in the English
+                language. I built this digital lexicon to be part word vault,
+                part curiosity cabinet, and part excuse to collect and share my
+                favorite oddities.
               </p>
               <p>
-                While others collect stamps or vintage coins, I collect
-                syllables. I believe every &ldquo;mellifluous&rdquo; sound and
-                &ldquo;petrichor&rdquo; scent deserves a place to be celebrated.
-                This site is my personal cabinet of linguistic curiosities,
-                shared with fellow nerds who find joy in the
-                &ldquo;tintinnabulation&rdquo; of a well-placed werd.
+                WerdNerd is a personal passion project born from a lifelong love
+                of words that sparkle, charm, confuse, amuse, and make you
+                pause, grin, and immediately want to tell someone else. If you
+                have a favorite strange, beautiful, or criminally underused
+                word, send it my way. The vault always has room for one more odd
+                little gem.
               </p>
             </div>
 
@@ -128,8 +129,8 @@ export function AboutCreator() {
 
             <h2 id="about-contact-title">Send a Message</h2>
             <p>
-              Got a favorite &ldquo;werd&rdquo; you want to share? I&rsquo;m
-              all ears.
+              Got a favorite &ldquo;werd&rdquo; you want to share? I&rsquo;m all
+              ears.
             </p>
 
             <form className="about-form">
@@ -147,7 +148,10 @@ export function AboutCreator() {
               </label>
 
               <div className="about-form__actions">
-                <button className="about-button about-button--primary" type="submit">
+                <button
+                  className="about-button about-button--primary"
+                  type="submit"
+                >
                   Send Werd
                 </button>
                 <button

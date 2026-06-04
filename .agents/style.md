@@ -42,7 +42,7 @@ Rule: gradient is for emphasis (headings/buttons/highlights), not full-page back
 
 Headings:
 
-- Preferred: `Space Grotesk` (or equivalent expressive sans)
+- Preferred: `Poppins`
 - Weight: `600-800`
 - Tight line-height, slightly reduced letter-spacing on large titles
 

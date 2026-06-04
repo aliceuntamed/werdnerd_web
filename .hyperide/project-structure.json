@@ -1,0 +1,12 @@
+{
+  "atomComponentsPaths": [
+    "src\\components\\ui"
+  ],
+  "compositeComponentsPaths": [
+    "src\\components\\layout",
+    "src\\components"
+  ],
+  "pagesPaths": [
+    "src\\pages"
+  ]
+}

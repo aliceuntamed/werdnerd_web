@@ -7,5 +7,6 @@
   "builder.command": "npm run dev",
   "builder.runDevServer": true,
   "builder.autoDetectDevServer": true,
-  "builder.launchType": "desktop"
+  "builder.launchType": "desktop",
+  "component-preview.devServerUrl": "http://localhost:5173"
 }

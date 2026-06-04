@@ -19,14 +19,14 @@ export default function WOTD() {
     <div className="wotd-layout">
       <div className="wotd-copy">
         <div>
-          <p className="home-eyebrow">Word of the Day</p>
+          <p className="home-eyebrow">today's featured pick:</p>
           <h2 className="home-section-title">
-            Handpicked gems for the discerning werdnerd.
+            Werd of the day
           </h2>
         </div>
         <p className="home-section-copy wotd-note">
-          Daily vocabulary should feel like finding a strange key in your coat
-          pocket. Useful? Possibly. Memorable? Absolutely.
+          A single oddity pulled from the vault for your daily dose of linguistic
+          levity.
         </p>
       </div>
 
@@ -52,7 +52,7 @@ export default function WOTD() {
             <div>
               <div className="wotd-label">
                 <BookOpen className="home-icon" />
-                <span>Today's pull from the archive</span>
+                <span>today's featured pick:</span>
               </div>
 
               <h3 className="wotd-word chrome-gradient-text">{werd.werd}</h3>
@@ -83,10 +83,3 @@ export default function WOTD() {
     </div>
   );
 }
-
-
-// Sample component for preview
-export const SampleDefault = () => (
-  <WOTD
-  />
-);

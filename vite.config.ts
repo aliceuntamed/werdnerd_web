@@ -2,12 +2,13 @@
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import componentPreview from "vite-plugin-component-preview"; // add this
 
 // https://vitejs.dev/config/
 import { playwright } from "@vitest/browser-playwright";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss()], componentPreview(),
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {

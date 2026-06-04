@@ -19,13 +19,13 @@ export default function CuratedPicks() {
     <div>
       <div className="curated-header">
         <div>
-          <p className="home-eyebrow">Curated Picks</p>
           <h2 className="home-section-title">
-            Six little trapdoors into the vault.
+            [Vault Preview]
           </h2>
+          <p className="home-eyebrow">[subheading]</p>
         </div>
         <p className="home-section-copy curated-copy">
-          Hand-picked by the werdnerd herself.
+          A few blue-card curiosities before you go spelunking.
         </p>
       </div>
 
@@ -37,7 +37,7 @@ export default function CuratedPicks() {
         <div className="home-empty">
           <p>No curated words yet. Check back soon.</p>
           <Link to="/vault" className="home-link">
-            Browse the full vault
+            [Go to] The Vault
             <ArrowRight className="home-icon" />
           </Link>
         </div>
@@ -63,7 +63,7 @@ export default function CuratedPicks() {
                 <p className="curated-definition">{w.definition}</p>
 
                 <span className="curated-card-link">
-                  More like this
+                  view full
                   <ArrowRight className="home-icon" />
                 </span>
               </Link>
@@ -72,7 +72,7 @@ export default function CuratedPicks() {
 
           <div className="curated-footer">
             <Link to="/vault" className="home-secondary-button">
-              Browse the full vault
+              [Go to] The Vault
               <ArrowRight className="home-icon" />
             </Link>
           </div>

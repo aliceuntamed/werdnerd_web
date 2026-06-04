@@ -66,6 +66,7 @@ Community
 Creator Tools
 Suggest
 collections
+word-cabinet
 
 ## page specific
 
