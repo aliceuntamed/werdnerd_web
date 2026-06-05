@@ -1,27 +1,27 @@
 export const theme = {
   colors: {
     bg: {
-      main: "#0B0B0D",
-      elevated: "#111113",
-      subtle: "#1A1A1D",
+      main: "#0B1117",
+      elevated: "#111A21",
+      subtle: "#17242C",
     },
     text: {
-      primary: "#F5F5F7",
-      muted: "#CFCFD3",
+      primary: "#EFEFED",
+      muted: "#B6BDC2",
     },
     border: {
-      subtle: "rgba(255,255,255,0.06)",
+      subtle: "rgba(182,189,194,0.16)",
     },
     accent: {
-      pink: "#FF6EC7",
-      blue: "#6ECFFF",
-      gold: "#FFD86E",
-      green: "#6EFFC7",
-      purple: "#C76EFF",
+      blue: "#25B1FF",
+      fern: "#A6FF4D",
+      orchid: "#6D4C7D",
+      teal: "#225560",
+      vaultTeal: "#306657",
     },
     gradients: {
       chromeHorizontal:
-        "linear-gradient(90deg,#FF6EC7,#6ECFFF,#FFD86E,#6EFFC7,#C76EFF)",
+        "linear-gradient(90deg,#B6BDC2,#25B1FF,#A6FF4D,#306657,#6D4C7D)",
     },
   },
   typography: {

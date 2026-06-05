@@ -1,34 +1,54 @@
-.werdnerd-mark__lens {
-  fill: rgba(7, 8, 16, 0.88);
+.werdnerd-mark__seal {
+  fill: color-mix(in srgb, var(--color-ink-black, #0b1117) 88%, var(--color-deep-werd-teal, #225560));
+  stroke: color-mix(in srgb, var(--color-chrome-dust, #b6bdc2) 52%, transparent);
+  stroke-width: 2.2;
 }
 
-.werdnerd-mark__frame {
+.werdnerd-mark__inner-ring {
   fill: none;
-  stroke: #6ecfff;
+  stroke: color-mix(in srgb, var(--color-bruised-orchid, #6d4c7d) 54%, transparent);
+  stroke-width: 1.2;
+}
+
+.werdnerd-mark__page {
+  fill: color-mix(in srgb, var(--color-bone-paper, #efefed) 92%, var(--color-chrome-dust, #b6bdc2));
+  stroke: color-mix(in srgb, var(--color-ink-black, #0b1117) 72%, transparent);
+  stroke-linejoin: round;
+  stroke-width: 1.2;
+}
+
+.werdnerd-mark__page--left {
+  filter: drop-shadow(-1px 1px 0 rgba(11, 17, 23, 0.28));
+}
+
+.werdnerd-mark__page--right {
+  filter: drop-shadow(1px 1px 0 rgba(11, 17, 23, 0.28));
+}
+
+.werdnerd-mark__spine,
+.werdnerd-mark__glyph,
+.werdnerd-mark__spark {
+  fill: none;
+  stroke: var(--color-bone-paper, #efefed);
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 4.6;
 }
 
-.werdnerd-mark__brim-shadow {
-  fill: rgba(0, 0, 0, 0.42);
-  transform: translateY(2px);
+.werdnerd-mark__spine {
+  stroke: color-mix(in srgb, var(--color-ink-black, #0b1117) 68%, transparent);
+  stroke-width: 1.2;
 }
 
-.werdnerd-mark__crown {
-  fill: #7b4cc2;
-}
-
-.werdnerd-mark__band {
-  fill: #f2e9ff;
-}
-
-.werdnerd-mark__brim {
-  fill: #9b6cf0;
-  stroke: rgba(246, 238, 255, 0.42);
-  stroke-width: 1.4;
+.werdnerd-mark__glyph {
+  stroke-width: 3.1;
 }
 
 .werdnerd-mark__spark {
-  fill: #ceff1a;
+  opacity: 0.55;
+  stroke: color-mix(in srgb, var(--color-chrome-dust, #b6bdc2) 72%, transparent);
+  stroke-width: 1.4;
+}
+
+.werdnerd-mark__accent {
+  fill: color-mix(in srgb, var(--color-acid-fern, #a6ff4d) 76%, var(--color-electric-blue, #25b1ff));
 }

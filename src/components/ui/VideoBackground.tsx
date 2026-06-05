@@ -21,6 +21,12 @@ export default function VideoBackground({
     }
   }, []);
 
+  function handleEnded() {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  }
+
   return (
     <section className="relative bg-black">
       <div className="sticky h-screen overflow-hidden" style={{ top: 0 }} aria-hidden>
@@ -31,9 +37,9 @@ export default function VideoBackground({
           poster={poster}
           autoPlay
           muted
-          loop
           playsInline
           preload="auto"
+          onEnded={handleEnded}
         />
 
         <div className="absolute inset-0 bg-black" style={{ opacity }} />

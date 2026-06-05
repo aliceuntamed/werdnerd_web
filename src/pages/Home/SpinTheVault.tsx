@@ -40,7 +40,6 @@ export default function SpinTheVault() {
         <div className="spin-stage">
           {!spun && !loading && (
             <div className="spin-empty">
-              <p>SPIN NOW</p>
               <small>Press spin to pull a random word from the vault.</small>
             </div>
           )}

@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { BookOpen, Feather } from "lucide-react";
+import { Flipwords } from "../../components/ui/Flipwords";
+
+const taglineWerds = ["HOARDING", "HUNTING", "SAVORING", "SHARING"];
 
 export default function Hero() {
   return (
@@ -11,7 +14,11 @@ export default function Hero() {
             <span>nerd.</span>
           </h1>
 
-          <p className="home-hero-tagline">WORDS WORTH HOARDING</p>
+          <div className="home-hero-tagline">
+            <span>WORDS WORTH</span>
+            {" "}
+            <Flipwords werds={taglineWerds} duration={2200} className="home-hero-flipword" />
+          </div>
 
           <div className="home-hero-actions">
             <Link to="/vault" className="home-primary-button">
