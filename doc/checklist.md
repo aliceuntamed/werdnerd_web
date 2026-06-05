@@ -4,23 +4,13 @@
 
 
 - [ ] a 404 page
-- [ ] fun facts section
-- [ ] favorites system
 - [ ] A “Back to Top” floating button
-
-
+- [ ] add smooth scroll to sections
+  
+- [ ] fun facts section
 
 - build **multiple variants**
 
-- [ ] add smooth scroll to sections
-
-
-## component specific
-
-### Header
-
-- redesign logo
-- login signup spacing
 
 ### Homepage
 
@@ -33,16 +23,16 @@
       - fetch favorites on mount
       - a toggleFavorite() helper
     - a settings page
-      - dark mode component switch
+      - dark mode component switch - public\on-off-switch.png
         - A token‑driven theme panel (light/dark/chrome modes)
-  - help you wire up Supabase Auth cleanly
+  - wire up Supabase Auth cleanly
 - WOTD
   - WOTD Card
     - A slightly thicker chrome accent bar for WOTD only (3px → 4px)
   - WOTD logic
   - wire WOTD to Supabase
   - Make WOTD dynamic
-    - We'll pull a random word from Supabase:
+    - pull a random word from Supabase:
       - werds table
       - word_of_the_day table (optional)
       - or a serverless function that rotates daily
