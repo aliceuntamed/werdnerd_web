@@ -20,9 +20,9 @@ export default function CuratedPicks() {
       <div className="curated-header">
         <div>
           <h2 className="home-section-title">
-            [Vault Preview]
+            Peek Inside the Vault
           </h2>
-          <p className="home-eyebrow">[subheading]</p>
+          <p className="home-eyebrow">Rare finds, already worth the detour.</p>
         </div>
         <p className="home-section-copy curated-copy">
           A few blue-card curiosities before you go spelunking.

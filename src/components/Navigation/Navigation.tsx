@@ -35,9 +35,9 @@ export default function Navigation() {
           <NavItem to="/" label="Home" />
           <NavItem to="/vault" label="Vault" />
           <NavItem to="/about" label="About" />
-          <NavItem to="/submit" label="Submit Word" />
+          <NavItem to="/submit" label="Contribute" />
           <NavItem to="/games" label="Games" />
-          <NavItem to="/playground" label="Palette Playground" />
+          <NavItem to="/playground" label="Playground" />
 
           {/* Auth Buttons */}
           <div className="site-nav-auth">
@@ -50,8 +50,7 @@ export default function Navigation() {
               </button>
             ) : (
               <>
-                <NavItem to={ROUTES.LOGIN} label="Sign In" />
-                <NavItem to={ROUTES.SIGNUP} label="Sign Up" />
+                <NavItem to={ROUTES.LOGIN} label="Log In" />
               </>
             )}
           </div>
@@ -96,11 +95,11 @@ export default function Navigation() {
           <MobileItem to="/" label="Home" onClick={closeMobileMenu} />
           <MobileItem to="/vault" label="Vault" onClick={closeMobileMenu} />
           <MobileItem to="/about" label="About" onClick={closeMobileMenu} />
-          <MobileItem to="/submit" label="Submit Word" onClick={closeMobileMenu} />
+          <MobileItem to="/submit" label="Contribute" onClick={closeMobileMenu} />
           <MobileItem to="/games" label="Games" onClick={closeMobileMenu} />
           <MobileItem
             to="/playground"
-            label="Palette Playground"
+            label="Playground"
             onClick={closeMobileMenu}
           />
 
@@ -115,8 +114,7 @@ export default function Navigation() {
               </button>
             ) : (
               <>
-                <MobileItem to={ROUTES.LOGIN} label="Sign In" onClick={closeMobileMenu} />
-                <MobileItem to={ROUTES.SIGNUP} label="Sign Up" onClick={closeMobileMenu} />
+                <MobileItem to={ROUTES.LOGIN} label="Log In" onClick={closeMobileMenu} />
               </>
             )}
           </div>

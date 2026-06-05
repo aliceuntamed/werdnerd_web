@@ -57,6 +57,18 @@
     #030304;
 }
 
+.home-parallax-panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 6rem 1.5rem;
+}
+
+.home-parallax-panel-spin {
+  padding-block: 8rem;
+}
+
 .home-eyebrow {
   color: rgba(200, 242, 245, 0.78);
   font-size: 0.92rem;
@@ -148,14 +160,7 @@
 }
 
 .home-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 46%, transparent 0 16rem, rgba(0, 0, 0, 0.36) 25rem),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.28) 58%, rgba(0, 0, 0, 0.62));
+  display: none;
 }
 
 .home-hero-shell {
@@ -166,6 +171,7 @@
   width: min(100%, 78rem);
   margin: 0 auto;
   text-align: center;
+  transform: translateY(-8vh);
 }
 
 .home-hero-title {
@@ -211,11 +217,11 @@
 
 .wotd-layout {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  align-items: center;
-  gap: clamp(1.5rem, 5vw, 5rem);
-  padding: clamp(2.25rem, 5vw, 3.5rem);
-  background: rgba(0, 9, 18, 0.88);
+  place-items: center;
+  width: min(100%, 42rem);
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
 }
 
 .wotd-copy {
@@ -238,9 +244,14 @@
   position: relative;
   overflow: hidden;
   min-height: 16rem;
+  width: 100%;
   padding: clamp(1.3rem, 3vw, 2rem);
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(20, 26, 42, 0.95), rgba(8, 8, 16, 0.9));
+  border: 1px solid rgba(188, 230, 255, 0.14);
+  background: linear-gradient(135deg, rgba(15, 34, 55, 0.88), rgba(6, 14, 28, 0.84));
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .wotd-card-glow {
@@ -465,20 +476,28 @@
 .spin-layout {
   display: grid;
   place-items: center;
-  min-height: 31rem;
+  width: min(100%, 58rem);
+  min-height: 38rem;
+  padding: clamp(2rem, 6vw, 4.5rem);
+  border: 1px solid rgba(188, 230, 255, 0.14);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(4, 24, 38, 0.82), rgba(2, 9, 19, 0.9));
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42);
   text-align: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .spin-layout > div:first-child {
   position: relative;
   z-index: 2;
   width: min(100%, 40rem);
-  min-height: 28rem;
+  min-height: 18rem;
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at 38% 42%, rgba(255, 58, 155, 0.76), transparent 8rem),
-    radial-gradient(circle at 62% 42%, rgba(82, 46, 255, 0.82), transparent 8rem);
+    radial-gradient(circle at 36% 42%, rgba(255, 88, 178, 0.42), transparent 8rem),
+    radial-gradient(circle at 64% 42%, rgba(54, 90, 255, 0.5), transparent 8rem);
 }
 
 .spin-layout .home-section-title {
@@ -505,7 +524,7 @@
   position: relative;
   z-index: 2;
   width: min(100%, 34rem);
-  margin-top: -8rem;
+  margin-top: -3rem;
   padding: 1.5rem;
   text-align: center;
 }

@@ -1,13 +1,17 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 interface VideoBackgroundProps {
   src?: string;
+  poster?: string;
   opacity?: number;
+  children?: ReactNode;
 }
 
 export default function VideoBackground({
-  src = "/hero-video.mp4",
-  opacity = 0.55,
+  src = "/ink-hero-1080.mp4",
+  poster = "/ink-hero-poster.jpg",
+  opacity = 0.25,
+  children,
 }: VideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -18,26 +22,26 @@ export default function VideoBackground({
   }, []);
 
   return (
-    <div
-      className="fixed inset-0 w-full h-full overflow-hidden"
-      style={{ zIndex: 0, pointerEvents: "none" }}
-      aria-hidden
-    >
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity }}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+    <section className="relative bg-black">
+      <div className="sticky h-screen overflow-hidden" style={{ top: 0 }} aria-hidden>
+        <video
+          ref={videoRef}
+          className="absolute inset-0 h-full w-full object-cover"
+          src={src}
+          poster={poster}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
 
-      <div className="absolute inset-0 bg-[#080808]/50" />
+        <div className="absolute inset-0 bg-black" style={{ opacity }} />
+      </div>
 
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(120,100,200,0.08)_0%,transparent_60%)]" />
-    </div>
+      <div className="relative z-10" style={{ marginTop: "-100vh" }}>
+        {children}
+      </div>
+    </section>
   );
 }

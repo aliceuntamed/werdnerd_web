@@ -1,44 +1,19 @@
-# todo checklist
-
-## new (2026-05-18)
+# todo
 
 - [ ] fix Loader.tsx and LoadingScreen.tsx
 
-## older
-
-## Build
 
 - [ ] a 404 page
-- [ ] fun facts
+- [ ] fun facts section
 - [ ] favorites system
-
 - [ ] A “Back to Top” floating button
 
-### Optional Enhancements
 
-- (Optional) build **multiple variants**
-- Smooth scroll to sections
 
-## Supabase integration
+- build **multiple variants**
 
-- A fully typed Supabase client - So your queries get full TS inference.
-- create the SQL for inserting your first categories
-- write the Supabase queries for fetching categories
-- A Database type that matches your entire schema - (Generated from Supabase)
-- create a global WerdContext so you don’t pass props down manually
-- typed update/delete functions are the next step.
-  - hooks like
-    - useWerds()
-    - useFavorites()
-    - useFunFacts()
-    - useCategories()
-    - server actions for adding words
-      - useWerds()
-      - useRandomWerd()
-      - useWOTD()
-      - useSubmitWerd()
-      - useLeaderboard()
-  - Showing words from the same category
+- [ ] add smooth scroll to sections
+
 
 ## component specific
 
@@ -111,61 +86,102 @@
 - Add Werd Submission page
 - add category selection to Submit a Werd
 - recent community gems
-- A SubmitWerdPayload type - For your form.
+- A SubmitWerdPayload type & form.
 
-### Games
+- [ ] games pages
 
 - Wordle
 - Word Search
 - Hangman
 - codenames
 - trivia
-- Games Page
-  - refine the GamesPage animations (hover parallax, soft tilt, etc.)
-- build a leaderboard
-  - Leaderboard → insert/update user scores
 
-### Fun Facts
+- [ ] refine the GamesPage animations
+
+- hover
+- parallax
+- soft tilt
+- etc
+
+- [ ] refine the GamesPage animations
+
+  - hover
+  - parallax
+  - soft tilt
+  - etc
+
+
+* [ ] build a leaderboard
+
+- Leaderboard → insert/update user scores
+
 
 - wire Fun Facts to random funfact query
-- Funfacts API
-  - fetch random fun facts from funfacts
 
-### Tailwind theme
+- [ ] Create Tailwind classes for theme
 
-- Create Tailwind classes for your theme (so you can drop them right into your code)
-  - create reusable Tailwind classes for shimmer, glow, chrome edges
-- map your chrome gradients to Tailwind utilities
-- add custom animations to tailwind.config.js
-- unify your theme.ts → Tailwind → globals.css pipeline
-- Create your global layout (Navigation + Outlet + Footer)
-- a components.css for shared UI patterns
-- a layout.css for page structure
-- a chrome-effects.css dedicated to your aesthetic
-- create your design tokens (colors, fonts, spacing)
-- Build a theme.ts file for your project
-- Build a full style guide - (colors, fonts, spacing, components)
-- Redesign your header, footer, cards, buttons
+  - shimmer
+  - glow
+  - chrome edges
+- [ ] map chrome gradients to Tailwind utilities
+- [ ] add custom animations to tailwind.config.js
+- [ ] unify theme.ts → Tailwind → globals.css pipeline
+- [ ] Create global layout (Navigation + Outlet + Footer)
+- [ ] components.css for shared UI patterns
+- [ ] layout.css for page structure
+- [ ] chrome-effects.css dedicated to project aesthetics
 
-### Routes
+* [ ] create design tokens
+* colors
 
-- add route transitions (fade, slide, chrome shimmer)
-  - add per‑page transition styles
-    - fade‑in
-    - slide‑up
-    - parallax scroll
-    - subtle video overlay shimmer
-    - shimmer highlight
-    - Chrome Curtain — a vertical chrome wipe
-    - Chrome Iris — circular expansion with chrome edges
-    - Chrome Ripple — metallic ripple from the nav link you clicked
-    - Chrome Beam — thin laser‑like chrome line sweeping across
-    - Chrome Warp — distortion shimmer like heat haze
-- integrate PageWrapper into MainLayout
-- build a ProtectedRoute wrapper for future features
-- Set up React Router
-  - A dedicated route for individual WerdCards - (/werd/:slug)
-  - A dedicated route for the werd of the Day
+- fonts
+- spacing
+
+- [ ] Build a theme.ts
+- [ ] Redesign your header, footer, cards, buttons
+- [ ] add route transitions
+
+  - fade‑in
+  - slide‑up
+  - parallax scroll
+  - subtle video overlay shimmer
+  - shimmer highlight
+  - Chrome Curtain — a vertical chrome wipe
+  - Chrome Iris — circular expansion with chrome edges
+  - Chrome Ripple — metallic ripple from the nav link you clicked
+  - Chrome Beam — thin laser‑like chrome line sweeping across
+  - Chrome Warp — distortion shimmer like heat haze
+- [ ] integrate PageWrapper into MainLayout
+- [ ] build a ProtectedRoute wrapper for future features
+- [ ] Set up React Router
+- [ ] dedicated route for individual WerdCards - (/werd/:slug)
+- [ ] dedicated route for the werd of the Day
+
+
+## Supabase integration
+
+- [ ] fully typed Supabase client
+- [ ] create the SQL for inserting categories
+- [ ] write Supabase queries for fetching categories
+- [ ] A Database type to match entire schema - (Generated from Supabase)
+- [ ] create a global WerdContext
+- [ ] typed update/delete functions
+
+- hooks like
+
+  - useWerds()
+  - useFavorites()
+  - useFunFacts()
+  - useCategories()
+  - server actions for adding words
+  - useWerds()
+  - useRandomWerd()
+  - useWOTD()
+  - useSubmitWerd()
+  - useLeaderboard()
+
+- [ ] Show words from the same category
+
 
 ### Files
 

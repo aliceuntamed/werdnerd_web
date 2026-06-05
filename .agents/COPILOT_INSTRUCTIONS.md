@@ -14,7 +14,15 @@ Use this file for day-to-day coding decisions in this repo.
 - Keep new logic small and composable.
 - Prefer strict typing over `any`.
 - Keep styling consistent with `.agents/style.md`.
+- Prefer existing UI components in `src/components/ui/` and tokens in `src/styles/tokens.css` or `src/theme/theme.ts`.
 - Build for responsive behavior by default.
+
+## Local Dev & Verification
+
+- Use `npm run dev` to launch the app locally.
+- Validate changes with `npm run build` and `npm run lint`.
+- Supabase env vars are required locally: `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+- If adding routes, update `src/routes.ts` and wire the page into `src/App.tsx`.
 
 ## Architecture Guardrails
 

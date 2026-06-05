@@ -17,19 +17,6 @@ export default function WOTD() {
 
   return (
     <div className="wotd-layout">
-      <div className="wotd-copy">
-        <div>
-          <p className="home-eyebrow">today's featured pick:</p>
-          <h2 className="home-section-title">
-            Werd of the day
-          </h2>
-        </div>
-        <p className="home-section-copy wotd-note">
-          A single oddity pulled from the vault for your daily dose of linguistic
-          levity.
-        </p>
-      </div>
-
       <div className="wotd-card">
         <div className="wotd-card-glow" />
         <div className="wotd-card-line" />

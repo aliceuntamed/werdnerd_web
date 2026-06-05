@@ -6,10 +6,7 @@
   align-items: center;
   height: 4rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  background:
-    linear-gradient(180deg, rgba(9, 9, 12, 0.86), rgba(9, 9, 12, 0.74)),
-    radial-gradient(circle at 18% -120%, rgba(255, 110, 199, 0.22), transparent 48%),
-    radial-gradient(circle at 82% -160%, rgba(110, 207, 255, 0.18), transparent 50%);
+  background: rgba(34, 85, 96, 0.8);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);

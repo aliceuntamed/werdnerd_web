@@ -31,6 +31,16 @@ When instructions conflict, use this order:
 
 Always flag mismatches briefly instead of silently guessing.
 
+## 3.1) Useful Repo Facts
+
+- Routing is centralized in `src/routes.ts` and rendered from `src/App.tsx`.
+- Page screens live in `src/pages/`.
+- Shared UI components live in `src/components/` and reusable primitives under `src/components/ui/`.
+- Supabase helpers and client setup live in `src/utils/supabase/`.
+- Domain types belong in `src/types/`.
+- The app currently uses local component state and feature hooks; no global state library is installed.
+- Use existing feature-local hooks (`src/hooks/`) before introducing new shared state.
+
 ## 4) Build Approach
 
 - Prefer small, incremental changes over large rewrites.

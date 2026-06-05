@@ -32,15 +32,19 @@ function HomeBand({
 export default function HomePage() {
   return (
     <>
-      <VideoBackground src="/hero-video.mp4" opacity={0.68} />
-
-      <main className="home-main">
+      <VideoBackground>
         <Hero />
 
-        <HomeBand className="home-band-soft">
+        <section className="home-parallax-panel">
           <WOTD />
-        </HomeBand>
+        </section>
 
+        <section className="home-parallax-panel home-parallax-panel-spin">
+          <SpinTheVault />
+        </section>
+      </VideoBackground>
+
+      <main className="home-main">
         <AmbientDivider />
 
         <HomeBand className="home-band-mid">
@@ -48,10 +52,6 @@ export default function HomePage() {
         </HomeBand>
 
         <AmbientDivider />
-
-        <HomeBand className="home-band-deep">
-          <SpinTheVault />
-        </HomeBand>
       </main>
     </>
   );
