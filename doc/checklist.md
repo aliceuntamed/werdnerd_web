@@ -9,23 +9,22 @@
   
 - [ ] fun facts section
 
-- build **multiple variants**
+- [ ] build **multiple variants**
 
 
-### Homepage
-
-- login / signup module
+- [ ] login / signup module
   - A user preferences schema stored in Supabase
-  - Add an is_admin Flag
+    - Add an is_admin Flag
+  -  wire up Supabase Auth cleanly
   - profile page
     - favorites
       - refresh favorites after toggle
       - fetch favorites on mount
       - a toggleFavorite() helper
-    - a settings page
-      - dark mode component switch - public\on-off-switch.png
-        - A token‑driven theme panel (light/dark/chrome modes)
-  - wire up Supabase Auth cleanly
+  - a settings page
+    - dark mode component switch - public\on-off-switch.png
+    - A token‑driven theme panel (light/dark/chrome modes)
+
 - WOTD
   - WOTD Card
     - A slightly thicker chrome accent bar for WOTD only (3px → 4px)
