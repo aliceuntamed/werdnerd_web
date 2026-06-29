@@ -7,6 +7,13 @@ This repository uses root agent instruction files to guide AI coding agents.
 - `.agents/AGENT_INSTRUCTIONS.md` — core agent guidance, priorities, repo-specific conventions.
 - `.agents/COPILOT_INSTRUCTIONS.md` — day-to-day coding rules, dev commands, and verification guidance.
 
+## Project Preferences and Information
+
+- `.agents/style.md`
+- `.agents/ARCHITECTURE.md`
+- `/ROADMAP.md`
+- `/README.md` - project description
+
 ## Recommended workflow for AI agents
 
 1. Read `.agents/AGENT_INSTRUCTIONS.md` first.
