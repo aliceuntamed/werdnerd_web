@@ -29,7 +29,8 @@
       "type": "vscode-edge-devtools.debug",
       "name": "Open Edge DevTools",
       "request": "attach",
-      "url": "http://localhost:5173""presentation": {
+      "url": "http://localhost:5173",
+      "presentation": {
         "hidden": true
       }
     }
