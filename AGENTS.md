@@ -9,10 +9,18 @@ This repository uses root agent instruction files to guide AI coding agents.
 
 ## Project Preferences and Information
 
-- `.agents/style.md`
 - `.agents/ARCHITECTURE.md`
 - `/ROADMAP.md`
 - `/README.md` - project description
+
+### Project Style
+
+- `.agents/style.md`
+- `src/styles/globals.css`
+- `src/styles/tokens.css`
+- `src/theme/theme.ts`
+- `/index.css`
+
 
 ## Recommended workflow for AI agents
 
