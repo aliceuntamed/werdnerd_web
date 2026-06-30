@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Shuffle } from "lucide-react";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 import { getRandomWerd } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
 
@@ -46,8 +47,12 @@ export default function SpinTheVault() {
 
           {loading && (
             <div className="home-loading">
-              <div className="home-spinner" />
-              <p>Spinning...</p>
+              <LoadingScreen
+                fullScreen={false}
+                message="Spinning..."
+                size={58}
+                speed={2.2}
+              />
             </div>
           )}
 

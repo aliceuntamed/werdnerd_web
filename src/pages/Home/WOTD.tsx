@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight, BookOpen } from "lucide-react";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 import { getWOTD } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
 
@@ -23,8 +24,12 @@ export default function WOTD() {
 
         {loading && (
           <div className="home-loading">
-            <div className="home-spinner" />
-            <p>Selecting today's word...</p>
+            <LoadingScreen
+              fullScreen={false}
+              message="Selecting today's word..."
+              size={58}
+              speed={2.4}
+            />
           </div>
         )}
 

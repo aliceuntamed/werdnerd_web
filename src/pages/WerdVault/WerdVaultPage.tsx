@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useWerds } from "../../hooks/useWerds";
 import { WerdVaultTagCloud } from "../../components/ui/WerdVaultTagCloud";
 import { ChromeSky } from "../../components/ui/ChromeSky";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 import type { Werd } from "../../types/werd";
 import "./WerdVault.css";
 
@@ -235,8 +236,12 @@ export default function WerdVaultPage() {
 
         {loading ? (
           <div className="vault-loading">
-            <div className="vault-loading__spinner" />
-            <p>Loading the shelves...</p>
+            <LoadingScreen
+              fullScreen={false}
+              message="Loading the shelves..."
+              size={64}
+              speed={2.4}
+            />
           </div>
         ) : visibleGroups.length > 0 ? (
           <div className="vault-shelves">

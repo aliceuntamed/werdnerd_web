@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useState } from "react";
 import Loader from "./Loader";
 
 const LOADING_WORDS = [
@@ -20,6 +20,14 @@ const LOADING_WORDS = [
   "Harmonizing...",
 ];
 
+let loadingWordIndex = 0;
+
+function getNextLoadingWord() {
+  const word = LOADING_WORDS[loadingWordIndex % LOADING_WORDS.length];
+  loadingWordIndex += 1;
+  return word;
+}
+
 interface LoadingScreenProps {
   message?: string;
   color1?: string;
@@ -27,7 +35,8 @@ interface LoadingScreenProps {
   size?: number;
   speed?: number;
   fullScreen?: boolean;
-  blurBackground?: boolean; // NEW
+  blurBackground?: boolean;
+  className?: string;
 }
 
 export default function LoadingScreen({
@@ -38,11 +47,10 @@ export default function LoadingScreen({
   speed = 2.5,
   fullScreen = true,
   blurBackground = false,
+  className = "",
 }: LoadingScreenProps) {
-  // Pick a random word once per mount
-  const randomWord = useMemo(() => {
-    return LOADING_WORDS[Math.floor(Math.random() * LOADING_WORDS.length)];
-  }, []);
+  const [fallbackMessage] = useState(getNextLoadingWord);
+  const loadingWord = message ?? fallbackMessage;
 
   const containerClasses = fullScreen
     ? `min-h-screen flex flex-col items-center justify-center ${
@@ -51,17 +59,18 @@ export default function LoadingScreen({
     : "flex flex-col items-center justify-center p-8";
 
   return (
-    <div className={containerClasses}>
+    <div className={`${containerClasses} ${className}`} role="status" aria-live="polite">
       <Loader
         color1={color1}
         color2={color2}
         size={size}
         speed={speed}
         className="mb-4"
+        label={loadingWord}
       />
 
       <p className="text-white/60 font-body text-center animate-pulse">
-        {message ?? randomWord}
+        {loadingWord}
       </p>
     </div>
   );

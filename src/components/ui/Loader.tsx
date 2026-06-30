@@ -1,9 +1,12 @@
+import { type CSSProperties, useId } from "react";
+
 interface LoaderProps {
   color1?: string;
   color2?: string;
   size?: number;
   speed?: number;
   className?: string;
+  label?: string;
 }
 
 export default function Loader({
@@ -12,44 +15,52 @@ export default function Loader({
   size = 120,
   speed = 3,
   className = "",
+  label = "Loading",
 }: LoaderProps) {
+  const instanceId = useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  const eyesId = `loader-eyes-${instanceId}`;
+  const gradientId = `loader-grad-${instanceId}`;
+  const maskId = `loader-mask-${instanceId}`;
+  const loaderStyle = {
+    width: size,
+    height: size,
+    "--loader-speed": `${speed}s`,
+  } as CSSProperties;
+
   return (
     <div
       className={`flex items-center justify-center w-full h-full ${className}`}
+      role="img"
+      aria-label={label}
     >
       <style>{`
-              .loader {
-                  width: ${size}px;
-                  height: ${size}px;
-              }
-  
-              .loader__eye1,
-              .loader__eye2,
-              .loader__mouth1,
-              .loader__mouth2 {
-                  animation-duration: ${speed}s;
+              .werd-loader__eye1,
+              .werd-loader__eye2,
+              .werd-loader__mouth1,
+              .werd-loader__mouth2 {
+                  animation-duration: var(--loader-speed);
                   animation-iteration-count: infinite;
                   animation-timing-function: ease-in-out;
               }
   
-              .loader__eye1,
-              .loader__eye2 {
+              .werd-loader__eye1,
+              .werd-loader__eye2 {
                   transform-origin: 64px 64px;
-                  animation-name: eye1;
+                  animation-name: werd-loader-eye1;
               }
   
-              .loader__eye2 { animation-name: eye2; }
+              .werd-loader__eye2 { animation-name: werd-loader-eye2; }
   
-              .loader__mouth1 { animation-name: mouth1; }
+              .werd-loader__mouth1 { animation-name: werd-loader-mouth1; }
   
-              .loader__mouth2 {
-                  animation-name: mouth2;
+              .werd-loader__mouth2 {
+                  animation-name: werd-loader-mouth2;
                   visibility: hidden;
               }
   
-              @keyframes eye1 {
+              @keyframes werd-loader-eye1 {
                   from { transform: rotate(-260deg) translate(0,-56px); }
-                  50%,60% {
+                  44%,68% {
                       transform: rotate(-40deg) translate(0,-56px) scale(1);
                   }
                   to {
@@ -57,15 +68,15 @@ export default function Loader({
                   }
               }
   
-              @keyframes eye2 {
+              @keyframes werd-loader-eye2 {
                   from { transform: rotate(-260deg) translate(0,-56px); }
-                  50% {
+                  44%,56% {
                       transform: rotate(40deg) translate(0,-56px) rotate(-40deg) scale(1);
                   }
-                  52.5% {
+                  59% {
                       transform: rotate(40deg) translate(0,-56px) rotate(-40deg) scale(1,0);
                   }
-                  55%,70% {
+                  62%,68% {
                       transform: rotate(40deg) translate(0,-56px) rotate(-40deg) scale(1);
                   }
                   to {
@@ -73,7 +84,7 @@ export default function Loader({
                   }
               }
   
-              @keyframes mouth1 {
+              @keyframes werd-loader-mouth1 {
                   from {
                       stroke-dasharray: 0 351.86;
                       stroke-dashoffset: 0;
@@ -86,10 +97,10 @@ export default function Loader({
                       stroke-dashoffset: -175.93;
                       visibility: visible;
                   }
-                  75%,to { visibility: hidden; }
+                  72%,to { visibility: hidden; }
               }
   
-              @keyframes mouth2 {
+              @keyframes werd-loader-mouth2 {
                   from {
                       visibility: hidden;
                   }
@@ -101,34 +112,56 @@ export default function Loader({
                       stroke-dashoffset: -351.86;
                   }
               }
+
+              @media (prefers-reduced-motion: reduce) {
+                  .werd-loader__eye1,
+                  .werd-loader__eye2,
+                  .werd-loader__mouth1,
+                  .werd-loader__mouth2 {
+                      animation: none;
+                  }
+
+                  .werd-loader__eye1 {
+                      transform: rotate(-40deg) translate(0,-56px);
+                  }
+
+                  .werd-loader__eye2 {
+                      transform: rotate(40deg) translate(0,-56px) rotate(-40deg);
+                  }
+              }
               `}</style>
 
-      <svg viewBox="0 0 128 128" className="loader">
+      <svg
+        viewBox="0 0 128 128"
+        className="werd-loader"
+        style={loaderStyle}
+        aria-hidden="true"
+      >
         <defs>
-          <clipPath id="loader-eyes">
+          <clipPath id={eyesId}>
             <circle
               transform="rotate(-40,64,64) translate(0,-56)"
               r="8"
               cx="64"
               cy="64"
-              className="loader__eye1"
+              className="werd-loader__eye1"
             />
             <circle
               transform="rotate(40,64,64) translate(0,-56)"
               r="8"
               cx="64"
               cy="64"
-              className="loader__eye2"
+              className="werd-loader__eye2"
             />
           </clipPath>
 
-          <linearGradient id="loader-grad" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#000" />
             <stop offset="100%" stopColor="#fff" />
           </linearGradient>
 
-          <mask id="loader-mask">
-            <rect width="128" height="128" fill="url(#loader-grad)" />
+          <mask id={maskId}>
+            <rect width="128" height="128" fill={`url(#${gradientId})`} />
           </mask>
         </defs>
 
@@ -139,7 +172,7 @@ export default function Loader({
         >
           <g>
             <rect
-              clipPath="url(#loader-eyes)"
+              clipPath={`url(#${eyesId})`}
               width="128"
               height="64"
               fill={color1}
@@ -150,21 +183,21 @@ export default function Loader({
                 r="56"
                 cx="64"
                 cy="64"
-                className="loader__mouth1"
+                className="werd-loader__mouth1"
               />
               <circle
                 transform="rotate(0,64,64)"
                 r="56"
                 cx="64"
                 cy="64"
-                className="loader__mouth2"
+                className="werd-loader__mouth2"
               />
             </g>
           </g>
 
-          <g mask="url(#loader-mask)">
+          <g mask={`url(#${maskId})`}>
             <rect
-              clipPath="url(#loader-eyes)"
+              clipPath={`url(#${eyesId})`}
               width="128"
               height="64"
               fill={color2}
@@ -175,14 +208,14 @@ export default function Loader({
                 r="56"
                 cx="64"
                 cy="64"
-                className="loader__mouth1"
+                className="werd-loader__mouth1"
               />
               <circle
                 transform="rotate(0,64,64)"
                 r="56"
                 cx="64"
                 cy="64"
-                className="loader__mouth2"
+                className="werd-loader__mouth2"
               />
             </g>
           </g>

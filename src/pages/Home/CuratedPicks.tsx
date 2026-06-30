@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 import { fetchCuratedWerds } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
 
@@ -30,7 +31,14 @@ export default function CuratedPicks() {
       </div>
 
       {loading && (
-        <div className="home-empty">Loading curated picks...</div>
+        <div className="home-empty">
+          <LoadingScreen
+            fullScreen={false}
+            message="Loading curated picks..."
+            size={58}
+            speed={2.4}
+          />
+        </div>
       )}
 
       {!loading && werds.length === 0 && (
