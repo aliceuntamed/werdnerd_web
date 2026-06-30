@@ -15,7 +15,7 @@
   height: 0;
 }
 
-.slider {
+.wn-toggle .slider {
   position: absolute;
   inset: 0;
   border-radius: 2em;
@@ -31,8 +31,8 @@
   box-shadow: 0 0 30px rgba(120, 180, 255, 0.45);
 }
 
-.label-off,
-.label-on {
+.wn-toggle .label-off,
+.wn-toggle .label-on {
   position: absolute;
   font-size: 0.7em;
   font-weight: 600;
@@ -41,11 +41,11 @@
   transition: opacity 0.25s ease;
 }
 
-.label-off {
+.wn-toggle .label-off {
   left: 0.8em;
 }
 
-.label-on {
+.wn-toggle .label-on {
   right: 0.8em;
   opacity: 0;
 }

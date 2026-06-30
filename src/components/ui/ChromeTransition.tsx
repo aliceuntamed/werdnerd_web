@@ -14,21 +14,21 @@ export default function ChromeTransition({
   >("fadeIn");
 
   useEffect(() => {
-    // Start fade out
-    setTransitionStage("fadeOut");
+    const fadeOutTimeout = setTimeout(() => {
+      setTransitionStage("fadeOut");
+    }, 0);
 
     const timeout1 = setTimeout(() => {
-      // Trigger shimmer
       setTransitionStage("shimmer");
     }, 200);
 
     const timeout2 = setTimeout(() => {
-      // Swap content + fade in
       setDisplayChildren(children);
       setTransitionStage("fadeIn");
     }, 600);
 
     return () => {
+      clearTimeout(fadeOutTimeout);
       clearTimeout(timeout1);
       clearTimeout(timeout2);
     };
@@ -55,7 +55,6 @@ export default function ChromeTransition({
           "bg-gradient-to-r from-[#e5e7eb]/0 via-[#9bbcff]/60 to-[#c084fc]/0",
           "h-full w-[200%]",
           "transition-all duration-500",
-          <div className="absolute inset-0 blur-3xl bg-[#9bbcff]/20" />,
           transitionStage === "shimmer" && "translate-x-[-10%] opacity-100",
         )}
       />

@@ -3,16 +3,48 @@ import { supabase } from "./client";
 import type { Werd } from "../../types";
 import { WERDS as LOCAL_WERDS } from "../../data/werd_data";
 
-// Helper: normalise the nested tags structure from Supabase joins
-function normaliseTags(werd_tags: unknown[]): string[] {
+type SupabaseTagJoin = {
+  tags?:
+    | {
+        tag_name?: string;
+        name?: string;
+      }
+    | {
+        tag_name?: string;
+        name?: string;
+      }[];
+  tag_name?: string;
+  name?: string;
+};
+
+type SupabaseWerdRow = {
+  werd_id: string;
+  werd: string;
+  pronunciation?: string | null;
+  part_of_speech?: string | null;
+  definition?: string | null;
+  language?: string | null;
+  source?: string | null;
+  werd_tags?: SupabaseTagJoin[];
+};
+
+function pickJoinedTagName(tagJoin: SupabaseTagJoin): string {
+  const nestedTags = Array.isArray(tagJoin.tags)
+    ? tagJoin.tags[0]
+    : tagJoin.tags;
+
   return (
-    werd_tags
-      ?.map(
-        (t: any) =>
-          t.tags?.tag_name ?? t.tags?.name ?? t.tag_name ?? t.name ?? "",
-      )
-      .filter(Boolean) ?? []
+    nestedTags?.tag_name ??
+    nestedTags?.name ??
+    tagJoin.tag_name ??
+    tagJoin.name ??
+    ""
   );
+}
+
+// Helper: normalise the nested tags structure from Supabase joins
+function normaliseTags(werd_tags: SupabaseTagJoin[] = []): string[] {
+  return werd_tags.map(pickJoinedTagName).filter(Boolean);
 }
 
 function normaliseLocalTags(tags: unknown): string[] {
@@ -30,11 +62,11 @@ function normaliseLocalTags(tags: unknown): string[] {
   return [];
 }
 
-const LOCAL_TAGS_BY_ID = new Map(
+const LOCAL_TAGS_BY_ID = new Map<string, string[]>(
   LOCAL_WERDS.map((werd) => [werd.werd_id, normaliseLocalTags(werd.tags)]),
 );
 
-const LOCAL_TAGS_BY_WORD = new Map(
+const LOCAL_TAGS_BY_WORD = new Map<string, string[]>(
   LOCAL_WERDS.map((werd) => [
     werd.werd.toLowerCase(),
     normaliseLocalTags(werd.tags),
@@ -54,7 +86,7 @@ const WERD_SELECT = `
   ${WERD_TAGS_SELECT}
 `;
 
-function mapWerd(w: any): Werd {
+function mapWerd(w: SupabaseWerdRow): Werd {
   const relationalTags = normaliseTags(w.werd_tags ?? []);
   const fallbackTags =
     LOCAL_TAGS_BY_ID.get(w.werd_id) ??

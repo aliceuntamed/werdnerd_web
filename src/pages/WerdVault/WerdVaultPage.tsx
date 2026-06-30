@@ -1,5 +1,6 @@
 // pages/WerdVaultPage.tsx
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useWerds } from "../../hooks/useWerds";
 import { WerdVaultTagCloud } from "../../components/ui/WerdVaultTagCloud";
@@ -155,7 +156,8 @@ function WerdTagShelf({ tag, werds }: { tag: string; werds: Werd[] }) {
 }
 
 export default function WerdVaultPage() {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTag = searchParams.get("tag");
   const { werds, loading } = useWerds();
 
   const tagGroups = useMemo(() => {
@@ -179,6 +181,20 @@ export default function WerdVaultPage() {
   const visibleGroups = activeTag
     ? tagGroups.filter((group) => group.tag === activeTag)
     : tagGroups;
+
+  function updateActiveTag(nextTag: string | null) {
+    setSearchParams((currentParams) => {
+      const params = new URLSearchParams(currentParams);
+
+      if (nextTag) {
+        params.set("tag", nextTag);
+      } else {
+        params.delete("tag");
+      }
+
+      return params;
+    });
+  }
 
   return (
     <main className="vault-page">
@@ -215,7 +231,7 @@ export default function WerdVaultPage() {
               <button
                 type="button"
                 className="vault-filter__clear"
-                onClick={() => setActiveTag(null)}
+                onClick={() => updateActiveTag(null)}
               >
                 Show all
               </button>
@@ -225,9 +241,9 @@ export default function WerdVaultPage() {
           <WerdVaultTagCloud
             tags={allTags}
             activeTag={activeTag}
-            onSelect={(tag) =>
-              setActiveTag((prev) => (prev === tag ? null : tag))
-            }
+            onSelect={(tag) => {
+              updateActiveTag(activeTag === tag ? null : tag);
+            }}
             size="sm"
             gap="gap-2"
             className="vault-filter__tags"

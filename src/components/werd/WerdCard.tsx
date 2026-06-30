@@ -1,6 +1,6 @@
 import { WerdTagList } from "./WerdTagList";
 import type { Werd } from "../../types/werd";
-import { FavoriteToggle } from "../../components/ui/FavoriteToggle";
+import { FavoriteToggle } from "../ui/FavoriteToggle";
 
 interface WerdCardProps extends Werd {
   isFavorite?: boolean;

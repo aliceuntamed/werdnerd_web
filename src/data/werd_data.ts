@@ -2020,30 +2020,3 @@ export const WERDS = [
     created_on: "3/7/2026",
   },
 ] as const;
-
-// Helper functions
-export const getAllWerds = () => WERDS.map((werd) => ({ ...werd }));
-
-export const getAllTags = () => {
-  const allTags = new Set<string>();
-  WERDS.forEach((werd) => {
-    if (Array.isArray(werd.tags)) {
-      werd.tags.forEach((tag) => allTags.add(tag as string));
-    } else if (werd.tags) {
-      allTags.add(werd.tags as string);
-    }
-  });
-  return Array.from(allTags);
-};
-
-export const getCuratedPicks = () => {
-  return WERDS.filter((werd) => werd.is_curated).map((werd) => ({ ...werd }));
-};
-
-export const getWordOfTheDay = () => {
-  const today = new Date().toISOString().split("T")[0];
-  const index =
-    today.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0) %
-    WERDS.length;
-  return { ...WERDS[index] };
-};

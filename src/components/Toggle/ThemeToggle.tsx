@@ -10,6 +10,7 @@ export default function ThemeToggle({ value, onChange }: ThemeToggleProps) {
     <label className="wn-toggle">
       <input
         type="checkbox"
+        aria-label="Toggle dark mode"
         checked={value}
         onChange={(e) => onChange(e.target.checked)}
       />

@@ -1,5 +1,4 @@
-import { Flower2, Mail, Search, Sparkles, X } from "lucide-react";
-import { useState } from "react";
+import { Flower2, Mail, Search, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const traits = [
@@ -16,8 +15,6 @@ const traits = [
 ];
 
 export function AboutCreator() {
-  const [open, setOpen] = useState(false);
-
   return (
     <main className="about-page-shell">
       <section className="about-hero" aria-labelledby="about-title">
@@ -84,14 +81,13 @@ export function AboutCreator() {
                 <Sparkles size={18} aria-hidden="true" />
                 Explore the Vault
               </Link>
-              <button
+              <a
                 className="about-button about-button--ghost"
-                type="button"
-                onClick={() => setOpen(true)}
+                href="#contact"
               >
                 <Mail size={18} aria-hidden="true" />
                 Say Hello
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -104,68 +100,6 @@ export function AboutCreator() {
           share.
         </p>
       </section>
-
-      {open && (
-        <div
-          className="about-modal"
-          role="presentation"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="about-modal__panel"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="about-contact-title"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              className="about-modal__close"
-              type="button"
-              aria-label="Close contact form"
-              onClick={() => setOpen(false)}
-            >
-              <X size={20} aria-hidden="true" />
-            </button>
-
-            <h2 id="about-contact-title">Send a Message</h2>
-            <p>
-              Got a favorite &ldquo;werd&rdquo; you want to share? I&rsquo;m all
-              ears.
-            </p>
-
-            <form className="about-form">
-              <label>
-                <span>Name</span>
-                <input type="text" placeholder="Your name..." />
-              </label>
-              <label>
-                <span>Email</span>
-                <input type="email" placeholder="you@email.com" />
-              </label>
-              <label>
-                <span>Message</span>
-                <textarea rows={4} placeholder="Tell me something unusual..." />
-              </label>
-
-              <div className="about-form__actions">
-                <button
-                  className="about-button about-button--primary"
-                  type="submit"
-                >
-                  Send Werd
-                </button>
-                <button
-                  className="about-button about-button--quiet"
-                  type="button"
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

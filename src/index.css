@@ -629,3 +629,31 @@
     --sidebar-border: rgba(182, 189, 194, 0.16);
     --sidebar-ring: #25b1ff;
 }
+
+.light {
+    --color-ink-black: #f6f2ea;
+    --color-bone-paper: #151516;
+    --color-chrome-dust: #4f5d66;
+    --background: #f6f2ea;
+    --foreground: #151516;
+    --card: #fffaf0;
+    --card-foreground: #151516;
+    --popover: #fffaf0;
+    --popover-foreground: #151516;
+    --primary: #197797;
+    --primary-foreground: #ffffff;
+    --secondary: #d8eee3;
+    --secondary-foreground: #151516;
+    --muted: #d8eee3;
+    --muted-foreground: #4f5d66;
+    --accent: #6d4c7d;
+    --accent-foreground: #ffffff;
+    --border: rgba(21, 21, 22, 0.16);
+    --input: rgba(21, 21, 22, 0.14);
+    --ring: #197797;
+}
+
+.light body {
+    background-color: var(--background);
+    color: var(--foreground);
+}

@@ -3,12 +3,18 @@ import React from "react";
 import { supabase } from "../../utils/supabase/client";
 import { fetchTags } from "../../utils/supabase/queries";
 
+type AvailableTag = {
+  tag_id: string;
+  tag_name?: string;
+  name?: string;
+};
+
 export default function SubmitWerdForm() {
   const [werd, setWerd] = useState("");
   const [definition, setDefinition] = useState("");
   const [pronunciation, setPronunciation] = useState("");
   const [partOfSpeech, setPartOfSpeech] = useState("");
-  const [availableTags, setAvailableTags] = useState<{ tag_id: string; tag_name?: string; name?: string }[]>([]);
+  const [availableTags, setAvailableTags] = useState<AvailableTag[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
@@ -60,8 +66,7 @@ export default function SubmitWerdForm() {
     }
   }
 
-  const tagLabel = (t: any) =>
-    t.tag_name ?? t.name ?? "";
+  const tagLabel = (tag: AvailableTag) => tag.tag_name ?? tag.name ?? "";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
