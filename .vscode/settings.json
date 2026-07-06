@@ -9,5 +9,10 @@
   "builder.autoDetectDevServer": true,
   "builder.launchType": "desktop",
   "component-preview.devServerUrl": "http://localhost:5173",
-  "editor.defaultFormatter": "openai.chatgpt"
+  "editor.defaultFormatter": "openai.chatgpt",
+  "search.exclude": {
+    "**/*.code-search": false,
+    "**/bower_components": false,
+    "**/node_modules": false
+  }
 }

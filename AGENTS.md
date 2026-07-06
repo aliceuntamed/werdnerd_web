@@ -15,10 +15,6 @@ This repository uses root agent instruction files to guide AI coding agents.
 
 ### Project Style
 
-- `.agents/style.md`
-- `src/styles/globals.css`
-- `src/styles/tokens.css`
-- `src/theme/theme.ts`
 - `/index.css`
 
 ## Recommended workflow for AI agents

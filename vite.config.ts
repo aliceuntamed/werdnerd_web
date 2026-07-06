@@ -1,3 +1,4 @@
+import liveUiEditorBabelPlugin from './live-ui-editor.babel-plugin.js';
 /// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
@@ -7,7 +8,7 @@ import react from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react({ babel: { plugins: [liveUiEditorBabelPlugin] } }), tailwindcss()],
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
