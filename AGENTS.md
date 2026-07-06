@@ -21,7 +21,6 @@ This repository uses root agent instruction files to guide AI coding agents.
 - `src/theme/theme.ts`
 - `/index.css`
 
-
 ## Recommended workflow for AI agents
 
 1. Read `.agents/AGENT_INSTRUCTIONS.md` first.

@@ -34,7 +34,12 @@ export default function WOTD() {
         )}
 
         {!loading && !werd && (
-          <div className="home-loading">
+          <div className="wotd-empty">
+            <div className="wotd-label">
+              <BookOpen className="home-icon" />
+              <span>today's featured pick:</span>
+            </div>
+            <h3 className="wotd-word">Word of the day</h3>
             <p>No word today. The vault is being mysterious.</p>
           </div>
         )}

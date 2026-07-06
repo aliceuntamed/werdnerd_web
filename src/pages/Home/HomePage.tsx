@@ -1,7 +1,6 @@
 import type React from "react";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import VideoBackground from "../../components/ui/VideoBackground";
 import Hero from "./Hero";
 import WOTD from "./WOTD";
 import CuratedPicks from "./CuratedPicks";
@@ -14,8 +13,10 @@ import "./home.css";
 
 function AmbientDivider() {
   return (
-    <div className="home-divider-wrap">
-      <div className="home-divider" />
+    <div className="home-divider-wrap" aria-hidden="true">
+      <div className="home-divider">
+        <span />
+      </div>
     </div>
   );
 }
@@ -65,21 +66,24 @@ export default function HomePage() {
   }
 
   return (
-    <>
-      <VideoBackground>
+    <main className="home-main">
+      <div className="home-atmosphere" aria-hidden="true">
+        <span className="home-atmosphere__beam home-atmosphere__beam-one" />
+        <span className="home-atmosphere__beam home-atmosphere__beam-two" />
+        <span className="home-atmosphere__grain" />
+      </div>
+
+      <div className="home-scroll-frame">
         <Hero />
 
-        <section className="home-parallax-panel">
-          <WOTD />
-        </section>
-
-        <section className="home-parallax-panel home-parallax-panel-spin">
-          <SpinTheVault />
-        </section>
-      </VideoBackground>
-
-      <main className="home-main">
         <AmbientDivider />
+
+        <section className="home-feature-shelf" aria-label="Featured word tools">
+          <div className="home-container home-feature-grid">
+            <WOTD />
+            <SpinTheVault />
+          </div>
+        </section>
 
         <HomeBand className="home-band-mid">
           <CuratedPicks />
@@ -98,7 +102,7 @@ export default function HomePage() {
         <HomeBand className="home-band-soft">
           <ContributeCTA />
         </HomeBand>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
