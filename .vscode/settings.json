@@ -14,5 +14,8 @@
     "**/*.code-search": false,
     "**/bower_components": false,
     "**/node_modules": false
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

@@ -11,7 +11,7 @@
 ## vault
 
 - “A vault of strange, beautiful, and dangerously distracting words.”
-- “An archive of rare vocabulary, linguistic oddities, and words too good to forget.”
+- “An archive of rare vocabulary, intriguing oddities, and games fit for a werd nerd.”
 - “A living lexicon of peculiar words, verbal artifacts, and linguistic treasures.”
 - Explore rare, obscure, and interesting words curated just for you
 
