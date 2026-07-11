@@ -165,6 +165,10 @@ export function Footer() {
                 Stay Curious
               </label>
 
+              <p className="site-footer__newsletter-copy">
+                Get a <em>daily dose</em> of <em>linguistic levity</em> sent to your inbox.
+              </p>
+
               <div className="site-footer__form-row">
                 <div className="site-footer__input-wrap">
                   <input

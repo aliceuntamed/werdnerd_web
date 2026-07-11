@@ -916,3 +916,100 @@
     animation: none;
   }
 }
+
+
+/* Figma homepage composition — desktop */
+@media (min-width: 901px) {
+  .home-hero {
+    min-height: 47rem;
+    padding-block: 7.25rem 4rem;
+  }
+
+  .home-hero-subcopy {
+    max-width: 43rem;
+    margin-top: 4.75rem;
+    font-size: 1.2rem;
+  }
+
+  .home-hero-actions {
+    margin-top: 3rem;
+  }
+
+  .home-feature-shelf {
+    padding: 0 0 6.5rem;
+  }
+
+  .home-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 7rem;
+  }
+
+  .wotd-layout {
+    width: min(100%, 48.75rem);
+    margin-inline: auto;
+  }
+
+  .wotd-card {
+    min-height: 29rem;
+    padding: 5.25rem 5.625rem;
+  }
+
+  .wotd-empty,
+  .wotd-entry {
+    min-height: 19rem;
+  }
+
+  .wotd-word {
+    font-size: clamp(3.8rem, 6vw, 5.2rem);
+  }
+
+  .spin-layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-rows: none;
+    gap: 3.5rem;
+    min-height: 29rem;
+    padding: 3.125rem 2.5rem;
+  }
+
+  .spin-layout > div:first-child {
+    padding-top: 0;
+  }
+
+  .spin-card {
+    min-height: 21.5rem;
+  }
+
+  .spin-stage {
+    min-height: 13rem;
+  }
+
+  .spin-button {
+    align-self: center;
+    min-width: 18.875rem;
+  }
+
+  .home-band-mid {
+    padding-block: 7rem;
+  }
+
+  .home-band-soft {
+    padding-block: 3.875rem 5rem;
+  }
+
+  .contribute-card {
+    min-height: 25rem;
+  }
+}
+
+.site-footer__newsletter-copy {
+  max-width: 19rem;
+  margin: 0.15rem 0 0.7rem;
+  color: rgba(239, 239, 237, 0.55);
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.site-footer__newsletter-copy em {
+  color: rgba(239, 239, 237, 0.82);
+  font-style: normal;
+}
