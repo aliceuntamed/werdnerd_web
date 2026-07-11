@@ -7,6 +7,7 @@
 - “Built for people who’ve ever stopped mid-sentence to admire a single perfect word.”
 - “The internet’s coziest trapdoor into strange vocabulary.”
 - “Words worth hoarding.”
+- A living vault of rare, poetic, and peculiar vocabulary for people who know a good word can ruin a perfectly productive afternoon.
 
 ## vault
 
