@@ -165,7 +165,7 @@ export function Footer() {
                 Stay Curious
               </label>
 
-              <div className="site-footer__form-row">
+              <p className="site-footer__newsletter-copy">\n                Get a <em>daily dose</em> of <em>linguistic levity</em> sent to your inbox.\n              </p>\n\n              <div className="site-footer__form-row">
                 <div className="site-footer__input-wrap">
                   <input
                     id="footer-email"
