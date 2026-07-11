@@ -1,0 +1,11 @@
+{
+  "baseUrl": "https://empirical.gauzza.com",
+  "obtainedAt": "2026-07-10T06:41:28.301Z",
+  "tokenType": "Bearer",
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmaXJlYmFzZTpxRmpkaW1jaWRQUDBTcmNRemI4ckR3TnBWVm8yIiwiY2xpZW50SWQiOiJza2FseW5uMjJfTnBWVm8yIiwid29ya3NwYWNlSWQiOiJ3c19wZXJzb25hbF9hODAxZTI4NTlhODYiLCJpYXQiOjE3ODM2NjU2ODMsImV4cCI6MTc4MzY2OTI4M30.jApE4BsuI17s-cHoEsJAACMMjwdmHkrYsBFXjEMW1z0",
+  "refreshToken": "5158a2966fc07a892407665926d599d101ae4b09aa8714e9e1d4b9aa99328649d8571c93da80492f13649f26389f1b3ca5f047d5a76a1cf996db69c81e0e45fc",
+  "expiresIn": 3600,
+  "clientId": "skalynn22_NpVVo2",
+  "clientSecret": "166a76abafb060ad0de4c7412cf38dca4468fd992ea09faab3871fa3072086f3",
+  "apiKey": "166a76abafb060ad0de4c7412cf38dca4468fd992ea09faab3871fa3072086f3"
+}
