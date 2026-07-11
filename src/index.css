@@ -20,20 +20,26 @@
     --color-deep-werd-teal: #225560;
     --color-vault-teal: #306657;
     --color-bone-paper: #efefed;
-    --color-electric-blue: #25b1ff;
-    --color-acid-fern: #a6ff4d;
-    --color-bruised-orchid: #6d4c7d;
-    --color-chrome-dust: #b6bdc2;
+    --color-electric-blue: #00c8ff;
+    --color-acid-fern: #b7ff2a;
+    --color-bruised-orchid: #7a35ff;
+    --color-chrome-dust: #aeb9c4;
+    --color-hot-spectrum: #ff2f92;
+    --color-spectrum-gold: #ffd400;
+    --color-spectrum-cyan: #00f0ff;
+    --color-spectrum-violet: #8b35ff;
+    --chrome-gradient: linear-gradient(115deg, #303943 0%, #f7fbff 13%, #77838e 24%, #00e5ff 36%, #2f6bff 47%, #8b35ff 58%, #ff2f92 70%, #ffd400 82%, #b7ff2a 91%, #dce5ec 100%);
+    --chrome-gradient-soft: linear-gradient(115deg, #59636d 0%, #f7fbff 22%, #00d7ff 39%, #7440ff 56%, #ff3d8f 72%, #f4d63b 86%, #aeb9c4 100%);
     --background: #0b1117;
     --foreground: #efefed;
     --border: rgba(182, 189, 194, 0.16);
-    --ring: #25b1ff;
+    --ring: #00c8ff;
     --input: rgba(182, 189, 194, 0.2);
-    --primary: #25b1ff;
+    --primary: #00c8ff;
     --primary-foreground: #0b1117;
     --secondary: #306657;
     --secondary-foreground: #efefed;
-    --accent: #a6ff4d;
+    --accent: #b7ff2a;
     --accent-foreground: #0b1117;
     --muted: #225560;
     --muted-foreground: #b6bdc2;
@@ -141,7 +147,8 @@
 
 /* ─── Chrome gradient text utility ─── */
 .chrome-gradient-text {
-    background: linear-gradient(135deg, #e5e7eb 0%, #9bbcff 50%, #c084fc 100%);
+    background: var(--chrome-gradient);
+    background-size: 180% 180%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -150,8 +157,9 @@
 /* ─── Chrome shimmer effects ─── */
 .chrome-glow {
     box-shadow:
-        0 0 20px rgba(155, 188, 255, 0.25),
-        0 0 40px rgba(192, 132, 252, 0.15);
+        0 0 18px rgba(0, 229, 255, 0.2),
+        0 0 36px rgba(139, 53, 255, 0.14),
+        0 0 54px rgba(255, 47, 146, 0.08);
 }
 
 .chrome-border {
@@ -206,7 +214,9 @@
     inset: 0;
     background: linear-gradient(120deg,
             transparent 0%,
-            rgba(155, 188, 255, 0.4) 50%,
+            rgba(247, 251, 255, 0.55) 42%,
+            rgba(0, 229, 255, 0.3) 49%,
+            rgba(255, 47, 146, 0.22) 54%,
             transparent 100%);
     transform: translateX(-120%);
     animation: chromeSweep 2.2s ease-in-out infinite;
@@ -268,7 +278,7 @@
 
 .site-footer__logo span {
     color: transparent;
-    background: linear-gradient(90deg, #ff5ab5 0%, #bb8cff 48%, #74d6ff 100%);
+    background: var(--chrome-gradient-soft);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -337,8 +347,8 @@
 
 .site-footer__input:focus {
     background: rgba(255, 255, 255, 0.06);
-    border-color: #bb8cff;
-    box-shadow: 0 0 0 3px rgba(187, 140, 255, 0.18);
+    border-color: #00c8ff;
+    box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.16);
 }
 
 .site-footer__mail-icon {
@@ -352,17 +362,17 @@
 }
 
 .site-footer__input-wrap:focus-within .site-footer__mail-icon {
-    color: #bb8cff;
+    color: #00c8ff;
 }
 
 .site-footer__subscribe {
     height: 2.35rem;
     padding: 0 0.95rem;
-    color: #eadbff;
-    background: rgba(199, 161, 255, 0.1);
-    border: 1px solid rgba(199, 161, 255, 0.7);
+    color: #f7fbff;
+    background: rgba(0, 200, 255, 0.07);
+    border: 1px solid rgba(0, 200, 255, 0.68);
     border-radius: 0.35rem;
-    box-shadow: 0 0 18px rgba(187, 140, 255, 0.12);
+    box-shadow: 0 0 18px rgba(0, 200, 255, 0.12);
     font: 700 0.72rem/1 "Poppins", system-ui, sans-serif;
     transition:
         transform 180ms ease,
@@ -373,15 +383,15 @@
 
 .site-footer__subscribe:hover {
     color: #ffffff;
-    border-color: #ff5ab5;
-    box-shadow: 0 0 24px rgba(255, 90, 181, 0.16);
+    border-color: #b7ff2a;
+    box-shadow: 0 0 24px rgba(183, 255, 42, 0.16);
     transform: translateY(-1px);
 }
 
 .site-footer__subscribe:focus-visible,
 .site-footer__social:focus-visible,
 .site-footer__link:focus-visible {
-    outline: 2px solid #bb8cff;
+    outline: 2px solid #00c8ff;
     outline-offset: 3px;
 }
 
@@ -462,7 +472,7 @@
 .site-footer__social:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.075);
-    border-color: rgba(187, 140, 255, 0.55);
+    border-color: rgba(0, 200, 255, 0.55);
     transform: translateY(-1px);
 }
 
@@ -603,18 +613,18 @@
     --card-foreground: #efefed;
     --popover: #111a21;
     --popover-foreground: #efefed;
-    --primary: #25b1ff;
+    --primary: #00c8ff;
     --primary-foreground: #0b1117;
     --secondary: #306657;
     --secondary-foreground: #efefed;
     --muted: #225560;
     --muted-foreground: #b6bdc2;
-    --accent: #a6ff4d;
+    --accent: #b7ff2a;
     --accent-foreground: #0b1117;
     --destructive: oklch(0.704 0.191 22.216);
     --border: rgba(182, 189, 194, 0.16);
     --input: rgba(182, 189, 194, 0.2);
-    --ring: #25b1ff;
+    --ring: #00c8ff;
     --chart-1: oklch(0.87 0 0);
     --chart-2: oklch(0.556 0 0);
     --chart-3: oklch(0.439 0 0);
@@ -622,12 +632,12 @@
     --chart-5: oklch(0.269 0 0);
     --sidebar: #111a21;
     --sidebar-foreground: #efefed;
-    --sidebar-primary: #25b1ff;
+    --sidebar-primary: #00c8ff;
     --sidebar-primary-foreground: #0b1117;
     --sidebar-accent: #306657;
     --sidebar-accent-foreground: #efefed;
     --sidebar-border: rgba(182, 189, 194, 0.16);
-    --sidebar-ring: #25b1ff;
+    --sidebar-ring: #00c8ff;
 }
 
 .light {
