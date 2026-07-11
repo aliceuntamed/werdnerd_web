@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Feather, LogIn } from "lucide-react";
+import { BookOpen, LogIn } from "lucide-react";
 import { Flipwords } from "../../components/ui/Flipwords";
 import { ROUTES } from "../../routes";
 
@@ -41,11 +41,6 @@ export default function Hero() {
             <Link to={ROUTES.LOGIN} className="home-secondary-button">
               <LogIn className="home-icon" />
               Log In
-            </Link>
-
-            <Link to="/submit" className="home-secondary-button">
-              <Feather className="home-icon" />
-              Submit a Werd
             </Link>
           </div>
         </div>
