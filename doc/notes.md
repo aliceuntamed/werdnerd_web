@@ -72,6 +72,8 @@ Fun Facts
 
 # terminology
 
+obsession
+
 ## archive
 
 - collection

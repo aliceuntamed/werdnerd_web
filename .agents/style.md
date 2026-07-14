@@ -15,20 +15,20 @@ Moody minimalism with colorful weirdness.
 
 ### Colors
 
-- `bg-main`: `#0B0B0D`
-- `bg-elevated`: `#111113`
-- `bg-subtle`: `#1A1A1D`
-- `text-primary`: `#F5F5F7`
-- `text-muted`: `#CFCFD3`
-- `border-subtle`: `rgba(255,255,255,0.06)`
+- `bg-main`: #0B0B0D
+- `bg-elevated`: #111113
+- `bg-subtle`: #1A1A1D
+- `text-primary`: #F5F5F7
+- `text-muted`: #CFCFD3
+- `border-subtle`: rgba(255,255,255,0.06)
 
 Accent set:
 
-- `accent-pink`: `#FF6EC7`
-- `accent-blue`: `#6ECFFF`
-- `accent-gold`: `#FFD86E`
-- `accent-green`: `#6EFFC7`
-- `accent-purple`: `#C76EFF`
+- `accent-pink`: #FF6EC7
+- `accent-blue`: #6ECFFF
+- `accent-gold`: #FFD86E
+- `accent-green`: #6EFFC7
+- `accent-purple`: #C76EFF
 
 Primary accent gradient:
 

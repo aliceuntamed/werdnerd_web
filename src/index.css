@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalnia:wdth,wght@100..125,100..700&family=Lancelot&family=Milonga&display=swap");
+
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
@@ -7,6 +9,13 @@
 @import "@fontsource/poppins/latin-600.css";
 @import "@fontsource/poppins/latin-700.css";
 @import "@fontsource/poppins/latin-800.css";
+
+@theme {
+    --font-poppins: "Poppins", sans-serif;
+    --font-milonga: "Milonga", serif;
+    --font-kalnia: "Kalnia", serif;
+    --font-lancelot: "Lancelot", serif;
+}
 
 @tailwind base;
 

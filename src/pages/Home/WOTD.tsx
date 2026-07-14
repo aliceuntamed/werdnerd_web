@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, BookOpen } from "lucide-react";
+import { ArrowUpRight, Volume2 } from "lucide-react";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { getWOTD } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
@@ -36,8 +36,8 @@ export default function WOTD() {
         {!loading && !werd && (
           <div className="wotd-empty">
             <div className="wotd-label">
-              <BookOpen className="home-icon" />
-              <span>today's featured pick:</span>
+              <span>Word of the day</span>
+              <span>№ 001</span>
             </div>
             <h3 className="wotd-word">Word of the day</h3>
             <p>No word today. The vault is being mysterious.</p>
@@ -48,9 +48,12 @@ export default function WOTD() {
           <article className="wotd-entry">
             <div>
               <div className="wotd-label">
-                <BookOpen className="home-icon" />
-                <span>today's featured pick:</span>
+                <span>Word of the day</span>
+                <span>№ 001</span>
               </div>
+              <span className="wotd-speak" aria-hidden="true">
+                <Volume2 className="home-icon" />
+              </span>
 
               <h3 className="wotd-word chrome-gradient-text">{werd.werd}</h3>
 
@@ -71,7 +74,7 @@ export default function WOTD() {
               to={`/vault?search=${encodeURIComponent(werd.werd)}`}
               className="home-link"
             >
-              See full entry
+              Next specimen
               <ArrowUpRight className="home-icon" />
             </Link>
           </article>

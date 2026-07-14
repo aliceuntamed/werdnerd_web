@@ -1,0 +1,70 @@
+export function WordCard() {
+  return (
+    <div
+      className="
+        group
+        relative
+        w-full
+        max-w-md
+        overflow-hidden
+        rounded-3xl
+        border
+        border-white/10
+        bg-[#306657]
+        p-8
+        text-[#efefed]
+        transition
+        duration-500
+        hover:-translate-y-2
+        hover:border-white/30
+        hover:shadow-2xl
+      "
+    >
+      <div
+        className="
+          absolute
+          -right-12
+          -top-12
+          h-32
+          w-32
+          rounded-full
+          bg-[#66ff68]/20
+          blur-3xl
+          opacity-0
+          transition
+          duration-500
+          group-hover:opacity-100
+        "
+      />
+
+      <p
+        className="
+          relative
+          text-5xl
+          font-semibold
+          tracking-tight
+          transition-all
+          duration-500
+          group-hover:tracking-wide
+        "
+      >
+        apricity
+      </p>
+
+      <p
+        className="
+          relative
+          mt-5
+          text-lg
+          text-[#efefed]/70
+          transition
+          duration-500
+          group-hover:-translate-y-1
+          group-hover:text-[#efefed]
+        "
+      >
+        the warmth of the sun in winter
+      </p>
+    </div>
+  );
+}

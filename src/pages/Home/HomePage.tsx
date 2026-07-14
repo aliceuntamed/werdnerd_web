@@ -11,15 +11,16 @@ import { fetchWerds } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
 import "./home.css";
 
-function AmbientDivider() {
-  return (
-    <div className="home-divider-wrap" aria-hidden="true">
-      <div className="home-divider">
-        <span />
-      </div>
-    </div>
-  );
-}
+const fallbackTags = [
+  "poetic",
+  "strange",
+  "weather",
+  "old-world",
+  "sound",
+  "delight",
+  "borrowed",
+  "rare",
+];
 
 function HomeBand({
   children,
@@ -30,7 +31,6 @@ function HomeBand({
 }) {
   return (
     <section className={`home-band ${className}`}>
-      <div className="home-band-line" />
       <div className="home-container">{children}</div>
     </section>
   );
@@ -55,10 +55,12 @@ export default function HomePage() {
       });
     });
 
-    return Array.from(counts.entries())
+    const rankedTags = Array.from(counts.entries())
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .slice(0, 14)
       .map(([tag]) => tag);
+
+    return rankedTags.length > 0 ? rankedTags : fallbackTags;
   }, [werds]);
 
   function handleTagSelect(tag: string) {
@@ -67,37 +69,34 @@ export default function HomePage() {
 
   return (
     <main className="home-main">
-      <div className="home-atmosphere" aria-hidden="true">
-        <span className="home-atmosphere__beam home-atmosphere__beam-one" />
-        <span className="home-atmosphere__beam home-atmosphere__beam-two" />
-        <span className="home-atmosphere__grain" />
-      </div>
+      <Hero />
 
-      <div className="home-scroll-frame">
-        <Hero />
+      <div className="home-parallax-world">
+        <div className="home-parallax-backdrop" aria-hidden="true" />
 
-        <AmbientDivider />
-
-        <section className="home-feature-shelf" aria-label="Featured word tools">
-          <div className="home-container home-feature-grid">
+        <section className="home-feature-shelf" aria-labelledby="word-tools-title">
+          <div className="home-container">
+            <div className="home-section-heading home-section-heading--compact">
+              <p>00 / The daily specimen</p>
+              <h2 id="word-tools-title">
+                Start with a <em>strange little word.</em>
+              </h2>
+              <span>One featured find, then one excellent excuse to wander.</span>
+            </div>
+            <div className="home-feature-grid">
             <WOTD />
             <SpinTheVault />
+            </div>
           </div>
         </section>
 
-        <HomeBand className="home-band-mid">
+        <HomeBand className="home-band-mid" >
           <CuratedPicks />
         </HomeBand>
 
-        <AmbientDivider />
-
-        {popularTags.length > 0 && (
-          <HomeBand className="home-band-tags">
-            <QuickBrowse tags={popularTags} onSelect={handleTagSelect} />
-          </HomeBand>
-        )}
-
-        <AmbientDivider />
+        <HomeBand className="home-band-tags">
+          <QuickBrowse tags={popularTags} onSelect={handleTagSelect} />
+        </HomeBand>
 
         <HomeBand className="home-band-soft">
           <ContributeCTA />

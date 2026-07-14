@@ -26,9 +26,8 @@ export default function SpinTheVault() {
   return (
     <div className="spin-layout">
       <div>
-        <h2 className="home-section-title">
-          <span>Spin</span> the Vault
-        </h2>
+        <p className="home-eyebrow">02 / Chance encounter</p>
+        <h2 className="home-section-title">Spin the Vault.</h2>
         <p className="home-section-copy spin-copy">
           Let the fates decide your next literary obsession.
         </p>
@@ -74,7 +73,7 @@ export default function SpinTheVault() {
                 to={`/vault?search=${encodeURIComponent(werd.werd)}`}
                 className="home-link"
               >
-                See Full Werd
+                See full werd
                 <ArrowUpRight className="home-icon" />
               </Link>
             </div>

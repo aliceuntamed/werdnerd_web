@@ -9,9 +9,9 @@ export default function QuickBrowse({ tags, onSelect }: QuickBrowseProps) {
   return (
     <section className="quick-browse" aria-labelledby="quick-browse-title">
       <div className="quick-browse__header">
-        <p className="home-eyebrow">Quick browse</p>
+        <p className="home-eyebrow">03 / Browse by instinct</p>
         <h2 id="quick-browse-title" className="home-section-title">
-          Pick a shelf by mood.
+          Pick a shelf by <em>mood.</em>
         </h2>
         <p className="home-section-copy">
           Tap a tag and jump straight into that corner of the vault.

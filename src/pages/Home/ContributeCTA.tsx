@@ -13,17 +13,19 @@ export default function ContributeCTA() {
         </div>
 
         <div>
-          <p className="home-eyebrow">Contribute</p>
+          <p className="home-eyebrow">A note from the collector</p>
           <h2 className="home-section-title">
-            Found a word that makes your brain tingle?
+            “Part word vault, part curiosity cabinet, and part excuse to collect
+            favorite oddities.”
           </h2>
           <p className="home-section-copy contribute-copy">
-            Share it with the WerdNerd community!
+            Found a word that makes your brain tingle? Share it with the
+            WerdNerd community.
           </p>
 
           <Link to="/submit" className="home-primary-button contribute-button">
             <Send className="home-icon" />
-            Submit a Werd
+            Bring me a good werd
           </Link>
         </div>
       </div>

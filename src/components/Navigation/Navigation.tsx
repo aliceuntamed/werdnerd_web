@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { WerdNerdMark } from "../brand/WerdNerdMark";
 import { useAuth } from "../../contexts/AuthContext";
 import { ROUTES } from "../../routes";
 import "./Navigation.css";
@@ -21,25 +20,18 @@ export default function Navigation() {
       className="site-nav"
     >
       <div className="site-nav-inner">
-        {/* Brand */}
         <Link to="/" className="site-nav-brand">
-          <WerdNerdMark className="site-nav-brand-icon" />
-          <span className="site-nav-brand-wordmark">
-            <span>Werd</span>
-            <span>Nerd</span>
-          </span>
+          WerdNerd
         </Link>
 
-        {/* Desktop Links */}
         <div className="site-nav-links">
-          <NavItem to="/" label="Home" />
           <NavItem to="/vault" label="Vault" />
-          <NavItem to="/about" label="About" />
-          <NavItem to="/submit" label="Contribute" />
           <NavItem to="/games" label="Games" />
-          <NavItem to="/playground" label="Playground" />
+          <NavItem to="/about" label="About" />
+          <span className="site-nav-spark" aria-hidden="true">
+            ✦
+          </span>
 
-          {/* Auth Buttons */}
           <div className="site-nav-auth">
             {user ? (
               <button
@@ -49,14 +41,11 @@ export default function Navigation() {
                 Sign Out
               </button>
             ) : (
-              <>
-                <NavItem to={ROUTES.LOGIN} label="Log In" />
-              </>
+              <NavItem to={ROUTES.LOGIN} label="Log In" />
             )}
           </div>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="site-nav-toggle"
@@ -87,23 +76,15 @@ export default function Navigation() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div
           className="site-nav-mobile"
         >
-          <MobileItem to="/" label="Home" onClick={closeMobileMenu} />
           <MobileItem to="/vault" label="Vault" onClick={closeMobileMenu} />
+          <MobileItem to="/games" label="Games" onClick={closeMobileMenu} />
           <MobileItem to="/about" label="About" onClick={closeMobileMenu} />
           <MobileItem to="/submit" label="Contribute" onClick={closeMobileMenu} />
-          <MobileItem to="/games" label="Games" onClick={closeMobileMenu} />
-          <MobileItem
-            to="/playground"
-            label="Playground"
-            onClick={closeMobileMenu}
-          />
 
-          {/* Mobile Auth Buttons */}
           <div className="site-nav-mobile-auth">
             {user ? (
               <button
@@ -113,9 +94,7 @@ export default function Navigation() {
                 Sign Out
               </button>
             ) : (
-              <>
-                <MobileItem to={ROUTES.LOGIN} label="Log In" onClick={closeMobileMenu} />
-              </>
+              <MobileItem to={ROUTES.LOGIN} label="Log In" onClick={closeMobileMenu} />
             )}
           </div>
         </div>
@@ -123,8 +102,6 @@ export default function Navigation() {
     </header>
   );
 }
-
-/* --- Subcomponents for clean code --- */
 
 function NavItem({ to, label }: { to: string; label: string }) {
   return (

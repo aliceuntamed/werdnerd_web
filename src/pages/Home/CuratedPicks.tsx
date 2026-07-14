@@ -18,16 +18,12 @@ export default function CuratedPicks() {
 
   return (
     <div>
-      <div className="curated-header">
-        <div>
-          <h2 className="home-section-title">
-            Peek Inside the Vault
-          </h2>
-          <p className="home-eyebrow">Rare finds, already worth the detour.</p>
-        </div>
-        <p className="home-section-copy curated-copy">
-          A few blue-card curiosities before you go spelunking.
-        </p>
+      <div className="home-section-heading curated-header">
+        <p>01 / The collection</p>
+        <h2>
+          Open the <em>WerdVault.</em>
+        </h2>
+        <span>Words are small containers. Some hold entire weather systems.</span>
       </div>
 
       {loading && (
@@ -54,13 +50,14 @@ export default function CuratedPicks() {
       {!loading && werds.length > 0 && (
         <>
           <div className="curated-grid">
-            {werds.slice(0, 6).map((w) => (
+            {werds.slice(0, 6).map((w, index) => (
               <Link
                 key={w.werd_id}
                 to={`/vault?search=${encodeURIComponent(w.werd)}`}
                 className="curated-card"
               >
                 <div className="curated-card-top">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
                   {w.part_of_speech && <small>{w.part_of_speech}</small>}
                 </div>
 
@@ -71,7 +68,7 @@ export default function CuratedPicks() {
                 <p className="curated-definition">{w.definition}</p>
 
                 <span className="curated-card-link">
-                  view full
+                  Collect this werd
                   <ArrowRight className="home-icon" />
                 </span>
               </Link>
@@ -80,7 +77,7 @@ export default function CuratedPicks() {
 
           <div className="curated-footer">
             <Link to="/vault" className="home-secondary-button">
-              [Go to] The Vault
+              Enter the full vault
               <ArrowRight className="home-icon" />
             </Link>
           </div>
