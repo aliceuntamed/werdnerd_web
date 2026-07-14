@@ -19,17 +19,34 @@ If priorities conflict: ship the smallest reliable version first, then iterate.
 - Default to actionable help over theory.
 - Ask follow-up questions only when the decision meaningfully affects architecture, data model, or long-term maintenance.
 
-## 3) Source of Truth
+## 3) Sources of Truth
 
-When instructions conflict, use this order:
+Use the source that matches the question being answered:
 
-1. Current codebase reality
-2. This file (`.agents/AGENT_INSTRUCTIONS.md`)
-3. `.agents/COPILOT_INSTRUCTIONS.md`
-4. `ARCHITECTURE.md`
-5. `ROADMAP.md`
+1. **Current codebase reality** — source of truth for what is currently implemented and how the application actually behaves.
+2. **`doc/PROJECT_BLUEPRINT.md`** — source of truth for WerdNerd product direction, required features, and visual/design intent.
+3. **This file (`.agents/AGENT_INSTRUCTIONS.md`)** — source of truth for agent behavior and implementation approach.
+4. **`.agents/COPILOT_INSTRUCTIONS.md`** — day-to-day coding guidance.
+5. **`ARCHITECTURE.md`** — documented architecture; verify against current code.
+6. **`ROADMAP.md`** — staged planning and broad delivery priorities.
 
-Always flag mismatches briefly instead of silently guessing.
+Do not treat this as a single linear precedence ladder when comparing current implementation with future intent.
+
+- Code answers: **What exists now?**
+- The Project Blueprint answers: **What is WerdNerd supposed to become?**
+
+If code conflicts with the Project Blueprint, flag the mismatch instead of silently choosing one or rebuilding existing code without analysis.
+
+### Project Blueprint Ownership
+
+`doc/PROJECT_BLUEPRINT.md` is owner-maintained guidance.
+
+- Read it before product, feature, or visual-design work.
+- Do not edit, reorganize, shorten, or mark items complete unless Stephanie explicitly asks you to edit the blueprint.
+- Always verify blueprint backlog items against the current codebase before implementing them.
+- A feature listed as required may already exist; required-feature sections are product requirements, not implementation-status checklists.
+
+Always flag meaningful documentation mismatches briefly instead of silently guessing.
 
 ## 3.1) Useful Repo Facts
 
@@ -51,10 +68,14 @@ Always flag mismatches briefly instead of silently guessing.
 
 ## 5) UI/UX Expectations
 
-- Keep the "moody minimalism + weird pops" brand intact.
+- Follow the product and visual direction in `doc/PROJECT_BLUEPRINT.md`.
+- Preserve the dark, chrome-cinematic curiosity-cabinet identity.
 - Prioritize legibility and hierarchy over decoration.
-- Use motion intentionally, not everywhere.
+- Cinematic environmental motion, layered depth, and parallax are encouraged when they strengthen atmosphere or discovery.
+- Use motion intentionally; avoid stacking unrelated decorative animations on the same element.
+- Use rainbow chrome as an accent, edge, reflection, or focal treatment rather than a default large-surface fill.
 - Ensure keyboard accessibility and semantic HTML.
+- Respect reduced-motion preferences for non-essential animation.
 
 ## 6) Data & Backend
 
@@ -62,6 +83,7 @@ Always flag mismatches briefly instead of silently guessing.
 - Keep schema changes explicit and reversible.
 - Validate inputs at UI boundaries.
 - Handle loading, empty, and error states every time data is fetched.
+- Use tags as the primary Werd classification system unless Stephanie explicitly changes the taxonomy model.
 
 ## 7) Performance & Quality
 
@@ -85,6 +107,8 @@ For implementation tasks, provide:
 - No "perfect architecture" detours before shipping value.
 - No copy-only visual changes that break consistency.
 - No silent instruction conflicts.
+- No rebuilding existing features because they also appear in the Project Blueprint's required-feature sections.
+- No duplicate taxonomy systems for categories and tags without an explicit product decision.
 
 ---
 
