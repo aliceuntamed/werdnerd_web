@@ -1,3 +1,4 @@
+import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
 interface FAQItem {
@@ -7,79 +8,85 @@ interface FAQItem {
 
 const defaultFaqs: FAQItem[] = [
   {
-    question: "What is WerdNerd?",
+    question: "So... what exactly is WerdNerd?",
     answer:
-      "WerdNerd is a curated playground of rare, obscure, and delightfully odd vocabulary—built for the logophilic and the curious.",
+      "Part word vault, part language playground, part beautifully unnecessary detour. WerdNerd is a growing collection of rare, poetic, peculiar, and criminally underused werds worth knowing.",
   },
   {
-    question: "What does WerdNerd offer?",
+    question: "Do I need an offensively large vocabulary to be here?",
     answer:
-      "Daily rare werds, curated picks, fun facts, etymology tidbits, and a vault of linguistic curiosities.",
+      "Nope. You only need to enjoy finding a werd that makes your brain stop for half a second and go, wait... there’s a werd for that?",
   },
   {
-    question: "Who is WerdNerd for?",
+    question: "Where are you finding these werds?",
     answer:
-      "Anyone who loves language—writers, readers, poets, nerds, and anyone who enjoys a well‑placed, unusual werd.",
+      "Dictionaries, old books, etymology trails, forgotten corners of the internet, and the occasional lexical rabbit hole that absolutely should have taken five minutes.",
   },
   {
-    question: "How can I participate in the community forum?",
+    question: "I found a werd the Vault missed. Is there a procedure?",
     answer:
-      "You can submit werds, join discussions, contribute definitions, and help shape the growing WerdNerd lexicon.",
+      "Very official. Very rigorous. Send it in. Strange, beautiful, absurdly specific, or just satisfying to say, I want to see it.",
+  },
+  {
+    question: "Is this useful, or are we just collecting syllables?",
+    answer:
+      "Both can be true. Some werds are useful. Some are tiny verbal artifacts you carry around until the exact right moment. WerdNerd respects both categories.",
   },
 ];
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const toggle = (i: number) => {
-    setOpenIndex(openIndex === i ? null : i);
+  const toggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="w-full bg-bg-main text-text-primary font-body px-6 py-20">
-      <div className="max-w-4xl mx-auto flex flex-col gap-10">
-        {/* Header */}
-        <header className="flex flex-col gap-3">
-          <h2 className="font-heading text-4xl bg-chrome-horizontal bg-clip-text text-transparent tracking-tight">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-text-muted max-w-xl">
-            Everything you ever wanted to know about WerdNerd (and maybe a few
-            things you didn’t).
-          </p>
+    <section className="about-faq" aria-labelledby="about-faq-title">
+      <div className="about-faq__inner">
+        <header className="about-faq__header">
+          <p className="about-faq__label">The usual interrogation</p>
+          <h2 id="about-faq-title">Questions, answered.</h2>
+          <p>Mostly reasonable questions. Mildly over-worded answers.</p>
         </header>
 
-        {/* FAQ List */}
-        <div className="flex flex-col divide-y divide-border-subtle border border-border-subtle rounded-card overflow-hidden">
-          {defaultFaqs.map((faq, i) => (
-            <div key={i} className="bg-bg-elevated">
-              <button
-                onClick={() => toggle(i)}
-                className="w-full flex justify-between items-center px-5 py-4 text-left hover:bg-bg-subtle transition-colors"
-              >
-                <span className="font-heading text-lg">{faq.question}</span>
+        <div className="about-faq__list">
+          {defaultFaqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            const questionId = `about-faq-question-${index}`;
+            const answerId = `about-faq-answer-${index}`;
 
-                <span className="text-accent-pink text-xl">
-                  {openIndex === i ? "−" : "+"}
-                </span>
-              </button>
+            return (
+              <article className="about-faq__item" key={faq.question}>
+                <button
+                  id={questionId}
+                  className="about-faq__question"
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => toggle(index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className="about-faq__question-icon" aria-hidden="true">
+                    {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+                  </span>
+                </button>
 
-              {openIndex === i && (
-                <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed animate-fadeIn">
-                  {faq.answer}
+                <div
+                  id={answerId}
+                  className="about-faq__answer"
+                  data-open={isOpen}
+                  role="region"
+                  aria-labelledby={questionId}
+                  aria-hidden={!isOpen}
+                >
+                  <div>
+                    <p>{faq.answer}</p>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-6">
-          <button className="rounded-full px-5 py-2 bg-bg-elevated border border-border-subtle text-sm font-medium hover:bg-bg-subtle transition-colors">
-            <span className="bg-chrome-horizontal bg-clip-text text-transparent">
-              Contact
-            </span>
-          </button>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
