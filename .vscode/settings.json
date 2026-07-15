@@ -25,5 +25,43 @@
     "HSL",
     "OKLAB",
     "OKLCH"
-  ]
+  ],
+  "auto-correct.dictionary": [
+
+    {
+      "languages": [
+        "*"
+      ],
+      "words": {},
+      "useLargeList": false
+    },
+    {
+      "languages": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+      ],
+      "words": {
+        "cosnt": "const",
+        "functoin": "function"
+      }
+    }
+],
+"chatgpt.followUpQueueMode": "steer",
+"colorize.hide_current_line_decorations": false,
+"colorize.include": [
+
+    "**/*.css",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.less",
+    "**/*.styl",
+    "**/*.html",
+    "**/*.tsx",
+    "**/*.ts",
+    "**/*.jsx",
+    "**/*.md"
+
+]
 }

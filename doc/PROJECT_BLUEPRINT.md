@@ -136,7 +136,7 @@ Required on all primary pages.
 - `WerdNerd`
 - `Curating the curious, the obscure, and the delightfully polysyllabic.`
 - `Stay Curious`
-- `Get a daily dose of linguistic levity sent to your inbox.`
+- `Get a weekly dose of linguistic levity sent to your inbox.`
 - newsletter form with email input and submit button
 
 ##### Column 2
@@ -294,12 +294,14 @@ Quote:
 
 > “I have no special talents. I am only passionately curious.” — Albert Einstein
 
+#### FAQ Section
+
 #### Contact Section
 
 - `Have a question or suggestion?`
-- `Questions, favorite words, odd discoveries, suspiciously beautiful etymologies: drop them here.`
 - `Send it.`
 - contact form
+- `Questions, favorite words, odd discoveries, suspiciously beautiful etymologies: drop them here.`
 
 ---
 

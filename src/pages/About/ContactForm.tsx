@@ -14,8 +14,9 @@ export function ContactForm() {
     <section id="contact" className="about-contact" aria-labelledby="contact-title">
       <div className="about-contact__inner">
         <div className="about-contact__copy">
-          <p className="about-hero__kicker">Contact</p>
-          <h2 id="contact-title">Send a strange little signal.</h2>
+          <Mail className="about-contact__icon" size={34} aria-hidden="true" />
+          <h2 id="contact-title">Have a question or suggestion?</h2>
+          <p className="about-contact__command">Send it.</p>
           <p>
             Questions, favorite words, odd discoveries, suspiciously beautiful
             etymologies: drop them here.

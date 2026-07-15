@@ -1,9 +1,9 @@
-import { Flower2, Mail, Search, Sparkles } from "lucide-react";
+import { BookOpenText, Mail, Search, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const traits = [
   {
-    icon: Flower2,
+    icon: Sparkles,
     title: "Vibrant Spirit",
     copy: "Infusing color into the dusty corners of grammar.",
   },
@@ -16,29 +16,15 @@ const traits = [
 
 export function AboutCreator() {
   return (
-    <main className="about-page-shell">
+    <>
       <section className="about-hero" aria-labelledby="about-title">
-        <div className="about-hero__word" aria-hidden="true">
-          about
-        </div>
+        <aside className="about-margin-note" aria-hidden="true">
+          <span>LEXE ARCHIVE</span>
+          <i />
+          <span>CURATED CURIOSITIES</span>
+        </aside>
 
         <div className="about-hero__stage">
-          <div className="about-hero__photo-wrap">
-            <img
-              src="/about-img.png"
-              alt="Stephanie, the creator of WerdNerd, smiling in an elegant setting"
-              className="about-hero__photo"
-            />
-
-            <figure className="about-hero__quote">
-              <blockquote>
-                &ldquo;I have no special talents. I am only passionately
-                curious.&rdquo;
-              </blockquote>
-              <figcaption>- Albert Einstein</figcaption>
-            </figure>
-          </div>
-
           <div className="about-hero__story">
             <p className="about-hero__kicker">The Mind Behind WerdNerd</p>
             <h1 id="about-title">Confessions of a Logophile</h1>
@@ -66,7 +52,7 @@ export function AboutCreator() {
               {traits.map(({ icon: Icon, title, copy }) => (
                 <article className="about-trait" key={title}>
                   <span className="about-trait__icon" aria-hidden="true">
-                    <Icon size={22} strokeWidth={2.3} />
+                    <Icon size={18} strokeWidth={2} />
                   </span>
                   <span>
                     <strong>{title}</strong>
@@ -78,28 +64,40 @@ export function AboutCreator() {
 
             <div className="about-hero__actions">
               <Link className="about-button about-button--primary" to="/vault">
-                <Sparkles size={18} aria-hidden="true" />
+                <BookOpenText size={18} aria-hidden="true" />
                 Explore the Vault
               </Link>
-              <a
-                className="about-button about-button--ghost"
-                href="#contact"
-              >
+              <a className="about-button about-button--ghost" href="#contact">
                 <Mail size={18} aria-hidden="true" />
                 Say Hello
               </a>
             </div>
           </div>
+
         </div>
       </section>
 
-      <section className="about-notes" aria-label="WerdNerd point of view">
-        <p>Part word-hoard, part playground, part love letter to language.</p>
-        <p>
-          The useful kind of nerdy: obscure enough to sparkle, clear enough to
-          share.
-        </p>
+      <section className="about-notes" aria-labelledby="about-notes-title">
+        <div className="about-notes__quote" aria-hidden="true">
+          &ldquo;
+        </div>
+        <div>
+          <h2 id="about-notes-title">
+            I have no special talents.
+            <br />I am only passionately curious.
+          </h2>
+          <p>- Albert Einstein</p>
+        </div>
+        <div className="about-notes__copy">
+          <p>
+            Part word-hoard, part playground, part love letter to language.
+          </p>
+          <p>
+            The useful kind of nerdy: obscure enough to sparkle, clear enough to
+            share.
+          </p>
+        </div>
       </section>
-    </main>
+    </>
   );
 }
