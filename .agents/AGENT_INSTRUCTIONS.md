@@ -24,7 +24,7 @@ If priorities conflict: ship the smallest reliable version first, then iterate.
 Use the source that matches the question being answered:
 
 1. **Current codebase reality** — source of truth for what is currently implemented and how the application actually behaves.
-2. **`doc/PROJECT_BLUEPRINT.md`** — source of truth for WerdNerd product direction, required features, and visual/design intent.
+2. **`.agents/PROJECT_BLUEPRINT.md`** — source of truth for WerdNerd product direction, required features, and visual/design intent.
 3. **This file (`.agents/AGENT_INSTRUCTIONS.md`)** — source of truth for agent behavior and implementation approach.
 4. **`.agents/COPILOT_INSTRUCTIONS.md`** — day-to-day coding guidance.
 5. **`ARCHITECTURE.md`** — documented architecture; verify against current code.
@@ -39,7 +39,7 @@ If code conflicts with the Project Blueprint, flag the mismatch instead of silen
 
 ### Project Blueprint Ownership
 
-`doc/PROJECT_BLUEPRINT.md` is owner-maintained guidance.
+`.agents/PROJECT_BLUEPRINT.md` is owner-maintained guidance.
 
 - Read it before product, feature, or visual-design work.
 - Do not edit, reorganize, shorten, or mark items complete unless Stephanie explicitly asks you to edit the blueprint.
@@ -68,7 +68,7 @@ Always flag meaningful documentation mismatches briefly instead of silently gues
 
 ## 5) UI/UX Expectations
 
-- Follow the product and visual direction in `doc/PROJECT_BLUEPRINT.md`.
+- Follow the product and visual direction in `.agents/PROJECT_BLUEPRINT.md`.
 - Preserve the dark, chrome-cinematic curiosity-cabinet identity.
 - Prioritize legibility and hierarchy over decoration.
 - Cinematic environmental motion, layered depth, and parallax are encouraged when they strengthen atmosphere or discovery.

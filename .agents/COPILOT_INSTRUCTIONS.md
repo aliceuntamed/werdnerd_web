@@ -13,8 +13,6 @@ Use this file for day-to-day coding decisions in this repo.
 - Match existing patterns in nearby files before introducing new ones.
 - Keep new logic small and composable.
 - Prefer strict typing over `any`.
-- Keep styling consistent with `.agents/style.md`.
-- Prefer existing UI components in `src/components/ui/` and tokens in `src/styles/tokens.css` or `src/theme/theme.ts`.
 - Build for responsive behavior by default.
 
 ## Local Dev & Verification
@@ -45,12 +43,6 @@ Use this file for day-to-day coding decisions in this repo.
 2. Implement query/mutation with clear error handling.
 3. Handle optimistic or pending UI states where helpful.
 4. Document assumptions in code comments only when non-obvious.
-
-### UI iteration
-
-1. Start from existing components/tokens.
-2. Improve hierarchy/spacing first.
-3. Add motion only if it improves clarity or delight.
 
 ## Definition of Done (practical)
 

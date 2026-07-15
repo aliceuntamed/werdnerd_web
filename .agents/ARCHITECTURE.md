@@ -4,7 +4,7 @@ Last updated: July 13, 2026
 
 This document describes how the app is currently built plus near-term architecture direction.
 
-For intended product features and visual direction, see `doc/PROJECT_BLUEPRINT.md`.
+For intended product features and visual direction, see `.agents/PROJECT_BLUEPRINT.md`.
 
 ## 1) System Overview
 
@@ -31,7 +31,7 @@ Current architecture:
 - `src/types/`: domain and utility types
 - `src/index.css`: current global styles, theme variables, and several shared visual effects
 
-Planned styling consolidation is documented in `doc/PROJECT_BLUEPRINT.md`. Do not assume planned `src/styles/*` files already exist.
+Planned styling consolidation is documented in `.agents/PROJECT_BLUEPRINT.md`. Do not assume planned `src/styles/*` files already exist.
 
 ## 3) Routing (current)
 
@@ -187,4 +187,4 @@ Guidelines:
 
 If this document conflicts with current code, trust code for implementation reality and update this document.
 
-If current code conflicts with `doc/PROJECT_BLUEPRINT.md`, treat that as a current-state versus intended-state mismatch and flag it rather than silently changing product intent.
+If current code conflicts with `.agents/PROJECT_BLUEPRINT.md`, treat that as a current-state versus intended-state mismatch and flag it rather than silently changing product intent.

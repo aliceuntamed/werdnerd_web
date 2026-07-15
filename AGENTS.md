@@ -9,6 +9,7 @@ This repository uses root agent instruction files to guide AI coding agents.
 
 ## Project Preferences and Information
 
+- `.agents/PROJECT_BLUEPRINT.md`
 - `.agents/ARCHITECTURE.md`
 - `/ROADMAP.md`
 - `/README.md` - project description
