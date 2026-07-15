@@ -28,6 +28,7 @@ export default function Navigation() {
           <NavItem to="/vault" label="Vault" />
           <NavItem to="/games" label="Games" />
           <NavItem to="/about" label="About" />
+          <NavItem to="/submit" label="Submit a Werd" />
           <span className="site-nav-spark" aria-hidden="true">
             ✦
           </span>
@@ -83,7 +84,7 @@ export default function Navigation() {
           <MobileItem to="/vault" label="Vault" onClick={closeMobileMenu} />
           <MobileItem to="/games" label="Games" onClick={closeMobileMenu} />
           <MobileItem to="/about" label="About" onClick={closeMobileMenu} />
-          <MobileItem to="/submit" label="Contribute" onClick={closeMobileMenu} />
+          <MobileItem to="/submit" label="Submit a Werd" onClick={closeMobileMenu} />
 
           <div className="site-nav-mobile-auth">
             {user ? (

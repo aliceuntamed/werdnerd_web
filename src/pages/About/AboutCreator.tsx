@@ -9,7 +9,7 @@ const traits = [
   },
   {
     icon: Search,
-    title: "Curious Mind",
+    title: "Inquisitive Mind",
     copy: "Always hunting for the rarest etymologies.",
   },
 ];

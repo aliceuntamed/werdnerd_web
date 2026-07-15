@@ -148,8 +148,8 @@ export function Footer() {
               </h2>
 
               <p className="site-footer__tagline">
-                Curating the curious, the obscure, and the delightfully
-                polysyllabic. Your daily dose of linguistic levity.
+                Curating the peculiar, the obscure, and the delightfully
+                polysyllabic.
               </p>
             </div>
 
@@ -162,11 +162,11 @@ export function Footer() {
                 htmlFor="footer-email"
                 className="site-footer__newsletter-label"
               >
-                Stay Curious
+                Be Difficult to Bore
               </label>
 
               <p className="site-footer__newsletter-copy">
-                Get a <em>daily dose</em> of <em>linguistic levity</em> sent to your inbox.
+                Get a <em>weekly dose</em> of <em>linguistic levity</em> sent to your inbox.
               </p>
 
               <div className="site-footer__form-row">
@@ -246,11 +246,11 @@ export function Footer() {
       <div className="site-footer__bottom">
         <div className="site-footer__bottom-inner">
           <p>
-            &copy; 2026 WerdNerd. Built for the logophilic &amp; the curious.
+            &copy; 2026 WerdNerd. Built with TypeScript &amp; and curiousity.
           </p>
 
           <div className="site-footer__badges">
-            <span>Oxford Certified Quirky</span>
+            <span>Lexically Unsupervised</span>
             <span>100% Organically Curated</span>
           </div>
         </div>

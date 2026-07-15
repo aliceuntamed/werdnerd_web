@@ -134,8 +134,8 @@ Required on all primary pages.
 ##### Column 1
 
 - `WerdNerd`
-- `Curating the curious, the obscure, and the delightfully polysyllabic.`
-- `Stay Curious`
+- `Curating the peculiar, the obscure, and the delightfully polysyllabic.`
+- `Be Difficult to Bore`
 - `Get a weekly dose of linguistic levity sent to your inbox.`
 - newsletter form with email input and submit button
 
@@ -282,7 +282,7 @@ Badges:
 
 - `Vibrant Spirit`
   - `Infusing color into the dusty corners of grammar.`
-- `Curious Mind`
+- `Inquisitive Mind`
   - `Always hunting for the rarest etymologies.`
 
 Actions:
