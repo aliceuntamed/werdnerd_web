@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Mail, MessageSquareText, Send } from "lucide-react";
+import { Send } from "lucide-react";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -14,24 +14,18 @@ export function ContactForm() {
     <section id="contact" className="about-contact" aria-labelledby="contact-title">
       <div className="about-contact__inner">
         <div className="about-contact__copy">
-          <Mail className="about-contact__icon" size={34} aria-hidden="true" />
-          <h2 id="contact-title">Have a question or suggestion?</h2>
-          <p className="about-contact__command">Send it.</p>
-          <p>
-            Questions, favorite words, odd discoveries, suspiciously beautiful
-            etymologies: drop them here.
-          </p>
-
-          <div className="about-contact__prompts" aria-label="Good reasons to write">
-            <span>
-              <Mail size={18} aria-hidden="true" />
-              word suggestions
-            </span>
-            <span>
-              <MessageSquareText size={18} aria-hidden="true" />
-              feedback and ideas
-            </span>
+          <div className="about-contact__lead-ins" aria-label="Reasons to get in touch">
+            <span>Questions?</span>
+            <span>Comments?</span>
+            <span>Suggestions?</span>
           </div>
+
+          <h2 id="contact-title">Send it.</h2>
+
+          <p>
+            Found a werd I missed? Spotted something weird? Have feedback, a
+            theory, or a suspiciously specific language fact? I&rsquo;m listening.
+          </p>
         </div>
 
         <form className="about-form about-contact__form" onSubmit={handleSubmit}>
@@ -76,7 +70,7 @@ export function ContactForm() {
 
           {submitted && (
             <p className="about-contact__status" role="status">
-              Got it. Your note is staged.
+              Received. The note has entered the vault.
             </p>
           )}
         </form>
