@@ -31,7 +31,7 @@ export default function WerdDetailPage() {
           <dl>
             <div><dt>Definition</dt><dd>{werd.definition || "Definition pending."}</dd></div>
             <div><dt>Language</dt><dd>{werd.language || "Unknown"}</dd></div>
-            {werd.source ? <div><dt>Source</dt><dd>{werd.source}</dd></div> : null}
+            {werd.source_1 ? <div><dt>Source</dt><dd>{werd.source_1}</dd></div> : null}
           </dl>
         </div>
         <footer><div>{werd.tags.map((tag) => <Link key={tag} to={`/vault?tag=${encodeURIComponent(tag)}`}>#{tag}</Link>)}</div><Link to="/submit">Submit another oddity <ArrowUpRight /></Link></footer>

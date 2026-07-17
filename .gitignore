@@ -139,3 +139,6 @@ dist
 .pnp.*
 .vercel
 .env*.local
+
+# Superdesign local scratch files
+.superdesign/tmp/

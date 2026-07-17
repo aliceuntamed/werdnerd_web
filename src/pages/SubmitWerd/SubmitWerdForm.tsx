@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "../../utils/supabase/client";
 import { fetchTags } from "../../utils/supabase/queries";
 
@@ -16,15 +15,21 @@ export default function SubmitWerdForm() {
   const [partOfSpeech, setPartOfSpeech] = useState("");
   const [availableTags, setAvailableTags] = useState<AvailableTag[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
-    fetchTags().then((tags) => setAvailableTags(tags ?? [])).catch(console.error);
+    fetchTags()
+      .then((tags) => setAvailableTags(tags ?? []))
+      .catch(console.error);
   }, []);
 
   function toggleTag(tagId: string) {
     setSelectedTags((prev) =>
-      prev.includes(tagId) ? prev.filter((t) => t !== tagId) : [...prev, tagId],
+      prev.includes(tagId)
+        ? prev.filter((t) => t !== tagId)
+        : [...prev, tagId],
     );
   }
 
@@ -69,86 +74,108 @@ export default function SubmitWerdForm() {
   const tagLabel = (tag: AvailableTag) => tag.tag_name ?? tag.name ?? "";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label className="block text-white/70 text-sm mb-1">Word *</label>
+    <form onSubmit={handleSubmit} className="submit-werd-form">
+      <div className="submit-werd-form__field submit-werd-form__field--wide">
+        <label htmlFor="submit-werd-word">
+          <span>01.</span> The Werd
+        </label>
         <input
+          id="submit-werd-word"
           value={werd}
           onChange={(e) => setWerd(e.target.value)}
           required
-          className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/30 focus:outline-none focus:border-white/40"
           placeholder="e.g. petrichor"
+          className="submit-werd-form__word-input"
         />
       </div>
 
-      <div>
-        <label className="block text-white/70 text-sm mb-1">Definition</label>
+      <div className="submit-werd-form__field submit-werd-form__field--wide">
+        <label htmlFor="submit-werd-definition">
+          <span>02.</span> Contextual Meaning
+        </label>
         <textarea
+          id="submit-werd-definition"
           value={definition}
           onChange={(e) => setDefinition(e.target.value)}
-          rows={3}
-          className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/30 focus:outline-none focus:border-white/40"
+          rows={4}
           placeholder="What does it mean?"
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-white/70 text-sm mb-1">Pronunciation</label>
-          <input
-            value={pronunciation}
-            onChange={(e) => setPronunciation(e.target.value)}
-            className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/30 focus:outline-none focus:border-white/40"
-            placeholder="e.g. pe-tri-ker"
-          />
-        </div>
-        <div>
-          <label className="block text-white/70 text-sm mb-1">Part of Speech</label>
-          <input
-            value={partOfSpeech}
-            onChange={(e) => setPartOfSpeech(e.target.value)}
-            className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/30 focus:outline-none focus:border-white/40"
-            placeholder="e.g. noun"
-          />
-        </div>
+      <div className="submit-werd-form__field">
+        <label htmlFor="submit-werd-pronunciation">
+          <span>03.</span> Oral Delivery
+        </label>
+        <input
+          id="submit-werd-pronunciation"
+          value={pronunciation}
+          onChange={(e) => setPronunciation(e.target.value)}
+          placeholder="e.g. pe-tri-ker"
+        />
       </div>
 
-      {availableTags.length > 0 && (
-        <div>
-          <label className="block text-white/70 text-sm mb-2">Tags</label>
-          <div className="flex flex-wrap gap-2">
-            {availableTags.map((t) => (
-              <button
-                key={t.tag_id}
-                type="button"
-                onClick={() => toggleTag(t.tag_id)}
-                className={`px-3 py-1 rounded-full text-sm border transition ${
-                  selectedTags.includes(t.tag_id)
-                    ? "bg-white/20 border-white/40 text-white"
-                    : "bg-transparent border-white/20 text-white/50 hover:border-white/40 hover:text-white/80"
-                }`}
-              >
-                {tagLabel(t)}
-              </button>
-            ))}
+      <div className="submit-werd-form__field">
+        <label htmlFor="submit-werd-part-of-speech">
+          <span>04.</span> Grammatical Role
+        </label>
+        <input
+          id="submit-werd-part-of-speech"
+          value={partOfSpeech}
+          onChange={(e) => setPartOfSpeech(e.target.value)}
+          placeholder="e.g. noun"
+        />
+      </div>
+
+      <div className="submit-werd-form__field submit-werd-form__field--wide">
+        <label>
+          <span>05.</span> Archival Tags
+        </label>
+
+        {availableTags.length > 0 ? (
+          <div className="submit-werd-form__tags">
+            {availableTags.map((tag) => {
+              const isSelected = selectedTags.includes(tag.tag_id);
+
+              return (
+                <button
+                  key={tag.tag_id}
+                  type="button"
+                  onClick={() => toggleTag(tag.tag_id)}
+                  aria-pressed={isSelected}
+                  className={isSelected ? "is-selected" : undefined}
+                >
+                  {tagLabel(tag)}
+                </button>
+              );
+            })}
           </div>
-        </div>
-      )}
+        ) : (
+          <p className="submit-werd-form__tag-note">
+            Tags will appear here when the vault taxonomy answers the bell.
+          </p>
+        )}
+      </div>
 
-      {status === "success" && (
-        <p className="text-green-400 text-sm">Word submitted successfully!</p>
-      )}
-      {status === "error" && (
-        <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>
-      )}
+      <div className="submit-werd-form__status submit-werd-form__field--wide">
+        {status === "success" && (
+          <p className="submit-werd-form__status-message submit-werd-form__status-message--success">
+            Werd submitted successfully.
+          </p>
+        )}
+        {status === "error" && (
+          <p className="submit-werd-form__status-message submit-werd-form__status-message--error">
+            Something went sideways. Please try again.
+          </p>
+        )}
+      </div>
 
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="px-6 py-3 rounded-lg font-heading text-white border border-white/20 hover:bg-white/10 transition disabled:opacity-50"
-      >
-        {status === "submitting" ? "Submitting…" : "Submit Word"}
-      </button>
+      <div className="submit-werd-form__actions submit-werd-form__field--wide">
+        <button type="submit" disabled={status === "submitting"}>
+          <span>
+            {status === "submitting" ? "Cataloging..." : "Catalog into the Vault"}
+          </span>
+        </button>
+      </div>
     </form>
   );
 }
