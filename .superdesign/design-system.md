@@ -1,27 +1,22 @@
-# WerdNerd Design System for Submit Werd Exploration
+# WerdNerd Design System for Games Exploration
 
-WerdNerd is a dark, cinematic digital curiosity cabinet for rare, poetic, peculiar, and delightfully underused words. The page should feel tactile, curious, creator-led, and a little strange without becoming hard to read.
+WerdNerd is a dark, cinematic digital curiosity cabinet for rare, poetic, peculiar, and delightfully underused words. The Games page should feel like it belongs to the same universe as the Vault and Submit pages, but it can be more kinetic, playful, and strange.
 
-## Product Requirements for Submit Werd
+## Product Requirements for Games
 
-- Add Werd submission page.
-- Tag selection.
-- Recent community gems.
-- Typed submission payload/form flow.
-- Include guidance section: "What Makes a Good Vault Word?" with the copy "Here is what we are looking for:" and four criteria:
-  - Rare or obscure: Words that most people have never encountered in the wild.
-  - Poetically precise: Words that describe something that feels indescribable.
-  - Phonically satisfying: Words that are genuinely delightful to say out loud.
-  - Emotionally resonant: Words that unlock something true about human experience.
+- Games page must include the required game set: Boggle, Wordle, Word Search, Hangman, Codenames, Trivia, Brain Teasers.
+- Designs may explore custom WerdNerd game names, but should keep the underlying game identity legible.
+- Each game should retain a distinct mechanical personality instead of becoming seven identical cards.
+- The page should function as a hub: scan games quickly, understand what is playable/coming soon, and choose a game.
 
-## Visual Identity
+## Visual Direction
 
-- Dark cinematic minimalism.
-- Chrome-cinematic atmosphere with rainbow chrome used as edges, divider lines, reflections, glints, and focal highlights.
-- Elevated dark cards: near-black surfaces, thin chrome-dust borders, soft shadows, localized glow.
-- Glass effects only when layering over environmental motion/backgrounds.
-- Weird WerdNerd vibe: curiosity cabinet, archival drawers, specimen tags, marginalia, strange little linguistic artifacts.
-- Preserve clarity. No chaotic neon soup; chrome is the spice, not the stew.
+- Preserve WerdNerd's dark cinematic curiosity-cabinet identity.
+- Let this page stand out more than informational pages: games can be more interactive, dimensional, and energetic.
+- Explore "inverted" approaches as a serious option: bone-paper/light-chrome panels against dark void, x-ray/inverse tiles, negative-space board surfaces, or a luminous underside while retaining dark global shell/nav.
+- Use rainbow chrome as accents, reflections, tile edges, active states, scoreboard rails, magnetic glints, and focal highlights. Avoid coating every large surface in full rainbow.
+- Cards/artifacts should feel tactile: game boards, tokens, specimen trays, arcade cabinet controls, puzzle plates, score strips, and movable game pieces.
+- Keep readability high. Weird is welcome; muddy is not.
 
 ## Tokens
 
@@ -44,26 +39,17 @@ WerdNerd is a dark, cinematic digital curiosity cabinet for rare, poetic, peculi
 
 ## Typography
 
-- Poppins for body, UI, labels, navigation.
-- Kalnia for theatrical page hero moments.
-- Milonga for peculiar editorial labels or pull quotes.
+- Poppins for body, UI, labels, and navigation.
+- Kalnia for theatrical display headings.
+- Milonga for peculiar editorial labels and game lore snippets.
 - Lancelot only as a rare storybook accent.
-- Keep letter spacing at 0 unless matching existing nav micro-labels.
 
-## Layout Principles
+## Current Games Page Baseline
 
-- Use full-width dark page bands and constrained inner content.
-- Keep the first viewport immediately recognizable as Submit a Werd.
-- Favor split or asymmetric layouts for desktop when it helps guide the form flow.
-- Mobile should stack cleanly: hero, guidance, form, recent gems.
-- Use stable dimensions for form controls, tag chips, cards, and status panels to avoid layout shift.
+The current page renders a centered "Games" title, a small chrome accent bar, and a responsive grid of seven clickable artifacts. Each artifact has a distinct mini form: Boggle tiles, Wordle strip, Word Search grid, Trivia coin, Hangman glyph panel, Brain Teasers interlocking tiles, and Codenames overlapping cards. The route uses the global Navigation and Footer.
 
-## Motion and Atmosphere
+## Exploration Goals
 
-- Slow atmospheric background movement, parallax depth, subtle light sweeps, chrome shimmer, and small glints are appropriate.
-- Avoid multiple unrelated animations on the same element.
-- Include reduced-motion fallback assumptions.
-
-## Current Page Baseline
-
-The current page is a simple centered column on a black-to-near-black gradient with chrome-text heading, intro copy, and a form. The redesign directions may add blueprint-required guidance and recent gems while preserving the existing global navigation and footer style.
+- Direction 1 should keep the most recognizable WerdNerd dark/chrome vibe but make the game hub more dimensional and curated.
+- Direction 2 should push an inverted/inverse concept while still feeling like WerdNerd.
+- Direction 3 should be the boldest: a unique games-specific world with stronger motion, board-game/arcade/lab energy, and more unusual composition.
