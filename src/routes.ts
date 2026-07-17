@@ -7,6 +7,7 @@ import { lazy, type ComponentType } from "react";
 export const ROUTES = {
   HOME: "/",
   VAULT: "/vault",
+  WERD_DETAIL: "/werd/:slug",
   ABOUT: "/about",
   CREATORS: "/playground",
   SUBMIT: "/submit",
@@ -37,6 +38,7 @@ type RouteComponent = ComponentType<Record<string, never>>;
 // Lazy-loaded route components
 const HomePage = lazy(() => import("./pages/Home/HomePage"));
 const WerdVaultPage = lazy(() => import("./pages/WerdVault/WerdVaultPage"));
+const WerdDetailPage = lazy(() => import("./pages/WerdVault/WerdDetailPage"));
 const AboutPage = lazy(() => import("./pages/About/AboutPage"));
 const CreatorsPlaygroundPage = lazy(
   () => import("./pages/CreatorsPlayground/CreatorsPlaygroundPage"),
@@ -63,6 +65,7 @@ const ResetPasswordPage = lazy(() => import("./pages/Auth/ResetPasswordPage"));
 export const ROUTE_COMPONENTS: Record<string, RouteComponent> = {
   [ROUTES.HOME]: HomePage,
   [ROUTES.VAULT]: WerdVaultPage,
+  [ROUTES.WERD_DETAIL]: WerdDetailPage,
   [ROUTES.ABOUT]: AboutPage,
   [ROUTES.CREATORS]: CreatorsPlaygroundPage,
   [ROUTES.SUBMIT]: SubmitWerdPage,

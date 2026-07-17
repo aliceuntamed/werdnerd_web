@@ -23,7 +23,7 @@ export function WerdCard({
   definition,
   tags,
   language,
-  source,
+  source_1: source,
   isFavorite,
   onToggleFavorite,
 

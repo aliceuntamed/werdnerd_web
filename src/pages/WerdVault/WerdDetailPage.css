@@ -1,0 +1,21 @@
+.vault-detail { min-height: 100vh; padding: clamp(8rem, 14vw, 11rem) 1.5rem 6rem; color: #efede7; background: radial-gradient(circle at 78% 25%, rgba(0,200,255,.12), transparent 24rem), #080b0d; font-family: "Geist Mono", ui-monospace, monospace; }
+.vault-detail__back { display: flex; width: min(100%, 68rem); margin: 0 auto 1.5rem; align-items: center; gap: .5rem; color: #8a9496; font-size: .62rem; letter-spacing: .16em; text-decoration: none; text-transform: uppercase; }
+.vault-detail__back svg { width: 1rem; }
+.vault-detail__file { width: min(100%, 68rem); margin: auto; border: 1px solid rgba(239,237,231,.18); background: linear-gradient(140deg, rgba(22,30,32,.95), rgba(8,11,13,.98)); }
+.vault-detail__file > header, .vault-detail__file > footer { display: flex; justify-content: space-between; gap: 1rem; padding: 1.2rem 1.5rem; color: #697477; border-bottom: 1px solid rgba(239,237,231,.14); font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; }
+.vault-detail__body { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(3rem, 8vw, 7rem); padding: clamp(2rem, 6vw, 5rem); }
+.vault-detail__type { color: #00c8ff; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
+.vault-detail h1 { margin: 1.5rem 0 .8rem; font: 400 clamp(4rem, 9vw, 7rem)/.9 Georgia, serif; letter-spacing: -.06em; overflow-wrap: anywhere; }
+.vault-detail__pronunciation { color: #a4abad; font: italic 1rem Georgia, serif; }
+.vault-detail dl { margin: 0; }
+.vault-detail dl div { padding: 1.4rem 0; border-bottom: 1px solid rgba(239,237,231,.14); }
+.vault-detail dt { color: #667174; font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; }
+.vault-detail dd { margin: .8rem 0 0; color: #c5c3bc; font-size: .88rem; line-height: 1.75; }
+.vault-detail__file > footer { align-items: center; border-top: 1px solid rgba(239,237,231,.14); border-bottom: 0; }
+.vault-detail__file > footer div { display: flex; flex-wrap: wrap; gap: .7rem; }
+.vault-detail__file > footer a { display: inline-flex; align-items: center; gap: .3rem; color: #9ca5a7; text-decoration: none; }
+.vault-detail__file > footer svg { width: .8rem; }
+.vault-detail__missing { width: min(100%, 55rem); margin: auto; padding: 4rem; border: 1px solid rgba(239,237,231,.16); }
+.vault-detail__missing p { color: #ff2f92; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; }
+.vault-detail__missing a { display: inline-flex; gap: .5rem; color: #00c8ff; }
+@media (max-width: 700px) { .vault-detail__body { grid-template-columns: 1fr; } .vault-detail__file > footer { align-items: flex-start; flex-direction: column; } }

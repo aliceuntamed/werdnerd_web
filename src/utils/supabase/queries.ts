@@ -24,7 +24,7 @@ type SupabaseWerdRow = {
   part_of_speech?: string | null;
   definition?: string | null;
   language?: string | null;
-  source?: string | null;
+  source_1?: string | null;
   werd_tags?: SupabaseTagJoin[];
 };
 
@@ -82,7 +82,7 @@ const WERD_SELECT = `
   part_of_speech,
   definition,
   language,
-  source,
+  source_1,
   ${WERD_TAGS_SELECT}
 `;
 
@@ -100,7 +100,7 @@ function mapWerd(w: SupabaseWerdRow): Werd {
     part_of_speech: w.part_of_speech ?? undefined,
     definition: w.definition ?? undefined,
     language: w.language ?? undefined,
-    source: w.source ?? undefined,
+    source_1: w.source_1 ?? undefined,
     tags: relationalTags.length > 0 ? relationalTags : fallbackTags,
   };
 }

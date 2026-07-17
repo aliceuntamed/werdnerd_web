@@ -8,6 +8,6 @@ export interface Werd {
   part_of_speech?: string;
   definition?: string;
   language?: string;
-  source?: string;
+  source_1?: string;
   tags: string[]; // normalized relational tags
 }
