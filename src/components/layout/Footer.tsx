@@ -246,7 +246,7 @@ export function Footer() {
       <div className="site-footer__bottom">
         <div className="site-footer__bottom-inner">
           <p>
-            &copy; 2026 WerdNerd. Built with TypeScript &amp; and curiousity.
+            &copy; 2026 WerdNerd. Built with TypeScript &amp; curiosity.
           </p>
 
           <div className="site-footer__badges">

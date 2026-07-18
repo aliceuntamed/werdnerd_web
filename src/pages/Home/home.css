@@ -392,7 +392,7 @@
   color: #bbb;
 }
 
-.wotd-word {
+.wotd-werd {
   margin: clamp(2rem, 5vw, 3.25rem) 0 0.35rem;
   color: var(--home-bone);
   font: 400 clamp(3.35rem, 6vw, 5.15rem) / 0.95 var(--home-serif);

@@ -57,7 +57,7 @@ Primary routes:
 - `/auth/reset-password`
 - `/settings`
 
-Known route-direction work includes a Werd detail route, Word of the Day destination, and a catch-all 404 route.
+Known route-direction work includes a Werd detail route, WOTD destination, and a catch-all 404 route.
 
 ## 4) Data Flow
 
@@ -69,7 +69,7 @@ Typical flow:
 4. Response is mapped into typed domain/UI state
 5. UI updates for success, loading, empty, or error states
 
-Current query helpers include Werd, curated Werd, tag, random Werd, and Word of the Day reads.
+Current query helpers include Werd, curated Werd, tag, random Werd, and WOTD reads.
 
 Some features still write directly to the Supabase client from page-level code. Continue consolidating reusable data access into typed helpers or feature hooks when doing so improves error handling, reuse, or maintainability.
 
@@ -114,7 +114,7 @@ Current usage includes:
 
 - Supabase browser client setup in `src/utils/supabase/`
 - Werd and tag read helpers
-- deterministic Word of the Day selection
+- deterministic WOTD selection
 - random Werd selection
 - direct Submit Werd and `werd_tags` inserts in the current submission form
 - Supabase Auth through `AuthContext`

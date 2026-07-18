@@ -8,7 +8,7 @@ export default function VaultHero() {
       <div className="absolute w-[800px] h-[800px] rounded-full border border-white/5 opacity-20" />
 
       <h1 className="relative font-heading text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-b from-[#e5e7eb] via-[#9bbcff] to-[#c084fc] drop-shadow-[0_0_20px_rgba(155,188,255,0.25)]">
-        The Word Vault
+        The Werd Vault
       </h1>
 
       <p className="absolute bottom-10 text-white/60 text-lg">

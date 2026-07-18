@@ -147,14 +147,14 @@ export async function getRandomWerd(): Promise<Werd | null> {
   return mapWerd(data[randomIndex]);
 }
 
-// Fetch Word of the Day
+// Fetch WOTD
 export async function getWOTD(): Promise<Werd | null> {
   const { data, error } = await supabase
     .from("werds")
     .select(WERD_SELECT);
 
   if (error) {
-    console.error("Error fetching word of the day:", error);
+    console.error("Error fetching WOTD:", error);
     return null;
   }
 

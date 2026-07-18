@@ -26,7 +26,7 @@ export default function WOTD() {
           <div className="home-loading">
             <LoadingScreen
               fullScreen={false}
-              message="Selecting today's word..."
+              message="Selecting today's werd..."
               size={58}
               speed={2.4}
             />
@@ -36,11 +36,11 @@ export default function WOTD() {
         {!loading && !werd && (
           <div className="wotd-empty">
             <div className="wotd-label">
-              <span>Word of the day</span>
+              <span>WOTD</span>
               <span>№ 001</span>
             </div>
-            <h3 className="wotd-word">Word of the day</h3>
-            <p>No word today. The vault is being mysterious.</p>
+            <h3 className="wotd-werd">WOTD</h3>
+            <p>No werd today. The vault is being mysterious.</p>
           </div>
         )}
 
@@ -48,14 +48,14 @@ export default function WOTD() {
           <article className="wotd-entry">
             <div>
               <div className="wotd-label">
-                <span>Word of the day</span>
+                <span>WOTD</span>
                 <span>№ 001</span>
               </div>
               <span className="wotd-speak" aria-hidden="true">
                 <Volume2 className="home-icon" />
               </span>
 
-              <h3 className="wotd-word chrome-gradient-text">{werd.werd}</h3>
+              <h3 className="wotd-werd chrome-gradient-text">{werd.werd}</h3>
 
               <div className="home-meta-row">
                 {werd.pronunciation && (

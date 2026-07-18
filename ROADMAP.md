@@ -40,7 +40,7 @@ Status: In progress
 - Better validation and duplicate detection
 - Improve moderation-ready metadata
 
-6. Word of the Day maturity
+6. WOTD maturity
 - Reliable daily selection logic
 - Optional history tracking
 - Better homepage integration

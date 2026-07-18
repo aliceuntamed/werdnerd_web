@@ -33,7 +33,7 @@ export default function Hero() {
 
         <p className="home-hero-subcopy">
           Rare, poetic, and peculiar vocabulary collected for people who know a
-          good word can derail a perfectly productive afternoon.
+          good werd can derail a perfectly productive afternoon.
         </p>
 
         <Link to="/vault" className="home-primary-button">

@@ -10,7 +10,7 @@ const defaultFaqs: FAQItem[] = [
   {
     question: "So... what exactly is WerdNerd?",
     answer:
-      "Part word vault, part language playground, part beautifully unnecessary detour. WerdNerd is a growing collection of rare, poetic, peculiar, and criminally underused werds worth knowing.",
+      "Part werd vault, part language playground, part beautifully unnecessary detour. WerdNerd is a growing collection of rare, poetic, peculiar, and criminally underused werds worth knowing.",
   },
   {
     question: "Do I need an offensively large vocabulary to be here?",

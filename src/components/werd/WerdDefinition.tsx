@@ -1,19 +1,19 @@
 interface WerdDefinitionProps {
-  word: string;
+  werd: string;
   pronunciation?: string;
   definition: string;
 }
 
 export function WerdDefinition({
-  word,
+  werd,
   pronunciation,
   definition,
 }: WerdDefinitionProps) {
   return (
     <div className="space-y-4">
-      {/* Word */}
+      {/* werd */}
       <h2 className="font-heading text-3xl md:text-4xl text-transparent bg-clip-text bg-gradient-to-b from-[#e5e7eb] via-[#9bbcff] to-[#c084fc] drop-shadow-[0_0_15px_rgba(155,188,255,0.25)]">
-        {word}
+        {werd}
       </h2>
 
       {/* Pronunciation */}

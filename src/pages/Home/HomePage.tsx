@@ -74,12 +74,12 @@ export default function HomePage() {
       <div className="home-parallax-world">
         <div className="home-parallax-backdrop" aria-hidden="true" />
 
-        <section className="home-feature-shelf" aria-labelledby="word-tools-title">
+        <section className="home-feature-shelf" aria-labelledby="werd-tools-title">
           <div className="home-container">
             <div className="home-section-heading home-section-heading--compact">
               <p>00 / The daily specimen</p>
-              <h2 id="word-tools-title">
-                Start with a <em>strange little word.</em>
+              <h2 id="werd-tools-title">
+                Start with a <em>strange little werd.</em>
               </h2>
               <span>One featured find, then one excellent excuse to wander.</span>
             </div>

@@ -4,10 +4,10 @@
 
 - “Some people doomscroll. You verdwell.”
 - “Rare words. Weird etymologies. Productive procrastination.”
-- “Built for people who’ve ever stopped mid-sentence to admire a single perfect word.”
+- “Built for people who’ve ever stopped mid-sentence to admire a single perfect werd.”
 - “The internet’s coziest trapdoor into strange vocabulary.”
 - “Words worth hoarding.”
-- A living vault of rare, poetic, and peculiar vocabulary for people who know a good word can ruin a perfectly productive afternoon.
+- A living vault of rare, poetic, and peculiar vocabulary for people who know a good werd can ruin a perfectly productive afternoon.
 
 ## vault
 
@@ -77,7 +77,7 @@ obsession
 ## archive
 
 - collection
-- word-cabinet
+- werd-cabinet
 - archive
 - Lexicon
 - dictionary
@@ -89,7 +89,7 @@ obsession
 - language nerds
 - rabbit-hole divers
 - incurably curious
-- word-hoard
+- werd-hoard
 
 ## werd
 

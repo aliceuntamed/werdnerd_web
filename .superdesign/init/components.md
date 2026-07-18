@@ -33,7 +33,7 @@ export function Button({ children, ...props }: ButtonProps) {
 
 ## `src/components/ui/Tag.tsx`
 
-Chrome gradient pill/tag used for word categories and selectable metadata.
+Chrome gradient pill/tag used for werd categories and selectable metadata.
 
 ```tsx
 interface TagProps {

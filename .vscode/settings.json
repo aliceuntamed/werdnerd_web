@@ -63,5 +63,6 @@
     "**/*.jsx",
     "**/*.md"
 
-]
+],
+"notebook.diff.experimental.toggleInline": true
 }

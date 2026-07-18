@@ -27,7 +27,7 @@ Core product ideas:
 - a living WerdVault of unusual words
 - discovery through tags, chance encounters, and curated collections
 - word games and linguistic play
-- community word submissions
+- community werd submissions
 - fun facts, etymology, pronunciation, and other language rabbit holes
 - a strong creator-led personality rather than a generic dictionary-product voice
 
@@ -199,8 +199,8 @@ Required sections:
 
 #### WOTD
 
-- prominently feature a deterministic or editorial Word of the Day
-- provide a path to the word's full detail experience
+- prominently feature a deterministic or editorial WOTD
+- provide a path to the werd's full detail experience
 
 #### Spin the Vault
 
@@ -274,7 +274,7 @@ Feature heading:
 
 Creator copy:
 
-> Hi, I’m Stephanie, the human behind WerdNerd. 👽 I’m a designer with a soft spot for life’s peculiarities, especially the strange little wonders hiding in the English language. I built this digital lexicon to be part word vault, part curiosity cabinet, and part excuse to collect and share my favorite oddities.
+> Hi, I’m Stephanie, the human behind WerdNerd. 👽 I’m a designer with a soft spot for life’s peculiarities, especially the strange little wonders hiding in the English language. I built this digital lexicon to be part werd vault, part curiosity cabinet, and part excuse to collect and share my favorite oddities.
 >
 > WerdNerd is a personal passion project born from a lifelong love of words that sparkle, charm, confuse, amuse, and make you pause, grin, and immediately want to tell someone else. If you have a favorite strange, beautiful, or criminally underused word, send it my way. The vault always has room for one more odd little gem.
 
@@ -314,7 +314,7 @@ Required:
 - recent community gems
 - typed submission payload and form flow
 
-#### What Makes a Good Vault Word?
+#### What Makes a Good Vault Werd?
 
 `Here is what we are looking for:`
 
@@ -344,7 +344,7 @@ Required games:
   - custom WerdNerd game name
 - Wordle
   - custom WerdNerd game name
-- Word Search
+- werd Search
   - custom WerdNerd game name
 - Hangman
   - custom WerdNerd game name
@@ -427,7 +427,7 @@ Potential future discovery areas:
   - support search and tag filtering coherently
 - [ ] Add fuzzy search and filter behavior where useful
 - [ ] Add dedicated Werd detail route at `/werd/:slug`
-- [ ] Add a dedicated Word of the Day route or detail destination
+- [ ] Add a dedicated WOTD route or detail destination
 - [ ] Add related-Werd discovery based on shared tags
 - [ ] Add Werd-card synonym flip interaction
 
@@ -570,7 +570,7 @@ Do not build public API infrastructure until there is a concrete use case.
 A dedicated WOTD table may be introduced later for:
 
 - scheduled editorial picks
-- Word of the Day history
+- WOTD history
 - repeat prevention
 - featured-date analytics
 

@@ -149,7 +149,7 @@ export default function WerdVaultPage() {
         <label className="vault-search">
           <Search aria-hidden="true" />
           <span className="sr-only">Search the WerdVault</span>
-          <input value={query} onChange={(event) => setParam("search", event.target.value || null)} placeholder="Try ‘weather’, ‘obsolete’, or a word you half remember…" type="search" />
+          <input value={query} onChange={(event) => setParam("search", event.target.value || null)} placeholder="Try ‘weather’, ‘obsolete’, or a werd you half remember…" type="search" />
           {query ? <button type="button" onClick={() => setParam("search", null)} aria-label="Clear search"><X /></button> : <kbd>TYPE TO SIFT</kbd>}
         </label>
 

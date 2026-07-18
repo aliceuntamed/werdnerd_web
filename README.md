@@ -6,12 +6,12 @@ Lexicon for Logophiles
 A chrome‑cinematic playground for words, puzzles, curiosity, and linguistic delight.  
 WerdNerd blends expressive UI, playful mechanics, and a modular TypeScript architecture to create a unified, tactile experience across:
 
-- Word Vault (tag‑driven archive of weird + wonderful words)
+- Werd Vault (tag‑driven archive of weird + wonderful words)
 - Games (Boggle, Wordle, Word Search, Trivia, Hangman, Codenames)
 - About Page (mission, vision, values, contact, and FAQs)
 - Fun Facts & Brain Teasers
 - Creator's Playground (Typography & Color Palette)
-- User Interaction(Submit Word, Spin the Wheel)
+- User Interaction(Submit werd, Spin the Wheel)
 
 Built with:
 
@@ -25,7 +25,7 @@ Built with:
 
 ## 🚀 Features
 
-### **Word Vault**
+### **Werd Vault**
 
 - Fully typed Werd schema
 - Tag cloud filtering
@@ -39,7 +39,7 @@ Built with:
 - Lazy‑loaded routes
 - Unified aesthetic across all puzzles
 
-### **Submit Word**
+### **Submit werd**
 
 - Fully typed insert pipeline
 - Validation + Supabase integration

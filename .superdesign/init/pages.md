@@ -26,7 +26,7 @@ Actual render branch:
 
 - The page always renders a `main` element with full width/min-height dark vertical gradient and top/bottom padding.
 - Inside is a centered `max-w-3xl` column.
-- Header: chrome gradient H1 "Submit a Word".
+- Header: chrome gradient H1 "Submit a werd".
 - Paragraph: "Add a new entry to the archive. Every submission helps expand the vault."
 - Form is a vertical stack.
 - Tag chips only render if fetched tags are available.
@@ -41,7 +41,7 @@ Dependencies include `Hero`, `WOTD`, `SpinTheVault`, `CuratedPicks`, `QuickBrows
 
 Entry: `src/pages/WerdVault/WerdVaultPage.tsx`
 
-Dependencies include `VaultHero`, `SearchBar`, word cards/tag cloud, `WerdVault.css`, global shell.
+Dependencies include `VaultHero`, `SearchBar`, werd cards/tag cloud, `WerdVault.css`, global shell.
 
 ## `/about` About
 

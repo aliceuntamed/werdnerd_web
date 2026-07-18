@@ -76,11 +76,11 @@ export default function SubmitWerdForm() {
   return (
     <form onSubmit={handleSubmit} className="submit-werd-form">
       <div className="submit-werd-form__field submit-werd-form__field--wide">
-        <label htmlFor="submit-werd-word">
+        <label htmlFor="submit-werd-werd">
           <span>01.</span> The Werd
         </label>
         <input
-          id="submit-werd-word"
+          id="submit-werd-werd"
           value={werd}
           onChange={(e) => setWerd(e.target.value)}
           required

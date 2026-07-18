@@ -34,7 +34,7 @@ export function AboutCreator() {
                 Hi, I&rsquo;m Stephanie, the human behind WerdNerd. 👽 I&rsquo;m
                 a designer with a soft spot for life&rsquo;s peculiarities,
                 especially the strange little wonders hiding in the English
-                language. I built this digital lexicon to be part word vault,
+                language. I built this digital lexicon to be part werd vault,
                 part curiosity cabinet, and part excuse to collect and share my
                 favorite oddities.
               </p>
@@ -90,7 +90,7 @@ export function AboutCreator() {
         </div>
         <div className="about-notes__copy">
           <p>
-            Part word-hoard, part playground, part love letter to language.
+            Part werd-hoard, part playground, part love letter to language.
           </p>
           <p>
             The useful kind of nerdy: obscure enough to sparkle, clear enough to

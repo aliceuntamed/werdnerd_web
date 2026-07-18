@@ -44,14 +44,14 @@ All routes share the global `Navigation` and `Footer` from `src/App.tsx`.
 
 `/submit` currently renders a simple dark gradient page with:
 
-- H1 "Submit a Word"
+- H1 "Submit a werd"
 - short intro paragraph
 - `SubmitWerdForm`
-- form fields: word, definition, pronunciation, part of speech, tag chips, status messages, submit button
+- form fields: werd, definition, pronunciation, part of speech, tag chips, status messages, submit button
 
 Blueprint intent adds:
 
 - tag selection
 - recent community gems
 - typed submission payload/form flow
-- "What Makes a Good Vault Word?" guidance with rare/obscure, poetically precise, phonically satisfying, emotionally resonant criteria
+- "What Makes a Good Vault Werd?" guidance with rare/obscure, poetically precise, phonically satisfying, emotionally resonant criteria

@@ -10,8 +10,8 @@ ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Tags are viewable by everyone" ON tags
 FOR SELECT USING (true);
 
--- Werd_tags: Allow everyone to read word-tag relationships
-CREATE POLICY "Word-tag relationships are viewable by everyone" ON werd_tags
+-- Werd_tags: Allow everyone to read werd-tag relationships
+CREATE POLICY "werd-tag relationships are viewable by everyone" ON werd_tags
 FOR SELECT USING (true);
 
 -- Favorites: Users can only see/modify their own favorites

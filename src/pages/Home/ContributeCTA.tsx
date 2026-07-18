@@ -15,11 +15,11 @@ export default function ContributeCTA() {
         <div>
           <p className="home-eyebrow">A note from the collector</p>
           <h2 className="home-section-title">
-            “Part word vault, part curiosity cabinet, and part excuse to collect
+            “Part werd vault, part curiosity cabinet, and part excuse to collect
             favorite oddities.”
           </h2>
           <p className="home-section-copy contribute-copy">
-            Found a word that makes your brain tingle? Share it with the
+            Found a werd that makes your brain tingle? Share it with the
             WerdNerd community.
           </p>
 

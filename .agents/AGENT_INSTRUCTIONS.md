@@ -58,6 +58,25 @@ Always flag meaningful documentation mismatches briefly instead of silently gues
 - The app currently uses local component state and feature hooks; no global state library is installed.
 - Use existing feature-local hooks (`src/hooks/`) before introducing new shared state.
 
+### Werd vs. Word
+
+- Use **Werd/Werds** for WerdNerd domain concepts: Vault entries, specimens, submissions, collections, and branded feature copy.
+- Use **word/words** for ordinary language, definitions, quotations, established linguistic terms, and game terminology such as Word Search.
+- Use **WOTD** for code identifiers and internal labels.
+- User-facing copy may spell out **Word of the Day** when that is clearer.
+- Apply judgment to expressive copy; do not mechanically replace every occurrence of “word.”
+
+Examples:
+
+- “Submit a Werd”
+- “Explore related Werds”
+- “A Werd from the Vault”
+- “Word Search”
+- “A lover of words”
+- “Words are slippery little beasts”
+- `flipwords.tsx`
+- `getWOTD`, `WOTD`, and `wotd-*`
+
 ## 4) Build Approach
 
 - Prefer small, incremental changes over large rewrites.
