@@ -1,5 +1,8 @@
 {
   "files.autoSave": "onFocusChange",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "editor.wordWrap": "on",
   "vite.https": true,
   "editor.formatOnSave": true,
@@ -9,7 +12,11 @@
   "builder.autoDetectDevServer": true,
   "builder.launchType": "desktop",
   "component-preview.devServerUrl": "http://localhost:5173",
-  "editor.defaultFormatter": "openai.chatgpt",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.requireConfig": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.showToolbar": "onHover",
+  "github.copilot.nextEditSuggestions.enabled": true,
   "search.exclude": {
     "**/*.code-search": false,
     "**/bower_components": false,
@@ -18,40 +25,24 @@
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "colorize.colorized_colors": [
-    "BROWSERS_COLORS",
-    "HEXA",
-    "RGB",
-    "HSL",
-    "OKLAB",
-    "OKLCH"
-  ],
+  "colorize.colorized_colors": ["BROWSERS_COLORS", "HEXA", "RGB", "HSL", "OKLAB", "OKLCH"],
   "auto-correct.dictionary": [
-
     {
-      "languages": [
-        "*"
-      ],
+      "languages": ["*"],
       "words": {},
       "useLargeList": false
     },
     {
-      "languages": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-      ],
+      "languages": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
       "words": {
         "cosnt": "const",
         "functoin": "function"
       }
     }
-],
-"chatgpt.followUpQueueMode": "steer",
-"colorize.hide_current_line_decorations": false,
-"colorize.include": [
-
+  ],
+  "chatgpt.followUpQueueMode": "steer",
+  "colorize.hide_current_line_decorations": false,
+  "colorize.include": [
     "**/*.css",
     "**/*.scss",
     "**/*.sass",
@@ -62,7 +53,14 @@
     "**/*.ts",
     "**/*.jsx",
     "**/*.md"
-
-],
-"notebook.diff.experimental.toggleInline": true
+  ],
+  "notebook.diff.experimental.toggleInline": true,
+  "editor.autoIndentOnPaste": true,
+  "editor.codeActions.triggerOnFocusChange": true,
+  "editor.lightbulb.enabled": "on",
+  "editor.quickSuggestions": {
+    "other": "offWhenInlineCompletions",
+    "comments": "off",
+    "strings": "on"
+  }
 }
