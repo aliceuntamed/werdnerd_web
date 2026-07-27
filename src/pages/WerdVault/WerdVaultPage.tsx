@@ -89,7 +89,7 @@ export default function WerdVaultPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTag = searchParams.get("tag");
   const query = searchParams.get("search") ?? "";
-  const { werds, loading } = useWerds();
+  const { werds, loading, error } = useWerds();
 
   const allTags = useMemo(() => Array.from(new Set(werds.flatMap((werd) => werd.tags.map(normalizeTag)))).sort(), [werds]);
   const filteredWerds = useMemo(() => {
@@ -159,6 +159,7 @@ export default function WerdVaultPage() {
         </div>
 
         {loading ? <div className="vault-state"><LoadingScreen fullScreen={false} message="Unlatching the cabinets…" size={64} speed={2.4} /></div>
+          : error ? <div className="vault-state" role="alert"><span>VAULT CONNECTION LOST</span><h3>The catalog could not be opened.</h3><p>{error.message}</p><button type="button" onClick={() => window.location.reload()}>Try again</button></div>
           : groups.length && filteredWerds.length ? <div className="vault-shelves">{groups.map((group) => <WerdTagShelf key={group.tag} {...group} />)}</div>
           : <div className="vault-state"><span>FILE NOT FOUND</span><h3>That specimen escaped.</h3><p>Try a broader search or clear the active shelf. Words are slippery little beasts.</p><button type="button" onClick={() => setSearchParams({})}>Reset the index</button></div>}
       </section>

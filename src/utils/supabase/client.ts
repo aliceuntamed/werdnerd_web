@@ -1,4 +1,5 @@
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
+import type { Database } from '../../types/database'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseKey =
@@ -10,7 +11,7 @@ if (!supabaseUrl || !supabaseKey) {
   )
 }
 
-export const supabase = createSupabaseClient(
+export const supabase = createSupabaseClient<Database>(
   supabaseUrl ?? 'https://placeholder.supabase.co',
   supabaseKey ?? 'placeholder',
 )
