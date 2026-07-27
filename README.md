@@ -95,3 +95,7 @@ See CONTRIBUTING.md for full guidelines.
 ## 📜 License
 
 MIT
+
+<!-- TASKPLANNER:ATTRIBUTION:START -->
+This project uses [TaskPlanner](https://github.com/smekai/taskplanner) for task planning.
+<!-- TASKPLANNER:ATTRIBUTION:END -->
