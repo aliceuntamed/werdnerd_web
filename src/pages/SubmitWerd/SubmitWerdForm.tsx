@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "../../utils/supabase/client";
-import { fetchTags } from "../../utils/supabase/queries";
-
-type AvailableTag = {
-  tag_id: string;
-  tag_name?: string;
-  name?: string;
-};
+import type { TagRow } from "../../types/werd";
+import {
+  createWerdWithTags,
+  fetchTags,
+} from "../../utils/supabase/queries";
 
 export default function SubmitWerdForm() {
   const [werd, setWerd] = useState("");
   const [definition, setDefinition] = useState("");
   const [pronunciation, setPronunciation] = useState("");
   const [partOfSpeech, setPartOfSpeech] = useState("");
-  const [availableTags, setAvailableTags] = useState<AvailableTag[]>([]);
+  const [availableTags, setAvailableTags] = useState<TagRow[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -22,7 +20,10 @@ export default function SubmitWerdForm() {
   useEffect(() => {
     fetchTags()
       .then((tags) => setAvailableTags(tags ?? []))
-      .catch(console.error);
+      .catch((error: unknown) => {
+        console.error(error);
+        setErrorMessage("The tag catalog could not be loaded.");
+      });
   }, []);
 
   function toggleTag(tagId: string) {
@@ -38,26 +39,15 @@ export default function SubmitWerdForm() {
     if (!werd.trim()) return;
 
     setStatus("submitting");
+    setErrorMessage(null);
     try {
-      const { data: newWerd, error } = await supabase
-        .from("werds")
-        .insert({
-          werd: werd.trim(),
-          definition: definition.trim() || null,
-          pronunciation: pronunciation.trim() || null,
-          part_of_speech: partOfSpeech.trim() || null,
-        })
-        .select()
-        .single();
-
-      if (error) throw error;
-
-      for (const tagId of selectedTags) {
-        await supabase.from("werd_tags").insert({
-          werd_id: newWerd.werd_id,
-          tag_id: tagId,
-        });
-      }
+      await createWerdWithTags({
+        werd: werd.trim(),
+        definition: definition.trim() || null,
+        pronunciation: pronunciation.trim() || null,
+        part_of_speech: partOfSpeech.trim() || null,
+        tagIds: selectedTags,
+      });
 
       setWerd("");
       setDefinition("");
@@ -67,11 +57,14 @@ export default function SubmitWerdForm() {
       setStatus("success");
     } catch (err) {
       console.error(err);
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "Something went sideways. Please try again.",
+      );
       setStatus("error");
     }
   }
-
-  const tagLabel = (tag: AvailableTag) => tag.tag_name ?? tag.name ?? "";
 
   return (
     <form onSubmit={handleSubmit} className="submit-werd-form">
@@ -144,7 +137,7 @@ export default function SubmitWerdForm() {
                   aria-pressed={isSelected}
                   className={isSelected ? "is-selected" : undefined}
                 >
-                  {tagLabel(tag)}
+                  {tag.tag_name}
                 </button>
               );
             })}
@@ -164,7 +157,7 @@ export default function SubmitWerdForm() {
         )}
         {status === "error" && (
           <p className="submit-werd-form__status-message submit-werd-form__status-message--error">
-            Something went sideways. Please try again.
+            {errorMessage ?? "Something went sideways. Please try again."}
           </p>
         )}
       </div>

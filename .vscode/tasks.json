@@ -1,0 +1,128 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm: dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Start the Vite development server."
+    },
+    {
+      "label": "npm: build",
+      "type": "shell",
+      "command": "npm run build",
+      "problemMatcher": [],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Build the app for production."
+    },
+    {
+      "label": "npm: lint",
+      "type": "shell",
+      "command": "npm run lint",
+      "problemMatcher": [],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Run ESLint across the project."
+    },
+    {
+      "label": "npm: preview",
+      "type": "shell",
+      "command": "npm run preview",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Preview the production build locally."
+    },
+    {
+      "label": "npm: werds:enrich",
+      "type": "shell",
+      "command": "npm run werds:enrich",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Enrich Werd data from sources without writing workbook changes."
+    },
+    {
+      "label": "npm: werds:enrich:write",
+      "type": "shell",
+      "command": "npm run werds:enrich:write",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Enrich Werd data and write workbook changes."
+    },
+    {
+      "label": "npm: werds:dry-run",
+      "type": "shell",
+      "command": "npm run werds:dry-run",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Run the Werd import scripts in dry-run mode."
+    },
+    {
+      "label": "npm: werds:import",
+      "type": "shell",
+      "command": "npm run werds:import",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "clear": false
+      },
+      "detail": "Import Werd data from Excel."
+    }
+  ]
+}
