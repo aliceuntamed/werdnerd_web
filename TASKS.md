@@ -12,26 +12,22 @@
 
 ## Now
 
-_No active task._
-
-## Next
-
 ## TASK-003: Finish Submit a Werd as a safe end-to-end pipeline
 **Priority:** P0
 **Updated:** 2026-07-26 22:31
 
-The redesigned page exists, but submission logic still writes directly from the form, has minimal validation, does not detect duplicates, ignores tag-link insert errors, and displays hard-coded recent gems.
+The redesigned page and typed mutation helper exist. Finish the database-backed duplicate guarantee and moderation decision, then verify the complete flow against the restored Supabase project.
 
 ### Checklist
 
 - [ ] Decide whether community submissions enter the public Vault immediately or enter a pending moderation state; use pending by default if no product reason requires instant publication.
-- [ ] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
-- [ ] Normalize whitespace/casing and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
+- [x] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
+- [x] Normalize whitespace and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
 - [ ] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
-- [ ] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
-- [ ] Handle tag-loading errors separately from an empty tag list.
-- [ ] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
-- [ ] Show specific accessible success/error feedback and prevent accidental double submission.
+- [x] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
+- [x] Handle tag-loading errors separately from an empty tag list.
+- [x] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
+- [x] Show specific accessible success/error feedback and prevent accidental double submission.
 - [ ] Test success, duplicate, invalid input, permission failure, tag failure, offline/network failure, and mobile keyboard behavior.
 
 ### Done when
@@ -40,9 +36,7 @@ A real user can submit a valid Werd without creating duplicates, orphaned rows, 
 
 ---
 
-## Later
-
-Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
+## Next
 
 ## TASK-004: Complete the core Vault discovery loop
 **Priority:** P1
@@ -52,10 +46,10 @@ Basic Vault search, combined tag filtering, and `/werd/:slug` are already implem
 
 ### Checklist
 
-- [ ] Link WOTD, Spin the Vault, and Curated Picks directly to `/werd/:slug` instead of routing through a Vault search result.
+- [x] Link WOTD, Spin the Vault, and Curated Picks directly to `/werd/:slug` instead of routing through a Vault search result.
 - [ ] Add related Werds based on shared tags to the detail page.
 - [ ] Preserve combined `search` and `tag` URL state, and make tag matching consistently normalized/case-insensitive.
-- [ ] Add an error state to `useWerds()` so network failures do not look like an empty Vault.
+- [x] Add an error state to `useWerds()` and its detail consumer so network failures do not look like an empty Vault or missing specimen.
 - [ ] Decide whether simple substring search is sufficient for the current data size; add lightweight fuzzy matching only if real searches demonstrate the need.
 - [ ] Add a dedicated WOTD destination only if the detail route does not satisfy the editorial experience.
 - [ ] Add the synonym flip interaction only after synonym data is present and typed.
@@ -66,6 +60,10 @@ Basic Vault search, combined tag filtering, and `/werd/:slug` are already implem
 Every Home discovery entry opens a stable specimen page, related Werds continue the browsing loop, and loading/empty/error states are distinguishable.
 
 ---
+
+## Later
+
+Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
 
 ## TASK-005: Ship the missing Fun Facts feature
 **Priority:** P1
@@ -236,7 +234,7 @@ The new PC has no local `.env.local`. The app currently builds by falling back t
 
 ### Checklist
 
-- [x] Create an ignored `.env.local` with `VITE_SUPABASE_URL` and the public publishable key (or legacy anon key); never use a service-role or secret key in the browser.
+- [ ] Restore the ignored `.env.local` lost during the PC repair with `VITE_SUPABASE_URL` and the public publishable key (or legacy anon key); never use a service-role or secret key in the browser.
 - [x] Run `npm install` if this checkout has not already been installed, then start `npm run dev`.
 - [ ] Confirm the missing-Supabase-environment warning is gone.
 - [x] Smoke-test Home data, WOTD, Spin the Vault, Vault search/tag shelves, one Werd detail page, Submit Werd tag loading, login, signup, sign-out, and password-reset email.
@@ -246,6 +244,10 @@ The new PC has no local `.env.local`. The app currently builds by falling back t
 ### Done when
 
 The app can be run on this PC with real development data, and the exact failing backend flows—if any—are known.
+
+### Recovery note
+
+The ignored local environment file was lost during the 2026-08 PC repair. The prior live verification remains useful history, but the current checkout must be reconnected before Supabase behavior can be verified again.
 
 ---
 

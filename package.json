@@ -46,6 +46,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "vitest run --browser.enabled=false --environment=node",
     "preview": "vite preview",
     "werds:enrich": "node scripts/enrich-werds-from-sources.mjs",
     "werds:enrich:write": "node scripts/enrich-werds-from-sources.mjs --write-workbook",

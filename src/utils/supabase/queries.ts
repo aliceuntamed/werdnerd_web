@@ -23,6 +23,7 @@ export class SupabaseDataError extends Error {
     super(
       failure.code === "AUTH_REQUIRED" ||
         failure.code === "INVALID_TAG" ||
+        failure.code === "DUPLICATE_WERD" ||
         failure.code === "PARTIAL_SUBMISSION"
         ? failure.message
         : `Unable to ${operation}. Please try again.`,
@@ -208,6 +209,26 @@ export async function createWerdWithTags({
   }
 
   const normalizedWerd = input.werd?.trim() ?? "";
+  const { data: possibleDuplicates, error: duplicateError } = await supabase
+    .from("werds")
+    .select("werd_id, werd")
+    .ilike("werd", normalizedWerd)
+    .limit(10);
+
+  if (duplicateError) throw dataError(operation, duplicateError);
+  const duplicate = possibleDuplicates.some(
+    (candidate) =>
+      candidate.werd?.trim().toLocaleLowerCase() ===
+      normalizedWerd.toLocaleLowerCase(),
+  );
+
+  if (duplicate) {
+    throw new SupabaseDataError(operation, {
+      message: "That Werd is already cataloged. Try searching the Vault first.",
+      code: "DUPLICATE_WERD",
+    });
+  }
+
   const { data: createdWerd, error: werdError } = await supabase
     .from("werds")
     .insert({

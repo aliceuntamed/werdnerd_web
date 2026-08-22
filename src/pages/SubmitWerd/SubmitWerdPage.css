@@ -389,6 +389,32 @@
   font-size: 0.82rem;
 }
 
+.submit-werd-form__tag-note p {
+  margin: 0 0 0.65rem;
+}
+
+.submit-werd-form__tag-note button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #00c8ff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.submit-werd-form__field-error {
+  margin: 0.45rem 0 0;
+  color: #ff7aa7;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.submit-werd-form :is(input, textarea)[aria-invalid="true"] {
+  border-color: rgba(255, 122, 167, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 122, 167, 0.1);
+}
+
 .submit-werd-form__status {
   min-height: 1.2rem;
 }
@@ -584,6 +610,15 @@
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.28em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.recent-gems__disclaimer {
+  margin: -0.4rem 0 1.4rem;
+  color: rgba(239, 239, 237, 0.52);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
   text-align: center;
   text-transform: uppercase;
 }

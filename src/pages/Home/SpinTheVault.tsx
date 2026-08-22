@@ -4,20 +4,24 @@ import { ArrowUpRight, Shuffle } from "lucide-react";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { getRandomWerd } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
+import { werdPath } from "../WerdVault/werdSlug";
 
 export default function SpinTheVault() {
   const [werd, setWerd] = useState<Werd | null>(null);
   const [loading, setLoading] = useState(false);
   const [spun, setSpun] = useState(false);
+  const [error, setError] = useState(false);
 
   async function spin() {
     setLoading(true);
     setSpun(true);
+    setError(false);
     try {
       const random = await getRandomWerd();
       setWerd(random);
     } catch {
       setWerd(null);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -41,6 +45,12 @@ export default function SpinTheVault() {
           {!spun && !loading && (
             <div className="spin-empty">
               <small>Press spin to pull a random werd from the vault.</small>
+            </div>
+          )}
+
+          {!loading && error && (
+            <div className="spin-empty" role="alert">
+              <small>The Vault did not answer. Please spin again.</small>
             </div>
           )}
 
@@ -70,7 +80,7 @@ export default function SpinTheVault() {
               <p className="spin-definition">{werd.definition}</p>
 
               <Link
-                to={`/vault?search=${encodeURIComponent(werd.werd)}`}
+                to={werdPath(werd.werd)}
                 className="home-link"
               >
                 See full werd
