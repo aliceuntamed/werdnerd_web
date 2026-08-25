@@ -62,8 +62,8 @@ export default function SubmitWerdPage() {
               Submit a Werd
             </h1>
             <p className="submit-werd-page__lede">
-              Add your peculiar discoveries to the Curiosity Cabinet. Each entry
-              expands our collective archive of linguistic rarities.
+              Send your peculiar discoveries to the Curiosity Cabinet. Each entry
+              waits safely at the archive desk until it has been reviewed.
             </p>
           </div>
 

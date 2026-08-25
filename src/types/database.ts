@@ -299,6 +299,7 @@ export type Database = {
           pronunciation: string | null
           source_1: string | null
           source_2: string | null
+          submission_status: Database["public"]["Enums"]["werd_submission_status"]
           tags: string | null
           werd: string | null
           werd_id: string
@@ -315,6 +316,7 @@ export type Database = {
           pronunciation?: string | null
           source_1?: string | null
           source_2?: string | null
+          submission_status?: Database["public"]["Enums"]["werd_submission_status"]
           tags?: string | null
           werd?: string | null
           werd_id?: string
@@ -331,6 +333,7 @@ export type Database = {
           pronunciation?: string | null
           source_1?: string | null
           source_2?: string | null
+          submission_status?: Database["public"]["Enums"]["werd_submission_status"]
           tags?: string | null
           werd?: string | null
           werd_id?: string
@@ -5479,6 +5482,7 @@ export type Database = {
         | "translations"
         | "obsolete"
         | "poetic"
+      werd_submission_status: "pending" | "published" | "rejected"
     }
     CompositeTypes: {
       addbandarg: {
@@ -5693,6 +5697,7 @@ export const Constants = {
         "obsolete",
         "poetic",
       ],
+      werd_submission_status: ["pending", "published", "rejected"],
     },
   },
 } as const

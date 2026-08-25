@@ -28,6 +28,7 @@ export const ROUTES = {
   LOGIN: "/auth/login",
   SIGNUP: "/auth/signup",
   RESET_PASSWORD: "/auth/reset-password",
+  UPDATE_PASSWORD: "/auth/update-password",
 
   // Utility/future pages
   SETTINGS: "/settings",
@@ -60,6 +61,7 @@ const NotFoundPage = lazy(() => import("./pages/NotFound/NotFoundPage"));
 const LoginPage = lazy(() => import("./pages/Auth/LoginPage"));
 const SignupPage = lazy(() => import("./pages/Auth/SignupPage"));
 const ResetPasswordPage = lazy(() => import("./pages/Auth/ResetPasswordPage"));
+const UpdatePasswordPage = lazy(() => import("./pages/Auth/UpdatePasswordPage"));
 
 // ---------------------------------------------
 // 2. Route -> Component registry
@@ -88,6 +90,7 @@ export const ROUTE_COMPONENTS: Record<string, RouteComponent> = {
   [ROUTES.LOGIN]: LoginPage,
   [ROUTES.SIGNUP]: SignupPage,
   [ROUTES.RESET_PASSWORD]: ResetPasswordPage,
+  [ROUTES.UPDATE_PASSWORD]: UpdatePasswordPage,
 
   [ROUTES.SETTINGS]: SettingsPage,
   [ROUTES.NOT_FOUND]: NotFoundPage,

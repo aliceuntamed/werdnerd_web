@@ -71,6 +71,11 @@ grant update (
   last_modified
 ) on table public.werds to authenticated;
 
+-- Status columns are writable at the grant layer so moderation policies can
+-- distinguish contributors from admins. RLS still prevents self-publishing.
+grant update (submission_status, is_curated)
+  on table public.werds to authenticated;
+
 grant delete on table public.werds to authenticated;
 
 grant insert (werd_id, tag_id, werd, tag)
@@ -139,39 +144,117 @@ end
 $$;
 
 -- Werd catalog and authenticated community contributions.
-create policy werds_read_public
+create policy werds_read_published_anon
 on public.werds for select
-to anon, authenticated
-using (true);
+to anon
+using (submission_status = 'published');
+
+create policy werds_read_authenticated
+on public.werds for select
+to authenticated
+using (
+  submission_status = 'published'
+  or (select auth.uid()) = created_by
+  or exists (
+    select 1
+    from public.users
+    where users.user_id = (select auth.uid())
+      and users.is_admin = true
+  )
+);
 
 create policy werds_insert_owner
 on public.werds for insert
 to authenticated
 with check (
   (select auth.uid()) = created_by
+  and submission_status = 'pending'
   and coalesce(is_curated, false) = false
 );
 
-create policy werds_update_owner
+create policy werds_update_authenticated
 on public.werds for update
 to authenticated
-using ((select auth.uid()) = created_by)
-with check ((select auth.uid()) = created_by);
+using (
+  (
+    (select auth.uid()) = created_by
+    and submission_status = 'pending'
+  )
+  or exists (
+    select 1
+    from public.users
+    where users.user_id = (select auth.uid())
+      and users.is_admin = true
+  )
+)
+with check (
+  (
+    (select auth.uid()) = created_by
+    and submission_status = 'pending'
+    and coalesce(is_curated, false) = false
+  )
+  or exists (
+    select 1
+    from public.users
+    where users.user_id = (select auth.uid())
+      and users.is_admin = true
+  )
+);
 
-create policy werds_delete_owner
+create policy werds_delete_authenticated
 on public.werds for delete
 to authenticated
-using ((select auth.uid()) = created_by);
+using (
+  (
+    (select auth.uid()) = created_by
+    and submission_status = 'pending'
+  )
+  or exists (
+    select 1
+    from public.users
+    where users.user_id = (select auth.uid())
+      and users.is_admin = true
+  )
+);
 
 create policy tags_read_public
 on public.tags for select
 to anon, authenticated
 using (true);
 
-create policy werd_tags_read_public
+-- werd_tags repeats Werd text, so it follows the parent submission's visibility.
+create policy werd_tags_read_published_anon
 on public.werd_tags for select
-to anon, authenticated
-using (true);
+to anon
+using (
+  exists (
+    select 1
+    from public.werds
+    where werds.werd_id = werd_tags.werd_id
+      and werds.submission_status = 'published'
+  )
+);
+
+create policy werd_tags_read_authenticated
+on public.werd_tags for select
+to authenticated
+using (
+  exists (
+    select 1
+    from public.werds
+    where werds.werd_id = werd_tags.werd_id
+      and (
+        werds.submission_status = 'published'
+        or werds.created_by = (select auth.uid())
+      )
+  )
+  or exists (
+    select 1
+    from public.users
+    where users.user_id = (select auth.uid())
+      and users.is_admin = true
+  )
+);
 
 create policy werd_tags_insert_owner
 on public.werd_tags for insert
@@ -182,6 +265,7 @@ with check (
     from public.werds
     where werds.werd_id = werd_tags.werd_id
       and werds.created_by = (select auth.uid())
+      and werds.submission_status = 'pending'
       and werds.werd = werd_tags.werd
   )
   and exists (
@@ -201,6 +285,7 @@ using (
     from public.werds
     where werds.werd_id = werd_tags.werd_id
       and werds.created_by = (select auth.uid())
+      and werds.submission_status = 'pending'
   )
 );
 

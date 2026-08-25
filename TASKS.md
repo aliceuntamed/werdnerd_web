@@ -14,16 +14,16 @@
 
 ## TASK-003: Finish Submit a Werd as a safe end-to-end pipeline
 **Priority:** P0
-**Updated:** 2026-07-26 22:31
+**Updated:** 2026-08-21
 
 The redesigned page and typed mutation helper exist. Finish the database-backed duplicate guarantee and moderation decision, then verify the complete flow against the restored Supabase project.
 
 ### Checklist
 
-- [ ] Decide whether community submissions enter the public Vault immediately or enter a pending moderation state; use pending by default if no product reason requires instant publication.
+- [x] Send community submissions into a pending moderation state; only published entries appear in public discovery.
 - [x] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
 - [x] Normalize whitespace and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
-- [ ] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
+- [x] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
 - [x] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
 - [x] Handle tag-loading errors separately from an empty tag list.
 - [x] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
@@ -95,7 +95,7 @@ Email signup/login/sign-out and reset-email requests exist, but the Auth pages a
 ### Checklist
 
 - [ ] Verify signup confirmation, login, session restoration, sign-out, and recovery redirects against the real Supabase project.
-- [ ] Add the post-email password update screen required to complete recovery.
+- [x] Add the post-email password update screen required to complete recovery.
 - [ ] Restyle Auth screens to the WerdNerd system with accessible labels, pending states, and safe user-facing errors.
 - [ ] Define the minimum profile schema the UI actually needs and add a profile route.
 - [ ] Add typed favorites helpers or `useFavorites()` with fetch, toggle, optimistic reconciliation, and rollback on error.
@@ -234,9 +234,9 @@ The new PC has no local `.env.local`. The app currently builds by falling back t
 
 ### Checklist
 
-- [ ] Restore the ignored `.env.local` lost during the PC repair with `VITE_SUPABASE_URL` and the public publishable key (or legacy anon key); never use a service-role or secret key in the browser.
+- [x] Restore the ignored `.env.local` lost during the PC repair with `VITE_SUPABASE_URL` and the public publishable key (or legacy anon key); never use a service-role or secret key in the browser.
 - [x] Run `npm install` if this checkout has not already been installed, then start `npm run dev`.
-- [ ] Confirm the missing-Supabase-environment warning is gone.
+- [x] Confirm the missing-Supabase-environment warning is gone.
 - [x] Smoke-test Home data, WOTD, Spin the Vault, Vault search/tag shelves, one Werd detail page, Submit Werd tag loading, login, signup, sign-out, and password-reset email.
 - [ ] Confirm Supabase Auth redirect URLs include the local Vite URL and the production domain.
 - [ ] Record any runtime/schema errors as scoped follow-up notes under TASK-002 or TASK-003 instead of switching to unrelated UI polish.

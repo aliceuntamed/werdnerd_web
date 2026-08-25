@@ -228,7 +228,7 @@ export default function SubmitWerdForm() {
       <div className="submit-werd-form__status submit-werd-form__field--wide">
         {status === "success" && (
           <p className="submit-werd-form__status-message submit-werd-form__status-message--success">
-            Werd submitted successfully.
+            Werd submitted for review. We&apos;ll keep it safely filed while it awaits curation.
           </p>
         )}
         {status === "error" && (
@@ -241,7 +241,7 @@ export default function SubmitWerdForm() {
       <div className="submit-werd-form__actions submit-werd-form__field--wide">
         <button type="submit" disabled={status === "submitting"}>
           <span>
-            {status === "submitting" ? "Cataloging..." : "Catalog into the Vault"}
+            {status === "submitting" ? "Submitting..." : "Submit for Review"}
           </span>
         </button>
       </div>

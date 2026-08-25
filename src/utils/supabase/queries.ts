@@ -121,7 +121,10 @@ function mapWerd(row: WerdQueryRow): Werd {
 }
 
 export async function fetchWerds(): Promise<Werd[]> {
-  const { data, error } = await supabase.from("werds").select(WERD_SELECT);
+  const { data, error } = await supabase
+    .from("werds")
+    .select(WERD_SELECT)
+    .eq("submission_status", "published");
 
   if (error) throw dataError("load the WerdVault", error);
   return data.map(mapWerd);
@@ -131,6 +134,7 @@ export async function fetchCuratedWerds(): Promise<Werd[]> {
   const { data, error } = await supabase
     .from("werds")
     .select(WERD_SELECT)
+    .eq("submission_status", "published")
     .eq("is_curated", true)
     .limit(6);
 
@@ -149,7 +153,10 @@ export async function fetchTags(): Promise<TagRow[]> {
 }
 
 export async function getRandomWerd(): Promise<Werd | null> {
-  const { data, error } = await supabase.from("werds").select(WERD_SELECT);
+  const { data, error } = await supabase
+    .from("werds")
+    .select(WERD_SELECT)
+    .eq("submission_status", "published");
 
   if (error) throw dataError("spin the Vault", error);
   if (data.length === 0) return null;
@@ -158,7 +165,10 @@ export async function getRandomWerd(): Promise<Werd | null> {
 }
 
 export async function getWOTD(): Promise<Werd | null> {
-  const { data, error } = await supabase.from("werds").select(WERD_SELECT);
+  const { data, error } = await supabase
+    .from("werds")
+    .select(WERD_SELECT)
+    .eq("submission_status", "published");
 
   if (error) throw dataError("load the Word of the Day", error);
   if (data.length === 0) return null;
@@ -180,6 +190,19 @@ export async function createWerdWithTags({
 }: CreateWerdInput): Promise<Pick<WerdRow, "werd_id">> {
   const operation = "submit a Werd";
   const {
+    data: { session },
+    error: sessionError,
+  } = await supabase.auth.getSession();
+
+  if (sessionError) throw dataError(operation, sessionError);
+  if (!session) {
+    throw new SupabaseDataError(operation, {
+      message: "Please sign in before submitting a Werd.",
+      code: "AUTH_REQUIRED",
+    });
+  }
+
+  const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
@@ -187,7 +210,7 @@ export async function createWerdWithTags({
   if (userError) throw dataError(operation, userError);
   if (!user) {
     throw new SupabaseDataError(operation, {
-      message: "Please sign in before submitting a Werd.",
+      message: "Please sign in again before submitting a Werd.",
       code: "AUTH_REQUIRED",
     });
   }
@@ -235,10 +258,18 @@ export async function createWerdWithTags({
       ...input,
       werd: normalizedWerd,
       created_by: user.id,
+      submission_status: "pending",
     })
     .select("werd_id")
     .single();
 
+  if (werdError?.code === "23505") {
+    throw new SupabaseDataError(operation, {
+      message: "That Werd is already cataloged or awaiting review.",
+      code: "DUPLICATE_WERD",
+      details: werdError.details,
+    });
+  }
   if (werdError) throw dataError(operation, werdError);
 
   const links: TablesInsert<"werd_tags">[] = tags.map((tag) => ({
