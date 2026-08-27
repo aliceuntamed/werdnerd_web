@@ -19,8 +19,7 @@ alter default privileges for role postgres in schema public
   revoke execute on functions
   from public, anon, authenticated, service_role;
 
--- Remove legacy broad table grants, including the air_werds / werds_import
--- staging surfaces. Managed extension functions are owned by Supabase roles
+-- Remove legacy broad table grants. Managed extension functions are owned by Supabase roles
 -- and are reviewed separately by the security advisor.
 revoke all privileges on all tables in schema public from anon, authenticated;
 revoke all privileges on all sequences in schema public from anon, authenticated;
@@ -55,7 +54,8 @@ grant insert (
   source_1,
   source_2,
   origin,
-  created_by
+  created_by,
+  submission_status
 ) on table public.werds to authenticated;
 
 grant update (
@@ -110,7 +110,6 @@ alter table public.users enable row level security;
 alter table public.games enable row level security;
 alter table public.leaderboard enable row level security;
 alter table public.funfacts enable row level security;
-alter table public.werds_import enable row level security;
 
 -- Replace the overlapping legacy policies with one intentional policy set.
 do $$
@@ -129,8 +128,7 @@ begin
         'users',
         'games',
         'leaderboard',
-        'funfacts',
-        'werds_import'
+        'funfacts'
       ])
   loop
     execute format(
@@ -505,6 +503,105 @@ end;
 $$;
 
 revoke execute on function public.set_updated_at() from public, anon, authenticated;
+
+create or replace function public.set_werd_last_modified()
+returns trigger
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+begin
+  new.last_modified = now();
+  return new;
+end;
+$$;
+
+revoke all on function public.set_werd_last_modified() from public, anon, authenticated;
+
+drop trigger if exists set_werd_last_modified on public.werds;
+create trigger set_werd_last_modified
+before update on public.werds
+for each row execute function public.set_werd_last_modified();
+
+create or replace function public.submit_werd_with_tags(
+  p_werd text,
+  p_definition text,
+  p_tag_ids uuid[],
+  p_pronunciation text default null,
+  p_part_of_speech text default null
+)
+returns uuid
+language plpgsql
+security invoker
+set search_path = ''
+as $$
+declare
+  new_werd_id uuid;
+  normalized_werd text := btrim(p_werd);
+  distinct_tag_count integer;
+  matched_tag_count integer;
+  tag_list text;
+begin
+  if (select auth.uid()) is null then
+    raise sqlstate 'P0001' using message = 'AUTH_REQUIRED';
+  end if;
+
+  if normalized_werd = '' or nullif(btrim(p_definition), '') is null then
+    raise sqlstate 'P0001' using message = 'INVALID_WERD';
+  end if;
+
+  select count(distinct tag_id)
+  into distinct_tag_count
+  from unnest(coalesce(p_tag_ids, '{}'::uuid[])) tag_id;
+
+  select count(*), string_agg(t.tag_name, ',' order by t.tag_name)
+  into matched_tag_count, tag_list
+  from public.tags t
+  where t.tag_id in (
+    select distinct tag_id
+    from unnest(coalesce(p_tag_ids, '{}'::uuid[])) tag_id
+  );
+
+  if distinct_tag_count = 0 or matched_tag_count <> distinct_tag_count then
+    raise sqlstate 'P0001' using message = 'INVALID_TAG';
+  end if;
+
+  insert into public.werds (
+    werd,
+    definition,
+    pronunciation,
+    part_of_speech,
+    tags,
+    created_by,
+    submission_status
+  )
+  values (
+    normalized_werd,
+    btrim(p_definition),
+    nullif(btrim(p_pronunciation), ''),
+    nullif(btrim(p_part_of_speech), ''),
+    tag_list,
+    (select auth.uid()),
+    'pending'
+  )
+  returning werd_id into new_werd_id;
+
+  insert into public.werd_tags (werd_id, tag_id, werd, tag)
+  select new_werd_id, t.tag_id, normalized_werd, t.tag_name
+  from public.tags t
+  where t.tag_id in (
+    select distinct tag_id
+    from unnest(p_tag_ids) tag_id
+  );
+
+  return new_werd_id;
+end;
+$$;
+
+revoke all on function public.submit_werd_with_tags(text, text, uuid[], text, text)
+  from public, anon;
+grant execute on function public.submit_werd_with_tags(text, text, uuid[], text, text)
+  to authenticated;
 
 -- Bring accounts created before trigger installation into the profile table.
 insert into public.users (user_id, email, created_at)

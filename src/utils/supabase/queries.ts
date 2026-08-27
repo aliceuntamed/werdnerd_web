@@ -6,7 +6,6 @@ import type {
   WerdInsert,
   WerdRow,
 } from "../../types/werd";
-import type { TablesInsert } from "../../types/database";
 import { supabase } from "./client";
 
 type SupabaseFailure = Pick<Error, "message"> &
@@ -216,52 +215,17 @@ export async function createWerdWithTags({
   }
 
   const uniqueTagIds = [...new Set(tagIds)];
-  const { data: tags, error: tagsError } = uniqueTagIds.length
-    ? await supabase
-        .from("tags")
-        .select("tag_id, tag_name")
-        .in("tag_id", uniqueTagIds)
-    : { data: [] satisfies Pick<TagRow, "tag_id" | "tag_name">[], error: null };
-
-  if (tagsError) throw dataError(operation, tagsError);
-  if (tags.length !== uniqueTagIds.length) {
-    throw new SupabaseDataError(operation, {
-      message: "One or more selected tags are no longer available.",
-      code: "INVALID_TAG",
-    });
-  }
-
   const normalizedWerd = input.werd?.trim() ?? "";
-  const { data: possibleDuplicates, error: duplicateError } = await supabase
-    .from("werds")
-    .select("werd_id, werd")
-    .ilike("werd", normalizedWerd)
-    .limit(10);
-
-  if (duplicateError) throw dataError(operation, duplicateError);
-  const duplicate = possibleDuplicates.some(
-    (candidate) =>
-      candidate.werd?.trim().toLocaleLowerCase() ===
-      normalizedWerd.toLocaleLowerCase(),
+  const { data: werdId, error: werdError } = await supabase.rpc(
+    "submit_werd_with_tags",
+    {
+      p_werd: normalizedWerd,
+      p_definition: input.definition ?? "",
+      p_pronunciation: input.pronunciation ?? undefined,
+      p_part_of_speech: input.part_of_speech ?? undefined,
+      p_tag_ids: uniqueTagIds,
+    },
   );
-
-  if (duplicate) {
-    throw new SupabaseDataError(operation, {
-      message: "That Werd is already cataloged. Try searching the Vault first.",
-      code: "DUPLICATE_WERD",
-    });
-  }
-
-  const { data: createdWerd, error: werdError } = await supabase
-    .from("werds")
-    .insert({
-      ...input,
-      werd: normalizedWerd,
-      created_by: user.id,
-      submission_status: "pending",
-    })
-    .select("werd_id")
-    .single();
 
   if (werdError?.code === "23505") {
     throw new SupabaseDataError(operation, {
@@ -270,36 +234,14 @@ export async function createWerdWithTags({
       details: werdError.details,
     });
   }
+  if (werdError?.code === "P0001" && werdError.message === "INVALID_TAG") {
+    throw new SupabaseDataError(operation, {
+      message: "One or more selected tags are no longer available.",
+      code: "INVALID_TAG",
+      details: werdError.details,
+    });
+  }
   if (werdError) throw dataError(operation, werdError);
 
-  const links: TablesInsert<"werd_tags">[] = tags.map((tag) => ({
-    werd_id: createdWerd.werd_id,
-    tag_id: tag.tag_id,
-    werd: normalizedWerd,
-    tag: tag.tag_name,
-  }));
-
-  if (links.length > 0) {
-    const { error: linkError } = await supabase.from("werd_tags").insert(links);
-
-    if (linkError) {
-      const { error: cleanupError } = await supabase
-        .from("werds")
-        .delete()
-        .eq("werd_id", createdWerd.werd_id);
-
-      if (cleanupError) {
-        throw new SupabaseDataError(operation, {
-          message:
-            "The Werd was saved, but its tags were not. Please contact support before retrying.",
-          code: "PARTIAL_SUBMISSION",
-          details: `${linkError.code}: ${linkError.message}; cleanup: ${cleanupError.message}`,
-        });
-      }
-
-      throw dataError(operation, linkError);
-    }
-  }
-
-  return createdWerd;
+  return { werd_id: werdId };
 }

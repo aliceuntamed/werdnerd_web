@@ -10,40 +10,10 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.1"
+    PostgrestVersion: "14.17"
   }
   public: {
     Tables: {
-      air_werds: {
-        Row: {
-          definition: string | null
-          is_curated: boolean | null
-          language: string | null
-          part_of_speech: string | null
-          pronunciation: string | null
-          source: string | null
-          werd: string | null
-        }
-        Insert: {
-          definition?: string | null
-          is_curated?: boolean | null
-          language?: string | null
-          part_of_speech?: string | null
-          pronunciation?: string | null
-          source?: string | null
-          werd?: string | null
-        }
-        Update: {
-          definition?: string | null
-          is_curated?: boolean | null
-          language?: string | null
-          part_of_speech?: string | null
-          pronunciation?: string | null
-          source?: string | null
-          werd?: string | null
-        }
-        Relationships: []
-      }
       favorites: {
         Row: {
           created_at: string | null
@@ -337,51 +307,6 @@ export type Database = {
           tags?: string | null
           werd?: string | null
           werd_id?: string
-        }
-        Relationships: []
-      }
-      werds_import: {
-        Row: {
-          created_at: string | null
-          created_by: string | null
-          definition: string | null
-          is_curated: boolean | null
-          language: string | null
-          origin: string | null
-          part_of_speech: string | null
-          pronunciation: string | null
-          source_1: string | null
-          source_2: string | null
-          tags: string | null
-          werd: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          created_by?: string | null
-          definition?: string | null
-          is_curated?: boolean | null
-          language?: string | null
-          origin?: string | null
-          part_of_speech?: string | null
-          pronunciation?: string | null
-          source_1?: string | null
-          source_2?: string | null
-          tags?: string | null
-          werd?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          created_by?: string | null
-          definition?: string | null
-          is_curated?: boolean | null
-          language?: string | null
-          origin?: string | null
-          part_of_speech?: string | null
-          pronunciation?: string | null
-          source_1?: string | null
-          source_2?: string | null
-          tags?: string | null
-          werd?: string | null
         }
         Relationships: []
       }
@@ -5420,6 +5345,16 @@ export type Database = {
       st_wrapx: {
         Args: { geom: unknown; move: number; wrap: number }
         Returns: unknown
+      }
+      submit_werd_with_tags: {
+        Args: {
+          p_definition: string
+          p_part_of_speech?: string
+          p_pronunciation?: string
+          p_tag_ids: string[]
+          p_werd: string
+        }
+        Returns: string
       }
       text_to_bytea: { Args: { data: string }; Returns: string }
       unlockrows: { Args: { "": string }; Returns: number }
