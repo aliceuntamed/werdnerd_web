@@ -3,6 +3,8 @@
     "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
     "esbenp.prettier-vscode",
-    "github.vscode-pull-request-github"
+    "github.vscode-pull-request-github",
+    "ms-edgedevtools.vscode-edge-devtools",
+    "webhint.vscode-webhint"
   ]
 }
