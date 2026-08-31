@@ -69,12 +69,18 @@ Built with:
 
 ```bash
 npm install
+npm run test
 npm run dev
 ```
 
-Environment variables required:
+Copy `.env.example` to `.env.local`, then supply the browser-safe project values:
+
+```dotenv
 VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
+VITE_SUPABASE_PUBLISHABLE_KEY=
+```
+
+`VITE_SUPABASE_ANON_KEY` remains supported for projects still using a legacy anon key. Never use a secret or service-role key in this frontend.
 
 ## 📦 Build
 

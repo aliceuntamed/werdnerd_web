@@ -4,15 +4,20 @@ import { ArrowRight } from "lucide-react";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { fetchCuratedWerds } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
+import { werdPath } from "../WerdVault/werdSlug";
 
 export default function CuratedPicks() {
   const [werds, setWerds] = useState<Werd[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     fetchCuratedWerds()
       .then(setWerds)
-      .catch(() => setWerds([]))
+      .catch(() => {
+        setWerds([]);
+        setError(true);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -39,7 +44,7 @@ export default function CuratedPicks() {
 
       {!loading && werds.length === 0 && (
         <div className="home-empty">
-          <p>No curated words yet. Check back soon.</p>
+          <p>{error ? "The curated collection could not be loaded." : "No curated Werds yet. Check back soon."}</p>
           <Link to="/vault" className="home-link">
             [Go to] The Vault
             <ArrowRight className="home-icon" />
@@ -53,7 +58,7 @@ export default function CuratedPicks() {
             {werds.slice(0, 6).map((w, index) => (
               <Link
                 key={w.werd_id}
-                to={`/vault?search=${encodeURIComponent(w.werd)}`}
+                to={werdPath(w.werd)}
                 className="curated-card"
               >
                 <div className="curated-card-top">

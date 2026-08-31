@@ -142,3 +142,6 @@ dist
 
 # Superdesign local scratch files
 .superdesign/tmp/
+
+# Local browser automation artifacts
+.playwright-cli/

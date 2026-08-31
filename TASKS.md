@@ -12,27 +12,34 @@
 
 ## Now
 
-_No active task._
-
-## Next
-
 ## TASK-003: Finish Submit a Werd as a safe end-to-end pipeline
 **Priority:** P0
-**Updated:** 2026-07-26 22:31
+**Updated:** 2026-08-27
 
-The redesigned page exists, but submission logic still writes directly from the form, has minimal validation, does not detect duplicates, ignores tag-link insert errors, and displays hard-coded recent gems.
+The redesigned page, typed validation, atomic database mutation, duplicate guarantee, moderation state, grants, and RLS are implemented. Finish one focused browser acceptance pass against the restored Supabase project.
 
 ### Checklist
 
-- [ ] Decide whether community submissions enter the public Vault immediately or enter a pending moderation state; use pending by default if no product reason requires instant publication.
-- [ ] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
-- [ ] Normalize whitespace/casing and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
-- [ ] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
-- [ ] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
-- [ ] Handle tag-loading errors separately from an empty tag list.
-- [ ] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
-- [ ] Show specific accessible success/error feedback and prevent accidental double submission.
-- [ ] Test success, duplicate, invalid input, permission failure, tag failure, offline/network failure, and mobile keyboard behavior.
+- [x] Send community submissions into a pending moderation state; only published entries appear in public discovery.
+- [x] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
+- [x] Normalize whitespace and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
+- [x] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
+- [x] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
+- [x] Handle tag-loading errors separately from an empty tag list.
+- [x] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
+- [x] Show specific accessible success/error feedback and prevent accidental double submission.
+- [ ] Complete the focused browser acceptance pass:
+  - [ ] Valid signed-in submission creates one pending Werd with all selected tag links and shows success once.
+  - [ ] A case/whitespace variation of an existing Werd is rejected as a duplicate without creating rows.
+  - [ ] Missing required fields are blocked in the browser with accessible field messages and no request sent.
+  - [ ] A signed-out submission is rejected by permissions without creating rows.
+  - [ ] A failed tag request shows the dedicated tag error and a working retry action.
+  - [ ] Going offline after tags load shows a submission error, preserves the form, and creates no partial rows.
+  - [ ] At a mobile viewport, the keyboard does not hide the active field, validation message, or submit action.
+
+### Current note
+
+The live database changes have been verified and their local migration/type/query/policy files are present, but the current workspace changes still need to be committed before TASK-004 begins.
 
 ### Done when
 
@@ -40,25 +47,23 @@ A real user can submit a valid Werd without creating duplicates, orphaned rows, 
 
 ---
 
-## Later
-
-Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
+## Next
 
 ## TASK-004: Complete the core Vault discovery loop
 **Priority:** P1
-**Updated:** 2026-07-26 22:31
+**Updated:** 2026-08-27
 
 Basic Vault search, combined tag filtering, and `/werd/:slug` are already implemented. Finish the path from Home discovery to a useful specimen detail experience before adding broader features.
 
 ### Checklist
 
-- [ ] Link WOTD, Spin the Vault, and Curated Picks directly to `/werd/:slug` instead of routing through a Vault search result.
+- [x] Link WOTD, Spin the Vault, and Curated Picks directly to `/werd/:slug` instead of routing through a Vault search result.
 - [ ] Add related Werds based on shared tags to the detail page.
-- [ ] Preserve combined `search` and `tag` URL state, and make tag matching consistently normalized/case-insensitive.
-- [ ] Add an error state to `useWerds()` so network failures do not look like an empty Vault.
-- [ ] Decide whether simple substring search is sufficient for the current data size; add lightweight fuzzy matching only if real searches demonstrate the need.
-- [ ] Add a dedicated WOTD destination only if the detail route does not satisfy the editorial experience.
-- [ ] Add the synonym flip interaction only after synonym data is present and typed.
+- [x] Preserve combined `search` and `tag` URL state, and make tag matching consistently normalized/case-insensitive.
+- [x] Add an error state to `useWerds()` and its detail consumer so network failures do not look like an empty Vault or missing specimen.
+- [x] Keep simple substring search for the current data size; add fuzzy matching only if real searches demonstrate the need.
+- [x] Use the existing Werd detail route as the WOTD destination; do not add a separate route without a distinct editorial need.
+- [x] Defer the synonym flip and avoid adding synonym fields; use existing shared tags for the first related-Werd experience.
 - [ ] Verify deep links, browser back/forward, zero results, slow loading, and mobile shelf scrolling.
 
 ### Done when
@@ -67,11 +72,15 @@ Every Home discovery entry opens a stable specimen page, related Werds continue 
 
 ---
 
+## Later
+
+Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
+
 ## TASK-005: Ship the missing Fun Facts feature
 **Priority:** P1
-**Updated:** 2026-07-26 22:31
+**Updated:** 2026-08-27
 
-Fun Facts is a Blueprint “must retain” feature but no current page, hook, or query implements it.
+Fun Facts is a Blueprint “must retain” feature. The live table contains 39 rows, but no current page, hook, or query exposes them in the app.
 
 ### Checklist
 
@@ -90,14 +99,14 @@ At least one real Fun Fact can be discovered through the app and the footer no l
 
 ## TASK-006: Deliver one complete Auth, profile, and favorites slice
 **Priority:** P1
-**Updated:** 2026-07-26 22:31
+**Updated:** 2026-08-27
 
-Email signup/login/sign-out and reset-email requests exist, but the Auth pages are visually generic, password recovery is incomplete, there is no profile route, and favorite controls are local-only UI.
+Email signup/login/sign-out, reset-email requests, and the post-email password update screen exist. Live Auth redirect verification, the profile route, and database-backed favorite controls remain incomplete.
 
 ### Checklist
 
 - [ ] Verify signup confirmation, login, session restoration, sign-out, and recovery redirects against the real Supabase project.
-- [ ] Add the post-email password update screen required to complete recovery.
+- [x] Add the post-email password update screen required to complete recovery.
 - [ ] Restyle Auth screens to the WerdNerd system with accessible labels, pending states, and safe user-facing errors.
 - [ ] Define the minimum profile schema the UI actually needs and add a profile route.
 - [ ] Add typed favorites helpers or `useFavorites()` with fetch, toggle, optimistic reconciliation, and rollback on error.
@@ -134,16 +143,16 @@ Every visible global action either works, navigates somewhere real, or is honest
 
 ## TASK-008: Run the core-beta production readiness pass
 **Priority:** P1
-**Updated:** 2026-07-26 22:31
+**Updated:** 2026-08-27
 
 Build and lint currently pass, but release-level routing, metadata, automated smoke coverage, bundle size, and deployment checks remain.
 
 ### Checklist
 
-- [ ] Add a branded 404 page and catch-all route.
+- [x] Add a branded 404 page and catch-all route.
 - [ ] Replace the generic document title with core title/description, canonical, Open Graph, and social metadata appropriate for Vite.
 - [ ] Add a small automated smoke suite for Home, Vault search/tag state, Werd detail, Submit validation, Auth entry points, and route fallback.
-- [ ] Keep `npm run build` and `npm run lint` green and add a test script that CI can run.
+- [x] Keep `npm run build` and `npm run lint` green and add a test script that CI can run.
 - [ ] Reduce the approximately 4.6 MB minified Boggle route chunk, currently dominated by the bundled word list; load or partition dictionary data deliberately.
 - [ ] Perform responsive, keyboard, contrast, reduced-motion, loading, empty, and error-state checks on primary pages.
 - [ ] Verify Vercel build settings, SPA rewrites/deep links, environment variables, Supabase redirect URLs, and a production smoke test.
@@ -230,22 +239,26 @@ Completed 2026-07-27. Generated and applied the live database contract, consolid
 ## TASK-001: Restore the local Supabase runtime and prove the core app works
 
 **Priority:** P0
-**Updated:** 2026-07-27 05:22
+**Updated:** 2026-08-27
 
-The new PC has no local `.env.local`. The app currently builds by falling back to placeholder Supabase credentials, but database and Auth features cannot work correctly until the real public client configuration is restored.
+The current checkout has its ignored `.env.local` restored and the core app reads real Supabase data again. Remaining full Auth redirect verification is tracked with the Auth and production-readiness work rather than reopening this recovery task.
 
 ### Checklist
 
-- [x] Create an ignored `.env.local` with `VITE_SUPABASE_URL` and the public publishable key (or legacy anon key); never use a service-role or secret key in the browser.
+- [x] Restore the ignored `.env.local` lost during the PC repair with `VITE_SUPABASE_URL` and the public publishable key (or legacy anon key); never use a service-role or secret key in the browser.
 - [x] Run `npm install` if this checkout has not already been installed, then start `npm run dev`.
-- [ ] Confirm the missing-Supabase-environment warning is gone.
+- [x] Confirm the missing-Supabase-environment warning is gone.
 - [x] Smoke-test Home data, WOTD, Spin the Vault, Vault search/tag shelves, one Werd detail page, Submit Werd tag loading, login, signup, sign-out, and password-reset email.
-- [ ] Confirm Supabase Auth redirect URLs include the local Vite URL and the production domain.
-- [ ] Record any runtime/schema errors as scoped follow-up notes under TASK-002 or TASK-003 instead of switching to unrelated UI polish.
+- [x] Transfer full Supabase Auth redirect verification to TASK-006 and TASK-008, where it belongs with Auth and production verification.
+- [x] Record runtime/schema errors as scoped follow-up notes under TASK-002 or TASK-003 instead of switching to unrelated UI polish.
 
 ### Done when
 
 The app can be run on this PC with real development data, and the exact failing backend flows—if any—are known.
+
+### Recovery note
+
+The ignored local environment file was lost during the 2026-08 PC repair and restored in the current checkout. Live Supabase data access and the core submission database path were verified again on 2026-08-27; complete Auth redirect testing remains intentionally tracked under TASK-006 and TASK-008.
 
 ---
 

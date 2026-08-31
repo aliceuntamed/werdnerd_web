@@ -8,10 +8,14 @@ import "./WerdDetailPage.css";
 
 export default function WerdDetailPage() {
   const { slug = "" } = useParams();
-  const { werds, loading } = useWerds();
-  const werd = werds.find((item) => toWerdSlug(item.werd) === decodeURIComponent(slug));
+  const { werds, loading, error } = useWerds();
+  const werd = werds.find((item) => toWerdSlug(item.werd) === slug);
 
   if (loading) return <main className="vault-detail"><LoadingScreen fullScreen={false} message="Retrieving the file…" /></main>;
+
+  if (error) return (
+    <main className="vault-detail"><section className="vault-detail__missing" role="alert"><p>Vault connection lost</p><h1>This file could not be retrieved.</h1><button type="button" onClick={() => window.location.reload()}>Try again</button><Link to="/vault"><ArrowLeft /> Return to the Vault</Link></section></main>
+  );
 
   if (!werd) return (
     <main className="vault-detail"><section className="vault-detail__missing"><p>404 / Missing specimen</p><h1>This werd has left the building.</h1><Link to="/vault"><ArrowLeft /> Return to the Vault</Link></section></main>

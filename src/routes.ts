@@ -28,9 +28,11 @@ export const ROUTES = {
   LOGIN: "/auth/login",
   SIGNUP: "/auth/signup",
   RESET_PASSWORD: "/auth/reset-password",
+  UPDATE_PASSWORD: "/auth/update-password",
 
   // Utility/future pages
   SETTINGS: "/settings",
+  NOT_FOUND: "*",
 } as const;
 
 type RouteComponent = ComponentType<Record<string, never>>;
@@ -53,11 +55,13 @@ const HangmanPage = lazy(() => import("./pages/Games/HangmanPage"));
 const BrainTeasersPage = lazy(() => import("./pages/Games/BrainTeasersPage"));
 const CodenamesPage = lazy(() => import("./pages/Games/CodenamesPage"));
 const SettingsPage = lazy(() => import("./pages/Settings/SettingsPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFound/NotFoundPage"));
 
 // Auth pages
 const LoginPage = lazy(() => import("./pages/Auth/LoginPage"));
 const SignupPage = lazy(() => import("./pages/Auth/SignupPage"));
 const ResetPasswordPage = lazy(() => import("./pages/Auth/ResetPasswordPage"));
+const UpdatePasswordPage = lazy(() => import("./pages/Auth/UpdatePasswordPage"));
 
 // ---------------------------------------------
 // 2. Route -> Component registry
@@ -86,6 +90,8 @@ export const ROUTE_COMPONENTS: Record<string, RouteComponent> = {
   [ROUTES.LOGIN]: LoginPage,
   [ROUTES.SIGNUP]: SignupPage,
   [ROUTES.RESET_PASSWORD]: ResetPasswordPage,
+  [ROUTES.UPDATE_PASSWORD]: UpdatePasswordPage,
 
   [ROUTES.SETTINGS]: SettingsPage,
+  [ROUTES.NOT_FOUND]: NotFoundPage,
 };

@@ -4,7 +4,6 @@
     "*.css": "tailwindcss"
   },
   "editor.wordWrap": "on",
-  "vite.https": true,
   "editor.formatOnSave": true,
   "builder.serverUrl": "",
   "builder.command": "npm run dev",
@@ -19,8 +18,9 @@
   "github.copilot.nextEditSuggestions.enabled": true,
   "search.exclude": {
     "**/*.code-search": false,
-    "**/bower_components": false,
-    "**/node_modules": false
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/node_modules": true
   },
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"

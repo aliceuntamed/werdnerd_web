@@ -4,15 +4,20 @@ import { ArrowUpRight, Volume2 } from "lucide-react";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { getWOTD } from "../../utils/supabase/queries";
 import type { Werd } from "../../types/werd";
+import { werdPath } from "../WerdVault/werdSlug";
 
 export default function WOTD() {
   const [werd, setWerd] = useState<Werd | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getWOTD()
       .then(setWerd)
-      .catch(() => setWerd(null))
+      .catch(() => {
+        setWerd(null);
+        setError(true);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -40,7 +45,7 @@ export default function WOTD() {
               <span>№ 001</span>
             </div>
             <h3 className="wotd-werd">WOTD</h3>
-            <p>No werd today. The vault is being mysterious.</p>
+            <p>{error ? "The Vault could not be reached. Try again shortly." : "No werd today. The vault is being mysterious."}</p>
           </div>
         )}
 
@@ -71,10 +76,10 @@ export default function WOTD() {
             </div>
 
             <Link
-              to={`/vault?search=${encodeURIComponent(werd.werd)}`}
+              to={werdPath(werd.werd)}
               className="home-link"
             >
-              Next specimen
+              Open specimen
               <ArrowUpRight className="home-icon" />
             </Link>
           </article>
