@@ -15,7 +15,17 @@
 .vault-detail__file > footer div { display: flex; flex-wrap: wrap; gap: .7rem; }
 .vault-detail__file > footer a { display: inline-flex; align-items: center; gap: .3rem; color: #9ca5a7; text-decoration: none; }
 .vault-detail__file > footer svg { width: .8rem; }
+.vault-detail__related { width: min(100%, 68rem); margin: 2rem auto 0; padding: 1.5rem; border: 1px solid rgba(239,237,231,.12); background: rgba(12,16,18,.8); }
+.vault-detail__related > header { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; color: #697477; font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; }
+.vault-detail__related h2 { color: #f3f1ee; font: 400 clamp(2rem, 5vw, 3.25rem)/1 Georgia, serif; letter-spacing: -.06em; text-transform: none; }
+.vault-detail__related-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.vault-detail__related-card { display: flex; min-height: 11rem; flex-direction: column; justify-content: space-between; gap: .75rem; padding: 1.15rem 1.2rem; border: 1px solid rgba(239,237,231,.12); background: linear-gradient(180deg, rgba(25,32,35,.92), rgba(10,13,15,.96)); color: #f1efe9; text-decoration: none; transition: border-color .2s ease, transform .2s ease; }
+.vault-detail__related-card:hover { border-color: rgba(0,200,255,.55); transform: translateY(-2px); }
+.vault-detail__related-card span { color: #00c8ff; font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; }
+.vault-detail__related-card strong { font: 400 1.5rem/1.1 Georgia, serif; }
+.vault-detail__related-card p { margin: 0; color: #bdb9b0; font-size: .78rem; line-height: 1.7; }
+.vault-detail__related-empty { margin: 0; color: #a5a1a0; line-height: 1.7; }
 .vault-detail__missing { width: min(100%, 55rem); margin: auto; padding: 4rem; border: 1px solid rgba(239,237,231,.16); }
 .vault-detail__missing p { color: #ff2f92; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; }
 .vault-detail__missing a { display: inline-flex; gap: .5rem; color: #00c8ff; }
-@media (max-width: 700px) { .vault-detail__body { grid-template-columns: 1fr; } .vault-detail__file > footer { align-items: flex-start; flex-direction: column; } }
+@media (max-width: 700px) { .vault-detail__body { grid-template-columns: 1fr; } .vault-detail__file > footer, .vault-detail__related > header { align-items: flex-start; flex-direction: column; } .vault-detail__related-grid { grid-template-columns: 1fr; } }

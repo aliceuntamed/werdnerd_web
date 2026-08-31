@@ -1,15 +1,38 @@
+import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useWerds } from "../../hooks/useWerds";
-import { toWerdSlug } from "./werdSlug";
+import { toWerdSlug, werdPath } from "./werdSlug";
 import "./WerdVault.css";
 import "./WerdDetailPage.css";
+
+function normalizeTag(tag: string) {
+  return tag.trim().toLocaleLowerCase();
+}
 
 export default function WerdDetailPage() {
   const { slug = "" } = useParams();
   const { werds, loading, error } = useWerds();
   const werd = werds.find((item) => toWerdSlug(item.werd) === slug);
+
+  const relatedWerds = useMemo(() => {
+    if (!werd || !werd.tags.length) return [];
+
+    const currentTags = new Set(werd.tags.map((tag) => normalizeTag(tag)).filter(Boolean));
+    if (currentTags.size === 0) return [];
+
+    return werds
+      .filter((candidate) => candidate.werd_id !== werd.werd_id)
+      .map((candidate) => {
+        const shared = candidate.tags.filter((tag) => currentTags.has(normalizeTag(tag))).length;
+        return { candidate, shared };
+      })
+      .filter(({ shared }) => shared > 0)
+      .sort((left, right) => right.shared - left.shared || left.candidate.werd.localeCompare(right.candidate.werd))
+      .slice(0, 4)
+      .map(({ candidate }) => candidate);
+  }, [werd, werds]);
 
   if (loading) return <main className="vault-detail"><LoadingScreen fullScreen={false} message="Retrieving the file…" /></main>;
 
@@ -40,6 +63,26 @@ export default function WerdDetailPage() {
         </div>
         <footer><div>{werd.tags.map((tag) => <Link key={tag} to={`/vault?tag=${encodeURIComponent(tag)}`}>#{tag}</Link>)}</div><Link to="/submit">Submit another oddity <ArrowUpRight /></Link></footer>
       </article>
+
+      <aside className="vault-detail__related" aria-labelledby="related-werds-heading">
+        <header>
+          <p>WerdVault / next shelf</p>
+          <h2 id="related-werds-heading">Related Werds</h2>
+        </header>
+        {relatedWerds.length ? (
+          <div className="vault-detail__related-grid">
+            {relatedWerds.map((related) => (
+              <Link key={related.werd_id} className="vault-detail__related-card" to={werdPath(related.werd)}>
+                <span>{related.part_of_speech || "specimen"}</span>
+                <strong>{related.werd}</strong>
+                <p>{related.definition || "Definition pending."}</p>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <p className="vault-detail__related-empty">No obvious companions just yet — try a tag browse for nearby oddities.</p>
+        )}
+      </aside>
     </main>
   );
 }
