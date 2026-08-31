@@ -12,69 +12,7 @@
 
 ## Now
 
-## TASK-003: Finish Submit a Werd as a safe end-to-end pipeline
-**Priority:** P0
-**Updated:** 2026-08-27
-
-The redesigned page, typed validation, atomic database mutation, duplicate guarantee, moderation state, grants, and RLS are implemented. Finish one focused browser acceptance pass against the restored Supabase project.
-
-### Checklist
-
-- [x] Send community submissions into a pending moderation state; only published entries appear in public discovery.
-- [x] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
-- [x] Normalize whitespace and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
-- [x] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
-- [x] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
-- [x] Handle tag-loading errors separately from an empty tag list.
-- [x] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
-- [x] Show specific accessible success/error feedback and prevent accidental double submission.
-- [ ] Complete the focused browser acceptance pass:
-  - [ ] Valid signed-in submission creates one pending Werd with all selected tag links and shows success once.
-  - [ ] A case/whitespace variation of an existing Werd is rejected as a duplicate without creating rows.
-  - [ ] Missing required fields are blocked in the browser with accessible field messages and no request sent.
-  - [ ] A signed-out submission is rejected by permissions without creating rows.
-  - [ ] A failed tag request shows the dedicated tag error and a working retry action.
-  - [ ] Going offline after tags load shows a submission error, preserves the form, and creates no partial rows.
-  - [ ] At a mobile viewport, the keyboard does not hide the active field, validation message, or submit action.
-
-### Current note
-
-The live database changes have been verified and their local migration/type/query/policy files are present, but the current workspace changes still need to be committed before TASK-004 begins.
-
-### Done when
-
-A real user can submit a valid Werd without creating duplicates, orphaned rows, or silently missing tag links, and the UI accurately reports every outcome.
-
----
-
 ## Next
-
-## TASK-004: Complete the core Vault discovery loop
-**Priority:** P1
-**Updated:** 2026-08-27
-
-Basic Vault search, combined tag filtering, and `/werd/:slug` are already implemented. Finish the path from Home discovery to a useful specimen detail experience before adding broader features.
-
-### Checklist
-
-- [x] Link WOTD, Spin the Vault, and Curated Picks directly to `/werd/:slug` instead of routing through a Vault search result.
-- [ ] Add related Werds based on shared tags to the detail page.
-- [x] Preserve combined `search` and `tag` URL state, and make tag matching consistently normalized/case-insensitive.
-- [x] Add an error state to `useWerds()` and its detail consumer so network failures do not look like an empty Vault or missing specimen.
-- [x] Keep simple substring search for the current data size; add fuzzy matching only if real searches demonstrate the need.
-- [x] Use the existing Werd detail route as the WOTD destination; do not add a separate route without a distinct editorial need.
-- [x] Defer the synonym flip and avoid adding synonym fields; use existing shared tags for the first related-Werd experience.
-- [ ] Verify deep links, browser back/forward, zero results, slow loading, and mobile shelf scrolling.
-
-### Done when
-
-Every Home discovery entry opens a stable specimen page, related Werds continue the browsing loop, and loading/empty/error states are distinguishable.
-
----
-
-## Later
-
-Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
 
 ## TASK-005: Ship the missing Fun Facts feature
 **Priority:** P1
@@ -96,6 +34,10 @@ Fun Facts is a Blueprint “must retain” feature. The live table contains 39 r
 At least one real Fun Fact can be discovered through the app and the footer no longer points to a placeholder.
 
 ---
+
+## Later
+
+Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
 
 ## TASK-006: Deliver one complete Auth, profile, and favorites slice
 **Priority:** P1
@@ -208,6 +150,68 @@ Shared styling has one clear CSS source of truth, page CSS is smaller and featur
 ---
 
 ## Done
+
+## TASK-004: Complete the core Vault discovery loop
+**Priority:** P1
+**Updated:** 2026-08-27
+
+Basic Vault search, combined tag filtering, and `/werd/:slug` are already implemented. Finish the path from Home discovery to a useful specimen detail experience before adding broader features.
+
+### Checklist
+
+- [x] Link WOTD, Spin the Vault, and Curated Picks directly to `/werd/:slug` instead of routing through a Vault search result.
+- [x] Add related Werds based on shared tags to the detail page.
+- [x] Preserve combined `search` and `tag` URL state, and make tag matching consistently normalized/case-insensitive.
+- [x] Add an error state to `useWerds()` and its detail consumer so network failures do not look like an empty Vault or missing specimen.
+- [x] Keep simple substring search for the current data size; add fuzzy matching only if real searches demonstrate the need.
+- [x] Use the existing Werd detail route as the WOTD destination; do not add a separate route without a distinct editorial need.
+- [x] Defer the synonym flip and avoid adding synonym fields; use existing shared tags for the first related-Werd experience.
+- [x] Verify deep links, browser back/forward, zero results, slow loading, and mobile shelf scrolling.
+
+### Done when
+
+Every Home discovery entry opens a stable specimen page, related Werds continue the browsing loop, and loading/empty/error states are distinguishable.
+
+### Completion note
+
+Completed 2026-08-31. The detail page now surfaces tag-based related Werds, and the vault route remains stable across deep links, search/tag state, and the loaded specimen experience.
+
+---
+
+## TASK-003: Finish Submit a Werd as a safe end-to-end pipeline
+**Priority:** P0
+**Updated:** 2026-08-31
+
+The redesigned page, typed validation, atomic database mutation, duplicate guarantee, moderation state, grants, and RLS are implemented. Finish one focused browser acceptance pass against the restored Supabase project.
+
+### Checklist
+
+- [x] Send community submissions into a pending moderation state; only published entries appear in public discovery.
+- [x] Define `SubmitWerdPayload` and a typed mutation helper or `useSubmitWerd()` hook.
+- [x] Normalize whitespace and validate required werd, definition, allowed lengths, pronunciation, part of speech, and selected tags.
+- [x] Detect duplicate werds case-insensitively before insertion and back that rule with a database constraint where appropriate.
+- [x] Make the werd insert and `werd_tags` links succeed or fail as one logical operation, or provide safe cleanup/retry behavior for partial failures.
+- [x] Handle tag-loading errors separately from an empty tag list.
+- [x] Replace hard-coded “Recent community gems” with approved submission data, or label the section as illustrative until that query exists.
+- [x] Show specific accessible success/error feedback and prevent accidental double submission.
+- [x] Complete the focused browser acceptance pass:
+  - [x] Valid signed-in submission creates one pending Werd with all selected tag links and shows success once.
+  - [x] A case/whitespace variation of an existing Werd is rejected as a duplicate without creating rows.
+  - [x] Missing required fields are blocked in the browser with accessible field messages and no request sent.
+  - [x] A signed-out submission is rejected by permissions without creating rows.
+  - [x] A failed tag request shows the dedicated tag error and a working retry action.
+  - [x] Going offline after tags load shows a submission error, preserves the form, and creates no partial rows.
+  - [x] At a mobile viewport, the keyboard does not hide the active field, validation message, or submit action.
+
+### Done when
+
+A real user can submit a valid Werd without creating duplicates, orphaned rows, or silently missing tag links, and the UI accurately reports every outcome.
+
+### Completion note
+
+Completed 2026-08-31. The focused acceptance pass succeeded for signed-in submission, duplicate prevention, validation, signed-out permissions, tag retry, offline rollback, rapid double-click protection, exact tag links, and the real-phone keyboard layout.
+
+---
 
 ## TASK-002: Type and secure the Supabase data layer
 **Priority:** P0
