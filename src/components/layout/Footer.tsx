@@ -19,7 +19,7 @@ const navColumns: Array<{ title: string; links: FooterLink[] }> = [
       { label: "The Vault", to: ROUTES.VAULT },
       { label: "Etymology Explorer", href: "#etymology" },
       { label: "Phonetic Fun", href: "#phonetic-fun" },
-      { label: "Daily Fun Fact", href: "#daily-fun-fact" },
+      { label: "Daily Fun Fact", to: `${ROUTES.VAULT}#daily-fun-fact` },
     ],
   },
   {

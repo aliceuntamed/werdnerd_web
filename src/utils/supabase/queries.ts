@@ -6,10 +6,24 @@ import type {
   WerdInsert,
   WerdRow,
 } from "../../types/werd";
+import type { Tables } from "../../types/database";
+import { selectDailyFunFact } from "../../pages/WerdVault/dailyFactSelection";
 import { supabase } from "./client";
 
 type SupabaseFailure = Pick<Error, "message"> &
   Partial<Pick<PostgrestError, "code" | "details" | "hint">>;
+
+export type FunFact = Tables<"funfacts">;
+
+const FUN_FACT_SELECT = `
+  fact_id,
+  fact_text,
+  fact_details,
+  fact_source,
+  fact_created_at,
+  fact_category,
+  fact_img
+` as const;
 
 export class SupabaseDataError extends Error {
   readonly operation: string;
@@ -174,6 +188,18 @@ export async function getWOTD(): Promise<Werd | null> {
 
   const daySeed = Math.floor(Date.now() / 86_400_000);
   return mapWerd(data[daySeed % data.length]);
+}
+
+export async function getDailyFunFact(
+  date = new Date(),
+): Promise<FunFact | null> {
+  const { data, error } = await supabase
+    .from("funfacts")
+    .select(FUN_FACT_SELECT)
+    .order("fact_id");
+
+  if (error) throw dataError("open the Daily Fun Fact drawer", error);
+  return selectDailyFunFact(data, date);
 }
 
 export type CreateWerdInput = Pick<

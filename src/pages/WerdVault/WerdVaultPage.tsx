@@ -6,6 +6,7 @@ import { WerdVaultTagCloud } from "../../components/ui/WerdVaultTagCloud";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import type { Werd } from "../../types/werd";
 import { werdPath } from "./werdSlug";
+import DailyFunFact from "./DailyFunFact";
 import "./WerdVault.css";
 
 const UNTAGGED_LABEL = "untagged";
@@ -163,6 +164,8 @@ export default function WerdVaultPage() {
           : groups.length && filteredWerds.length ? <div className="vault-shelves">{groups.map((group) => <WerdTagShelf key={group.tag} {...group} />)}</div>
           : <div className="vault-state"><span>FILE NOT FOUND</span><h3>That specimen escaped.</h3><p>Try a broader search or clear the active shelf. Words are slippery little beasts.</p><button type="button" onClick={() => setSearchParams({})}>Reset the index</button></div>}
       </section>
+
+      <DailyFunFact />
     </main>
   );
 }

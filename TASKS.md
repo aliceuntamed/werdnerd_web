@@ -14,31 +14,6 @@
 
 ## Next
 
-## TASK-005: Ship the missing Fun Facts feature
-**Priority:** P1
-**Updated:** 2026-08-27
-
-Fun Facts is a Blueprint “must retain” feature. The live table contains 39 rows, but no current page, hook, or query exposes them in the app.
-
-### Checklist
-
-- [ ] Confirm the live `funfacts` schema and intended fields/status flags.
-- [ ] Add generated types plus a focused random/curated query and `useFunFacts()` only if reusable UI state warrants it.
-- [ ] Build the smallest useful Fun Facts surface with loading, empty, and error states.
-- [ ] Decide whether Daily Fun Fact belongs on Home, at its own route, or both.
-- [ ] Wire the footer destination to the real surface.
-- [ ] Add reduced-motion-friendly presentation and a simple behavior test.
-
-### Done when
-
-At least one real Fun Fact can be discovered through the app and the footer no longer points to a placeholder.
-
----
-
-## Later
-
-Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
-
 ## TASK-006: Deliver one complete Auth, profile, and favorites slice
 **Priority:** P1
 **Updated:** 2026-08-27
@@ -61,6 +36,10 @@ Email signup/login/sign-out, reset-email requests, and the post-email password u
 A user can create an account, recover access, save/unsave a Werd, refresh without losing state, and view saved Werds on a protected profile.
 
 ---
+
+## Later
+
+Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
 
 ## TASK-007: Replace nonfunctional shell actions and placeholder destinations
 **Priority:** P1
@@ -150,6 +129,31 @@ Shared styling has one clear CSS source of truth, page CSS is smaller and featur
 ---
 
 ## Done
+
+## TASK-005: Ship the missing Fun Facts feature
+**Priority:** P1
+**Updated:** 2026-09-08
+
+Fun Facts is a Blueprint “must retain” feature. The live table contains 77 reviewed rows, now exposed as a small Daily Fun Fact discovery inside the WerdVault.
+
+### Checklist
+
+- [x] Confirm the live `funfacts` schema and intended fields/status flags.
+- [x] Add generated types plus a focused random/curated query and `useFunFacts()` only if reusable UI state warrants it.
+- [x] Build the smallest useful Fun Facts surface with loading, empty, and error states.
+- [x] Decide whether Daily Fun Fact belongs on Home, at its own route, or both.
+- [x] Wire the footer destination to the real surface.
+- [x] Add reduced-motion-friendly presentation and a simple behavior test.
+
+### Done when
+
+At least one real Fun Fact can be discovered through the app and the footer no longer points to a placeholder.
+
+### Completion note
+
+Completed 2026-09-08. The WerdVault now hides a sourced, deterministic daily fact in an archive drawer above the footer; hover, focus, tap, and the footer deep link reveal it, with loading, empty, error, responsive, and reduced-motion behavior covered.
+
+---
 
 ## TASK-004: Complete the core Vault discovery loop
 **Priority:** P1
