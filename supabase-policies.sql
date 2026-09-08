@@ -67,8 +67,7 @@ grant update (
   language,
   source_1,
   source_2,
-  origin,
-  last_modified
+  origin
 ) on table public.werds to authenticated;
 
 -- Status columns are writable at the grant layer so moderation policies can
