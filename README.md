@@ -11,7 +11,7 @@ WerdNerd blends expressive UI, playful mechanics, and a modular TypeScript archi
 - About Page (mission, vision, values, contact, and FAQs)
 - Fun Facts & Brain Teasers
 - Creator's Playground (Typography & Color Palette)
-- User Interaction(Submit werd, Spin the Vault, Favorites, Profile, Auth)
+- User Interaction (Submit werd, Spin the Vault, Auth; Favorites and Profile planned)
 
 Built with:
 
