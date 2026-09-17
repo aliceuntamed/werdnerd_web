@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useWerds } from "../../hooks/useWerds";
+import FavoriteControl from "../../components/FavoriteControl";
 import { toWerdSlug, werdPath } from "./werdSlug";
 import "./WerdVault.css";
 import "./WerdDetailPage.css";
@@ -54,6 +55,7 @@ export default function WerdDetailPage() {
             <p className="vault-detail__type">{werd.part_of_speech || "unclassified"}</p>
             <h1>{werd.werd}</h1>
             {werd.pronunciation ? <p className="vault-detail__pronunciation">/{werd.pronunciation}/</p> : null}
+            <FavoriteControl werd={{ werd_id: werd.werd_id, werd: werd.werd, definition: werd.definition ?? null, part_of_speech: werd.part_of_speech ?? null }} />
           </div>
           <dl>
             <div><dt>Definition</dt><dd>{werd.definition || "Definition pending."}</dd></div>

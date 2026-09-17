@@ -1,0 +1,11 @@
+.favorite-control { margin-top: 1.75rem; }
+.favorite-button { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 44px; margin-top: 1.5rem; padding: .7rem 1rem; border: 1px solid #647680; border-radius: 3px; color: #dce5ec; background: #162028; font: 400 .8rem/1.5 'Poppins',sans-serif; cursor: pointer; text-decoration: none; }
+.favorite-control .favorite-button { margin-top: 0; }
+.favorite-button[aria-pressed=true] { border-color: #00c8ff; color: #8be6ff; }
+.favorite-button:hover { background: #20313d; }
+.favorite-button:disabled { opacity: .6; cursor: wait; }
+.favorite-button:focus-visible, .favorite-feedback button:focus-visible { outline: 2px solid #00c8ff; outline-offset: 4px; }
+.favorite-feedback { max-width: 36rem; color: #aeb9c4; font: .8rem/1.7 'Poppins',sans-serif; }
+.favorite-feedback:empty { display: none; }
+.favorite-feedback--error { color: #ffb7cb; }
+.favorite-feedback button { min-height: 44px; padding: .3rem; color: inherit; text-decoration: underline; background: transparent; border: 0; cursor: pointer; }
