@@ -27,8 +27,10 @@ export const ROUTES = {
   // Auth routes
   LOGIN: "/auth/login",
   SIGNUP: "/auth/signup",
+  RESEND_CONFIRMATION: "/auth/resend-confirmation",
   RESET_PASSWORD: "/auth/reset-password",
   UPDATE_PASSWORD: "/auth/update-password",
+  PROFILE: "/profile",
 
   // Utility/future pages
   SETTINGS: "/settings",
@@ -55,11 +57,13 @@ const HangmanPage = lazy(() => import("./pages/Games/HangmanPage"));
 const BrainTeasersPage = lazy(() => import("./pages/Games/BrainTeasersPage"));
 const CodenamesPage = lazy(() => import("./pages/Games/CodenamesPage"));
 const SettingsPage = lazy(() => import("./pages/Settings/SettingsPage"));
+const ProfilePage = lazy(() => import("./pages/Profile/ProfilePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFound/NotFoundPage"));
 
 // Auth pages
 const LoginPage = lazy(() => import("./pages/Auth/LoginPage"));
 const SignupPage = lazy(() => import("./pages/Auth/SignupPage"));
+const ResendConfirmationPage = lazy(() => import("./pages/Auth/ResendConfirmationPage"));
 const ResetPasswordPage = lazy(() => import("./pages/Auth/ResetPasswordPage"));
 const UpdatePasswordPage = lazy(() => import("./pages/Auth/UpdatePasswordPage"));
 
@@ -89,9 +93,11 @@ export const ROUTE_COMPONENTS: Record<string, RouteComponent> = {
   // Auth
   [ROUTES.LOGIN]: LoginPage,
   [ROUTES.SIGNUP]: SignupPage,
+  [ROUTES.RESEND_CONFIRMATION]: ResendConfirmationPage,
   [ROUTES.RESET_PASSWORD]: ResetPasswordPage,
   [ROUTES.UPDATE_PASSWORD]: UpdatePasswordPage,
 
   [ROUTES.SETTINGS]: SettingsPage,
+  [ROUTES.PROFILE]: ProfilePage,
   [ROUTES.NOT_FOUND]: NotFoundPage,
 };

@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { ArrowUpRight, Bookmark, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { useWerds } from "../../hooks/useWerds";
+import { useFavorites } from "../../hooks/useFavorites";
+import { useAuth } from "../../contexts/AuthContext";
 import { WerdVaultTagCloud } from "../../components/ui/WerdVaultTagCloud";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import type { Werd } from "../../types/werd";
@@ -15,16 +17,32 @@ function normalizeTag(tag: string) {
   return tag?.trim() || UNTAGGED_LABEL;
 }
 
-function WerdShelfCard({ werd, index }: { werd: Werd; index: number }) {
+type CardFavorites = {
+  savedIds: Set<string>;
+  pendingIds: Set<string>;
+  disabled: boolean;
+  loginPath: string | null;
+  toggle: (werd: Werd) => void;
+};
+
+function WerdShelfCard({ werd, index, favorites }: { werd: Werd; index: number; favorites: CardFavorites }) {
+  const saved = favorites.savedIds.has(werd.werd_id);
+  const pending = favorites.pendingIds.has(werd.werd_id);
+  const action = saved ? `Remove ${werd.werd} from favorites` : `Add ${werd.werd} to favorites`;
   return (
-    <Link className="vault-card" to={werdPath(werd.werd)}>
+    <article className="vault-card" aria-label={`${werd.werd} specimen`}>
       <span className="vault-card__number">{String(index + 1).padStart(2, "0")}</span>
+      {favorites.loginPath && !favorites.disabled ? (
+        <Link className="vault-card__favorite" to={favorites.loginPath} aria-label={`Sign in to add ${werd.werd} to favorites`} title="Sign in to add to favorites"><Bookmark size={18} aria-hidden="true" /></Link>
+      ) : (
+        <button className="vault-card__favorite" type="button" aria-label={action} title={pending ? 'Saving change…' : action} aria-pressed={saved} aria-busy={pending} disabled={favorites.disabled || pending} onClick={() => favorites.toggle(werd)}><Bookmark size={18} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" /></button>
+      )}
       <div className="vault-card__meta">
         <span>{werd.part_of_speech || "specimen"}</span>
         <span>{werd.language || "origin unknown"}</span>
       </div>
       <div className="vault-card__body">
-        <h3>{werd.werd}</h3>
+        <h3><Link className="vault-card__link" to={werdPath(werd.werd)}>{werd.werd}</Link></h3>
         {werd.pronunciation ? <p className="vault-card__pronunciation">/{werd.pronunciation}/</p> : null}
         <p className="vault-card__definition">{werd.definition || "Definition pending. Even the vault has mysteries."}</p>
       </div>
@@ -32,11 +50,11 @@ function WerdShelfCard({ werd, index }: { werd: Werd; index: number }) {
         <span>{werd.tags[0] || UNTAGGED_LABEL}</span>
         <span className="vault-card__open">Open file <ArrowUpRight aria-hidden="true" /></span>
       </div>
-    </Link>
+    </article>
   );
 }
 
-function WerdTagShelf({ tag, werds }: { tag: string; werds: Werd[] }) {
+function WerdTagShelf({ tag, werds, favorites }: { tag: string; werds: Werd[]; favorites: CardFavorites }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
@@ -77,7 +95,7 @@ function WerdTagShelf({ tag, werds }: { tag: string; werds: Werd[] }) {
       </header>
       <div className="vault-shelf__rail">
         <div ref={trackRef} className="vault-shelf__track" aria-label={`${tag} werds`}>
-          {werds.map((werd, index) => <WerdShelfCard key={`${tag}-${werd.werd_id}`} werd={werd} index={index} />)}
+          {werds.map((werd, index) => <WerdShelfCard key={`${tag}-${werd.werd_id}`} werd={werd} index={index} favorites={favorites} />)}
         </div>
         {canScrollLeft ? <button className="vault-shelf__arrow vault-shelf__arrow--left" type="button" onClick={() => scroll("left")} aria-label={`Scroll ${tag} left`}><ChevronLeft /></button> : null}
         {canScrollRight ? <button className="vault-shelf__arrow vault-shelf__arrow--right" type="button" onClick={() => scroll("right")} aria-label={`Scroll ${tag} right`}><ChevronRight /></button> : null}
@@ -87,7 +105,23 @@ function WerdTagShelf({ tag, werds }: { tag: string; werds: Werd[] }) {
 }
 
 export default function WerdVaultPage() {
+  const { user, loading } = useAuth();
+  return <WerdVaultContent key={user?.id ?? 'signed-out'} userId={user?.id ?? null} authLoading={loading} />;
+}
+
+function WerdVaultContent({ userId, authLoading }: { userId: string | null; authLoading: boolean }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  // One collection per page keeps the same Werd synchronized across every tag shelf.
+  const collection = useFavorites(userId);
+  const savedIds = useMemo(() => new Set(collection.favorites.map(favorite => favorite.werd_id)), [collection.favorites]);
+  const favorites: CardFavorites = {
+    savedIds,
+    pendingIds: collection.pendingIds,
+    disabled: authLoading || collection.loading || !!collection.loadError,
+    loginPath: userId ? null : `/auth/login?next=${encodeURIComponent(location.pathname + location.search + location.hash)}`,
+    toggle: werd => { void collection.toggle({ werd_id: werd.werd_id, werd: werd.werd, definition: werd.definition ?? null, part_of_speech: werd.part_of_speech ?? null }); },
+  };
   const activeTag = searchParams.get("tag");
   const query = searchParams.get("search") ?? "";
   const { werds, loading, error } = useWerds();
@@ -161,7 +195,11 @@ export default function WerdVaultPage() {
 
         {loading ? <div className="vault-state"><LoadingScreen fullScreen={false} message="Unlatching the cabinets…" size={64} speed={2.4} /></div>
           : error ? <div className="vault-state" role="alert"><span>VAULT CONNECTION LOST</span><h3>The catalog could not be opened.</h3><p>{error.message}</p><button type="button" onClick={() => window.location.reload()}>Try again</button></div>
-          : groups.length && filteredWerds.length ? <div className="vault-shelves">{groups.map((group) => <WerdTagShelf key={group.tag} {...group} />)}</div>
+          : groups.length && filteredWerds.length ? <div className="vault-collection">
+            {(collection.loadError || collection.error) && <div className="vault-favorites-error" role="alert"><p>{collection.loadError || collection.error}</p><button type="button" disabled={collection.loading || collection.pendingIds.size > 0} onClick={() => void collection.reload()}>Retry favorites</button></div>}
+            <p className="sr-only" role="status">{collection.message}</p>
+            <div className="vault-shelves">{groups.map((group) => <WerdTagShelf key={group.tag} {...group} favorites={favorites} />)}</div>
+          </div>
           : <div className="vault-state"><span>FILE NOT FOUND</span><h3>That specimen escaped.</h3><p>Try a broader search or clear the active shelf. Words are slippery little beasts.</p><button type="button" onClick={() => setSearchParams({})}>Reset the index</button></div>}
       </section>
 

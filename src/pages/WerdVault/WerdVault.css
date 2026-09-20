@@ -107,7 +107,20 @@
 
 .vault-card { position: relative; display: flex; flex: 0 0 clamp(17rem, 27vw, 21.5rem); min-height: 25rem; flex-direction: column; padding: 1.2rem; overflow: hidden; scroll-snap-align: start; color: var(--vault-bone); border: 1px solid var(--vault-line); background: linear-gradient(145deg, rgba(22,30,32,.95), rgba(10,13,14,.98)); text-decoration: none; transition: transform .24s, border-color .24s, background .24s; }
 .vault-card::before { content: ""; position: absolute; width: 15rem; height: 15rem; right: -8rem; top: -8rem; border: 1px solid rgba(0,200,255,.16); border-radius: 50%; box-shadow: 0 0 0 2rem rgba(0,200,255,.025), 0 0 0 4rem rgba(255,47,146,.02); transition: transform .5s; }
-.vault-card:hover, .vault-card:focus-visible { z-index: 1; border-color: rgba(0,200,255,.55); background: linear-gradient(145deg, rgba(24,38,41,.98), rgba(10,13,14,.98)); outline: none; transform: translateY(-6px); }
+.vault-card:hover, .vault-card:focus-within { z-index: 1; border-color: rgba(0,200,255,.55); background: linear-gradient(145deg, rgba(24,38,41,.98), rgba(10,13,14,.98)); outline: none; transform: translateY(-6px); }
+.vault-card__link { color: inherit; text-decoration: none; }
+.vault-card__link::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+.vault-card__link:focus-visible { outline: none; }
+.vault-card__link:focus-visible::after { outline: 2px solid var(--vault-cyan); outline-offset: -4px; }
+.vault-card__favorite { position: absolute; z-index: 2; top: .65rem; right: .65rem; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #52616c; border-radius: 3px; background: #10181f; color: #aeb9c4; cursor: pointer; }
+.vault-card__favorite:hover { color: #efefed; border-color: var(--vault-cyan); }
+.vault-card__favorite[aria-pressed=true] { color: var(--vault-cyan); border-color: var(--vault-cyan); }
+.vault-card__favorite:focus-visible { outline: 2px solid var(--vault-cyan); outline-offset: 3px; }
+.vault-card__favorite:disabled { opacity: .6; cursor: wait; }
+.vault-favorites-error { position: sticky; top: 1rem; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #835466; background: #10181f; color: #ffb7cb; font-size: .85rem; line-height: 1.7; }
+.vault-favorites-error p { flex: 1 1 15rem; margin: 0; }
+.vault-favorites-error button { min-height: 44px; padding: .5rem; background: transparent; color: inherit; border: 1px solid currentColor; cursor: pointer; }
+.vault-favorites-error button:focus-visible { outline: 2px solid var(--vault-cyan); outline-offset: 3px; }
 .vault-card:hover::before { transform: translate(-2rem, 2rem) scale(1.2); }
 .vault-card__number { position: relative; color: #556063; font-size: .56rem; letter-spacing: .2em; }
 .vault-card__meta { position: relative; display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2.5rem; }

@@ -12,36 +12,8 @@
 
 ## Now
 
-## Next
-
-## TASK-006: Deliver one complete Auth, profile, and favorites slice
-**Priority:** P1
-**Updated:** 2026-08-27
-
-Email signup/login/sign-out, reset-email requests, and the post-email password update screen exist. Live Auth redirect verification, the profile route, and database-backed favorite controls remain incomplete.
-
-### Checklist
-
-- [ ] Verify signup confirmation, login, session restoration, sign-out, and recovery redirects against the real Supabase project.
-- [x] Add the post-email password update screen required to complete recovery.
-- [ ] Restyle Auth screens to the WerdNerd system with accessible labels, pending states, and safe user-facing errors.
-- [ ] Define the minimum profile schema the UI actually needs and add a profile route.
-- [ ] Add typed favorites helpers or `useFavorites()` with fetch, toggle, optimistic reconciliation, and rollback on error.
-- [ ] Place favorite controls on the Werd detail experience and show saved Werds on the profile.
-- [ ] Add `ProtectedRoute` only now that profile/favorites provide a real protected destination.
-- [ ] Give signed-in navigation clear Profile, Settings, and Sign Out actions.
-
-### Done when
-
-A user can create an account, recover access, save/unsave a Werd, refresh without losing state, and view saved Werds on a protected profile.
-
----
-
-## Later
-
-Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
-
 ## TASK-007: Replace nonfunctional shell actions and placeholder destinations
+
 **Priority:** P1
 **Updated:** 2026-07-26 22:31
 
@@ -62,7 +34,10 @@ Every visible global action either works, navigates somewhere real, or is honest
 
 ---
 
+## Next
+
 ## TASK-008: Run the core-beta production readiness pass
+
 **Priority:** P1
 **Updated:** 2026-08-27
 
@@ -85,7 +60,12 @@ A production deployment passes automated and manual core-flow checks, deep links
 
 ---
 
+## Later
+
+Do not start Later work while a task remains under **Next**. Promote only the next dependency-ready task.
+
 ## TASK-009: Expand the Game Cabinet one finished game at a time
+
 **Priority:** P2
 **Updated:** 2026-07-26 22:31
 
@@ -107,6 +87,7 @@ Each game labeled Playable is genuinely complete enough to replay, and only then
 ---
 
 ## TASK-010: Consolidate the design system after core flows stabilize
+
 **Priority:** P2
 **Updated:** 2026-07-26 22:31
 
@@ -130,7 +111,49 @@ Shared styling has one clear CSS source of truth, page CSS is smaller and featur
 
 ## Done
 
+## TASK-006: Deliver one complete Auth, profile, and favorites slice
+
+**Priority:** P1
+**Updated:** 2026-09-17
+
+The local Auth, private profile, and database-backed favorites slice is complete. Stephanie reported that all acceptance checks passed; the final Vault-card favorite controls also passed browser verification. Production deployment checks remain in TASK-008.
+
+### Checklist
+
+- [x] Verify signup confirmation, login, session restoration, sign-out, and recovery redirects against the real Supabase project.
+- [x] Add the post-email password update screen required to complete recovery.
+- [x] Restyle Auth screens to the WerdNerd system with accessible labels, pending states, and safe user-facing errors.
+- [x] Define the minimum profile schema the UI actually needs and add a profile route.
+- [x] Add typed favorites helpers or `useFavorites()` with fetch, toggle, optimistic reconciliation, and rollback on error.
+- [x] Place favorite controls on the Werd detail experience and show saved Werds on the profile.
+- [x] Add favorite icons directly to Vault cards without opening the detail page, and synchronize duplicate Werds across shelves.
+- [x] Add `ProtectedRoute` only now that profile/favorites provide a real protected destination.
+- [x] Give signed-in navigation clear Profile, Settings, and Sign Out actions.
+
+### Implementation and verification notes
+
+- Agreed first profile: a private `/profile` collection with a display name and saved Werds. The typed profile uses the existing Auth user ID/email plus `user_metadata.display_name`; no new table or migration is needed. Display-name metadata is never used for authorization.
+- Favorites use the existing ownership policies and unique `(user_id, werd_id)` constraint. Failed mutations restore the previous selection; refresh retries failed reads. Login returns to the requested Werd or profile.
+- `npm test` covers return-path safety and safe Auth errors. With the dev server running, `node scripts/test-account-flow.mjs` exercises browser flows using intercepted Supabase responses; it creates no real accounts or saved rows. Chrome is the default browser (`TEST_BROWSER_CHANNEL` can override it).
+- Live checks: email signup is enabled and requires confirmation; anonymous favorites reads return HTTP 401. A rolled-back SQL test verified owner save/read/remove, duplicate prevention, and denial of another user's read/delete attempts.
+- Owner acceptance, 2026-09-17: successfully logged in at the local `/profile` address; observed missing-field validation and expired-email-link errors. Owner likes “Welcome back, nerd.” and the profile layout.
+- Follow-up fixes: independent password Show/Hide controls; success screens focus their heading and scroll to the top; confirmation/recovery inbox screens offer resend with a 60-second cooldown. Login links to a separate confirmation-resend form for expired-link visits. Browser checks cover required-field blocking without a signup request, keyboard reveal controls, mobile success focus/scroll, resend errors/retry/duplicate clicks, and preserved redirect destinations.
+- Final acceptance, 2026-09-17: Stephanie reported “all checks passed.” Real-email acceptance is owner-reported; automated Auth/email checks use simulated responses. Production redirect configuration and deployment verification remain TASK-008 work.
+- PR review follow-up, 2026-09-20: password recovery now preserves the sanitized requested destination through the reset request, emailed update-password route, expired-link retry, and post-update continuation. Browser coverage verifies the full recovery return path.
+- Vault cards share one page-level favorites list. The bookmark button is separate from the card link, with saved/pending states, keyboard support, a 44px touch target, retry/rollback, and signed-out return to the same search/tag view. Browser checks verify synchronized shelf copies, persistence into detail/profile, and preserved card navigation.
+
+### Done when
+
+A user can create an account, recover access, save/unsave a Werd, refresh without losing state, and view saved Werds on a protected profile.
+
+### Completion note
+
+Completed locally 2026-09-17. Delivered the private collection, editable display name, account navigation, Auth form fixes, and favorites on Vault cards and Werd detail pages. Owner acceptance, build, lint, 18 unit tests, browser flow checks, and live database ownership checks passed. Changes are committed on PR #17 but not deployed; production verification remains in TASK-008.
+
+---
+
 ## TASK-005: Ship the missing Fun Facts feature
+
 **Priority:** P1
 **Updated:** 2026-09-08
 
@@ -156,6 +179,7 @@ Completed 2026-09-08. The WerdVault now hides a sourced, deterministic daily fac
 ---
 
 ## TASK-004: Complete the core Vault discovery loop
+
 **Priority:** P1
 **Updated:** 2026-08-27
 
@@ -183,6 +207,7 @@ Completed 2026-08-31. The detail page now surfaces tag-based related Werds, and 
 ---
 
 ## TASK-003: Finish Submit a Werd as a safe end-to-end pipeline
+
 **Priority:** P0
 **Updated:** 2026-08-31
 
@@ -218,6 +243,7 @@ Completed 2026-08-31. The focused acceptance pass succeeded for signed-in submis
 ---
 
 ## TASK-002: Type and secure the Supabase data layer
+
 **Priority:** P0
 **Updated:** 2026-07-27 05:27
 
@@ -276,12 +302,21 @@ _Nothing parked._
 
 ## Historical work log
 
+## TASK-006 — 2026-09-17
+
+**What:** Completed local Auth, private profiles, and persistent favorites on Vault cards and detail pages.
+**Decisions:** Reused Auth display-name metadata and existing favorites ownership rules; shared favorites state across Vault shelves.
+**Outcome:** Owner acceptance and automated checks passed. Production deployment verification remains TASK-008.
+
+---
+
 Top-level trace of completed work and key decisions. One entry per completed task — newest at top. Keep entries short (3–5 lines); detailed outcomes stay in the task's completion note above.
 
 **Entry template** (insert after this header, before existing entries):
 
 ```markdown
 ## TASK-### — YYYY-MM-DD
+
 **What:** One-line summary of what was delivered.
 **Decisions:** Key choices made and why (skip if none).
 **Outcome:** Result or follow-ups (skip if obvious from What).

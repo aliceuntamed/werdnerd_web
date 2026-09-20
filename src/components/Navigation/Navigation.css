@@ -81,6 +81,15 @@
   margin-left: -1.35rem;
 }
 
+.site-nav-account { position: relative; }
+.site-nav-account summary { cursor: pointer; }
+.site-nav-account-menu { position: absolute; right: 0; top: 100%; display: grid; min-width: 11rem; padding: .5rem; border: 1px solid #52616c; background: #10181f; box-shadow: 0 16px 40px #0008; }
+.site-nav-account-menu :is(a,button) { padding: .8rem; min-height: 44px; text-align: left; font: inherit; font-size: .85rem; color: #eee9df; }
+.site-nav-account-menu :is(a,button):hover { background: #20313d; }
+.site-nav :is(a,button,summary):focus-visible { outline: 2px solid #00c8ff; outline-offset: 4px; }
+.site-nav-mobile-auth { display: grid; gap: 1.25rem; }
+.site-nav-error { position: absolute; right: 0; top: 100%; max-width: 24rem; padding: 1rem; color: #ffb7cb; background: #10181f; border: 1px solid #52616c; font-size: .85rem; }
+
 .site-nav-auth-button,
 .site-nav-mobile-auth-button {
   cursor: pointer;

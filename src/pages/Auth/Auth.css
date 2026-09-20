@@ -1,0 +1,27 @@
+.account-page { min-height: 85vh; padding: 9rem 1.5rem 5rem; background: #0b1117; color: #efefed; font-family: 'Poppins', sans-serif; }
+.account-file { position: relative; width: min(100%, 31rem); margin: auto; padding: clamp(1.5rem, 5vw, 3rem); border: 1px solid #354149; background: #10181f; box-shadow: 0 24px 70px #0005; }
+.account-file__edge { position: absolute; top: -1px; left: 0; right: 0; height: 2px; background: var(--chrome-gradient, linear-gradient(115deg,#aeb9c4,#00c8ff,#7a35ff,#ff2f92,#ffd400)); }
+.account-eyebrow { color: #aeb9c4; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; }
+.account-file h1 { margin: 1.25rem 0; font-family: 'Kalnia', Georgia, serif; font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 400; line-height: 1.15; letter-spacing: -.035em; }
+.account-intro, .account-message { color: #b8c2ca; font-size: .9rem; line-height: 1.8; }
+.account-form { display: grid; gap: 1.25rem; margin-top: 2rem; }
+.account-form label { display: grid; gap: .55rem; color: #e0e5e8; font-size: .8rem; }
+.account-field { display: grid; gap: .55rem; }
+.account-password { position: relative; }
+.account-form .account-password input { padding-right: 4.5rem; }
+.account-password-toggle { position: absolute; right: .25rem; top: 50%; transform: translateY(-50%); min-width: 3.75rem; min-height: 44px; padding: .5rem; border: 0; background: transparent; color: #dce5ec; font: inherit; font-size: .8rem; cursor: pointer; }
+.account-password-toggle:disabled { cursor: wait; opacity: .6; }
+.account-form input { min-width: 0; width: 100%; min-height: 48px; padding: .75rem; border: 1px solid #52616c; border-radius: 3px; background: #0b1117; color: #efefed; font: inherit; font-size: 1rem; }
+.account-button { display: inline-flex; justify-content: center; align-items: center; gap: .5rem; min-height: 46px; padding: .75rem 1.2rem; border: 1px solid #aeb9c4; border-radius: 3px; background: #dce5ec; color: #0b1117; font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; text-decoration: none; }
+.account-button:hover { background: #f7fbff; }
+.account-button:disabled, .account-form input:disabled { opacity: .6; cursor: wait; }
+.account-page :is(a,button,input):focus-visible { outline: 2px solid #00c8ff; outline-offset: 4px; }
+.account-hint { margin: -.65rem 0 0; color: #aeb9c4; font-size: .75rem; line-height: 1.6; }
+.account-error { margin: 0; color: #ffb7cb; font-size: .85rem; line-height: 1.7; }
+.account-links { display: grid; gap: 1rem; margin-top: 1.5rem; font-size: .8rem; color: #aeb9c4; }
+.account-links a { color: #dce5ec; text-decoration: underline; text-underline-offset: .25em; }
+.account-message { margin: 1.5rem 0; }
+.account-resend { display: grid; gap: .75rem; margin: 1.5rem 0; }
+.account-resend .account-hint { margin: 0; }
+.account-text-button { justify-self: start; min-height: 44px; padding: .25rem 0; border: 0; background: transparent; color: #dce5ec; font: inherit; font-size: .8rem; text-decoration: underline; text-underline-offset: .25em; cursor: pointer; }
+.account-text-button:disabled { opacity: .65; cursor: default; text-decoration: none; }

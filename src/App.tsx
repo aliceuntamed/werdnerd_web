@@ -5,7 +5,8 @@ import Navigation from "./components/Navigation/Navigation";
 import { Footer } from "./components/layout/Footer";
 import ErrorBoundary from "./components/layout/ErrorBoundary";
 
-import { ROUTE_COMPONENTS } from "./routes";
+import { ROUTE_COMPONENTS, ROUTES } from "./routes";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
         <Suspense fallback={<LoadingScreen blurBackground />}>
           <Routes>
             {Object.entries(ROUTE_COMPONENTS).map(([path, Component]) => (
-              <Route key={path} path={path} element={<Component />} />
+              <Route key={path} path={path} element={path === ROUTES.PROFILE ? <ProtectedRoute><Component /></ProtectedRoute> : <Component />} />
             ))}
           </Routes>
         </Suspense>

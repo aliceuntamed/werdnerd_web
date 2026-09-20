@@ -7,10 +7,11 @@ interface AuthContextType {
     user: User | null;
     session: Session | null;
     loading: boolean;
-    signUp: (email: string, password: string) => Promise<{ error: AuthError | null }>;
+    signUp: (email: string, password: string, returnTo?: string) => Promise<{ error: AuthError | null; confirmationRequired: boolean }>;
+    resendSignup: (email: string, returnTo?: string) => Promise<{ error: AuthError | null }>;
     signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
     signOut: () => Promise<{ error: AuthError | null }>;
-    resetPassword: (email: string) => Promise<{ error: AuthError | null }>;
+    resetPassword: (email: string, returnTo?: string) => Promise<{ error: AuthError | null }>;
     updatePassword: (password: string) => Promise<{ error: AuthError | null }>;
 }
 
@@ -34,29 +35,46 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let active = true;
+        let receivedAuthEvent = false;
         // Get initial session
         supabase.auth.getSession().then(({ data: { session } }) => {
+            if (!active || receivedAuthEvent) return;
             setSession(session);
             setUser(session?.user ?? null);
             setLoading(false);
+        }).catch(() => {
+            if (active && !receivedAuthEvent) setLoading(false);
         });
 
         // Listen for auth changes
         const {
             data: { subscription },
-        } = supabase.auth.onAuthStateChange(async (_event, session) => {
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!active) return;
+            receivedAuthEvent = true;
             setSession(session);
             setUser(session?.user ?? null);
             setLoading(false);
         });
 
-        return () => subscription.unsubscribe();
+        return () => { active = false; subscription.unsubscribe(); };
     }, []);
 
-    const signUp = async (email: string, password: string) => {
-        const { error } = await supabase.auth.signUp({
+    const signUp = async (email: string, password: string, returnTo = '/profile') => {
+        const { data, error } = await supabase.auth.signUp({
             email,
             password,
+            options: { emailRedirectTo: `${window.location.origin}/auth/login?next=${encodeURIComponent(returnTo)}` },
+        });
+        return { error, confirmationRequired: !data.session };
+    };
+
+    const resendSignup = async (email: string, returnTo = '/profile') => {
+        const { error } = await supabase.auth.resend({
+            type: 'signup',
+            email,
+            options: { emailRedirectTo: `${window.location.origin}/auth/login?next=${encodeURIComponent(returnTo)}` },
         });
         return { error };
     };
@@ -74,9 +92,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
         return { error };
     };
 
-    const resetPassword = async (email: string) => {
+    const resetPassword = async (email: string, returnTo = '/profile') => {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: `${window.location.origin}/auth/update-password`,
+            redirectTo: `${window.location.origin}/auth/update-password?next=${encodeURIComponent(returnTo)}`,
         });
         return { error };
     };
@@ -91,6 +109,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         session,
         loading,
         signUp,
+        resendSignup,
         signIn,
         signOut,
         resetPassword,
