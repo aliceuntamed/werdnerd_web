@@ -139,6 +139,7 @@ The local Auth, private profile, and database-backed favorites slice is complete
 - Owner acceptance, 2026-09-17: successfully logged in at the local `/profile` address; observed missing-field validation and expired-email-link errors. Owner likes “Welcome back, nerd.” and the profile layout.
 - Follow-up fixes: independent password Show/Hide controls; success screens focus their heading and scroll to the top; confirmation/recovery inbox screens offer resend with a 60-second cooldown. Login links to a separate confirmation-resend form for expired-link visits. Browser checks cover required-field blocking without a signup request, keyboard reveal controls, mobile success focus/scroll, resend errors/retry/duplicate clicks, and preserved redirect destinations.
 - Final acceptance, 2026-09-17: Stephanie reported “all checks passed.” Real-email acceptance is owner-reported; automated Auth/email checks use simulated responses. Production redirect configuration and deployment verification remain TASK-008 work.
+- PR review follow-up, 2026-09-20: password recovery now preserves the sanitized requested destination through the reset request, emailed update-password route, expired-link retry, and post-update continuation. Browser coverage verifies the full recovery return path.
 - Vault cards share one page-level favorites list. The bookmark button is separate from the card link, with saved/pending states, keyboard support, a 44px touch target, retry/rollback, and signed-out return to the same search/tag view. Browser checks verify synchronized shelf copies, persistence into detail/profile, and preserved card navigation.
 
 ### Done when
@@ -147,7 +148,7 @@ A user can create an account, recover access, save/unsave a Werd, refresh withou
 
 ### Completion note
 
-Completed locally 2026-09-17. Delivered the private collection, editable display name, account navigation, Auth form fixes, and favorites on Vault cards and Werd detail pages. Owner acceptance, build, lint, 18 unit tests, browser flow checks, and live database ownership checks passed. Changes are not committed or deployed.
+Completed locally 2026-09-17. Delivered the private collection, editable display name, account navigation, Auth form fixes, and favorites on Vault cards and Werd detail pages. Owner acceptance, build, lint, 18 unit tests, browser flow checks, and live database ownership checks passed. Changes are committed on PR #17 but not deployed; production verification remains in TASK-008.
 
 ---
 
