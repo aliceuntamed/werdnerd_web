@@ -49,7 +49,7 @@ export default function AuthForm({ mode }: { mode: Mode }) {
     setError(null);
     setResendMessage('');
     try {
-      const result = mode === 'reset' ? await auth.resetPassword(email.trim()) : await auth.resendSignup(email.trim(), next);
+      const result = mode === 'reset' ? await auth.resetPassword(email.trim(), next) : await auth.resendSignup(email.trim(), next);
       if (result.error) throw result.error;
       setResendMessage('If this address is eligible, a fresh link will arrive shortly. Use the newest email.');
       setResendSeconds(60);
@@ -76,7 +76,7 @@ export default function AuthForm({ mode }: { mode: Mode }) {
         if (result.confirmationRequired) setResendSeconds(60);
       } else {
         const result = mode === 'login' ? await auth.signIn(email.trim(), password)
-          : mode === 'reset' ? await auth.resetPassword(email.trim())
+          : mode === 'reset' ? await auth.resetPassword(email.trim(), next)
           : mode === 'resend' ? await auth.resendSignup(email.trim(), next)
           : await auth.updatePassword(password);
         if (result.error) throw result.error;
@@ -105,8 +105,8 @@ export default function AuthForm({ mode }: { mode: Mode }) {
         {resendMessage && <p className="account-hint" role="status">{resendMessage}</p>}
         {error && <p className="account-error" role="alert">{error}</p>}
       </div>}
-      <Link className="account-button" to={mode === 'update' ? ROUTES.PROFILE : `${ROUTES.LOGIN}?next=${encodeURIComponent(next)}`}>
-        {mode === 'update' ? 'Open my collection' : 'Back to sign in'}
+      <Link className="account-button" to={mode === 'update' ? next : `${ROUTES.LOGIN}?next=${encodeURIComponent(next)}`}>
+        {mode === 'update' ? 'Continue' : 'Back to sign in'}
       </Link>
     </AuthLayout>
   );
@@ -114,7 +114,7 @@ export default function AuthForm({ mode }: { mode: Mode }) {
   if (mode === 'update' && !auth.loading && !auth.user) return (
     <AuthLayout title="Let’s get you a new link." description="Open the recovery link from your email to choose a new password.">
       <p className="account-message" role="alert">{error || 'No active recovery session was found. Your link may have expired.'}</p>
-      <Link className="account-button" to={ROUTES.RESET_PASSWORD}>Request a recovery link</Link>
+      <Link className="account-button" to={`${ROUTES.RESET_PASSWORD}?next=${encodeURIComponent(next)}`}>Request a recovery link</Link>
     </AuthLayout>
   );
 
@@ -134,11 +134,11 @@ export default function AuthForm({ mode }: { mode: Mode }) {
       </form>
       <div className="account-links">
         {mode === 'login' ? <>
-          <Link to={ROUTES.RESET_PASSWORD}>Forgot your password?</Link>
+          <Link to={`${ROUTES.RESET_PASSWORD}?next=${encodeURIComponent(next)}`}>Forgot your password?</Link>
           <Link to={`${ROUTES.RESEND_CONFIRMATION}?next=${encodeURIComponent(next)}`}>Need a new confirmation link?</Link>
           <p>New here? <Link to={`${ROUTES.SIGNUP}?next=${encodeURIComponent(next)}`}>Create an account</Link></p>
         </> : <Link to={`${ROUTES.LOGIN}?next=${encodeURIComponent(next)}`}>Back to sign in</Link>}
-        {mode === 'update' && <Link to={ROUTES.RESET_PASSWORD}>Request a new recovery link</Link>}
+        {mode === 'update' && <Link to={`${ROUTES.RESET_PASSWORD}?next=${encodeURIComponent(next)}`}>Request a new recovery link</Link>}
       </div>
     </AuthLayout>
   );
